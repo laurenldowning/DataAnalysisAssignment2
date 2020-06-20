@@ -1,0 +1,73 @@
+ 
+
+Phumelela Gaming and Leisure is in talks to raise R300 million to stave off collapse as South Africa’s measures to contain the coronavirus curtail horse-racing and other sporting events, according to people familiar with the matter.
+Talks with a capital provider and banks are underway to salvage at least part of the business, said the people, who asked not to be identified as the details of the terms are private. The Johannesburg-based company has been unable to stage events since the government banned large gatherings in mid-March.
+Read: Phumelela CEO quits as racing firm suffers after Steinhoff
+If Phumelela can’t raise the money, the board will have to decide “whether there is any reasonable prospect that the group’s business can be rescued, or whether to make application for voluntary liquidation,” the group said in a statement on Monday. Efforts to reach the company for comment on the R300-million target went unanswered.
+Phumelela isn’t alone in facing the prospect of liquidation due to the coronavirus crisis. Edcon Holdings last week filed for administration after South Africa’s second-largest clothing retailer lost R2 billion in sales and failed to pay suppliers as a result of a five-week strict lockdown.
+Read: Edcon to file for voluntary business rescue
+Companies with high debt levels are taking the most strain. Phumelela’s net debt-to-equity ratio, including lease assets, is at 38%, it said in the statement.
+Phumelela, which used to count former Steinhoff International chief executive officer Markus Jooste as a director and among its largest shareholders, had already started cutting jobs amid a horse-racing industry slump. The stock has tumbled 94% since the start of last year, leaving the company with a market value of less than R75 million.
+© 2020 Bloomberg
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/industry/horse-racing-collapse-takes-phumelela-to-the-brink/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

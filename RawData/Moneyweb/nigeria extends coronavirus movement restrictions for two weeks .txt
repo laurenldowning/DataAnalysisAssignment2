@@ -1,0 +1,72 @@
+ 
+
+Nigeria’s federal government is extending movement restrictions in the country for another two weeks because of the Covid-19 pandemic.
+“In spite of the modest progress made, Nigeria is not yet ready for full opening of the economy and tough decisions have to be taken for the good of the greater majority,” Boss Mustapha, secretary to the government of the federation said in a briefing Monday.
+“Any relaxation will only portend a grave danger for our populace,” Mustapha said.
+A total ban on movement will continue to be in place in Nigeria’s second-biggest city of Kano for another two weeks, where a number of unexplained deaths are being investigated.
+Gradual easing of lockdown, which started on May 4, will continue within the period with stricter enforcement and persuasion measures, according to the Mustapha. The ease is expected to enable other sectors of the economy prepare adequately for reopening in the coming weeks, he said.
+The country of more than 200 million people has recorded 5 959 confirmed coronavirus cases. The government of Lagos state, Nigeria’s commercial capital, said on Sunday that it is considering full re-opening of critical sectors of its economy.
+“With the size of the state’s economy and numbers of businesses that operate in its domain, the government could not afford to keep people and businesses on lockdown permanently,” Lagos state Governor Babajide Sanwo-Olu said in the emailed statement.
+© 2020 Bloomberg
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news-fast-news/nigeria-extends-coronavirus-movement-restrictions-for-two-weeks/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

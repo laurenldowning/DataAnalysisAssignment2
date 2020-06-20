@@ -1,0 +1,65 @@
+ 
+
+
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/in-depth/ninety-one/different-ways-the-market-could-recover-after-covid-19-volatility/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

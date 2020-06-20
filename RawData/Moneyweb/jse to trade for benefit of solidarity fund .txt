@@ -1,0 +1,78 @@
+ 
+
+The Johannesburg Stock Exchange (JSE) is to donate fees derived across all asset classes traded over two days next week.
+This is in response to President Cyril Ramaphosa’s call for companies to donate to the Solidarity Fund, which is independently administered by Old Mutual and was set up in response to the impact of the Covid-19 pandemic on the country.
+The fund is a rapid response vehicle designed to fund impactful initiatives that will augment the national health response contributions to SA’s humanitarian efforts. A further focus of the fund is to mobilise South Africans to flatten the curve and manage the pandemic and its impacts on households and communities.
+Read: Gloves, masks and protective gowns are Solidarity Fund’s priority
+Announcing its launch on Wednesday, the stock exchange said the #Trade4Solidarity campaign will run on Wednesday and Thursday next week (April 15 and 16).
+The initiative encourages market participants to join the JSE by contributing a portion or percentage of their trading revenues to the fund.
+Solidarity Fund chair Gloria Serobe and JSE Group CEO Leila Fourie will host the virtual market opening via all of the JSE’s social media platforms.
+Fourie says the bourse found it fit to respond to the president’s call in this manner.
+“JSE staff and executive team felt this was a very tangible way in which they could answer the president’s call to #PlayYourPart. How we respond to this pandemic has been our greatest Thuma Mina [‘Send me’] moment, not just for us, but for the country.”
+JSE Group CEO Leila Fourie. Image: Supplied
+As Capital Markets director Valdene Reddy says: “We have seen companies pivot to making hand sanitisers and face masks – individuals, corporates and consortiums making meaningful contributions where required.
+“#Trade4Solidarity allows us to make our own contribution to what is the greatest public health crisis this world has witnessed in recent history.”
+Listen to Nompu Siziba’s interview with Solidarity Fund deputy chair Dr Adrian Enthoven:
+Content hosted by iono.fm
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/companies-and-deals/jse-to-trade-for-benefit-of-solidarity-fund/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

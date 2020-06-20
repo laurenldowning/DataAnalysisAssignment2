@@ -1,0 +1,74 @@
+ 
+
+South Africa‘s health minister on Tuesday reported a rise in coronavirus cases of 143 over the past day, taking the total to 2 415.
+Health Minister Zwelini Mkhize provided no update on the number of deaths, which a day earlier stood at 27. The total number of tests conducted so far was 87 022.
+“We still have a long way to go,” he told a news conference at Johannesburg airport. “This is not a sprint, this is a marathon.”
+He added that a donation of equipment from China that had just landed would help South Africa “in fighting this invisible enemy called COVID-19”.
+These included 10 000 N95 masks and disposable gloves, 50 000 surgical disposable masks – enough for about 6-8 weeks – as well as 2 000 medical protective gowns and goggles.
+At the same news conference, foreign minister Naledi Pandor said she was aware of complaints of allegedly racist treatment of South Africans in China, and that “we believe we can accept the commitment of … China to address these concerns”.
+Several African countries have demanded that China address their concerns that Africans, in particular in the southern city of Guangzhou, are being mistreated and harassed.
+Cases of COVID-19 – the respiratory disease caused by the new coronavirus – in South Africa are creeping up, but not at the explosive rate that was initially feared. The rate of new infections has slowed significantly since President Cyril Ramaphosa ordered a nationwide lockdown on March 27 and extended it to the end of April.
+Africa‘s most industrialised nation still has the most confirmed coronavirus cases on the continent, which has registered a total of 5 741 so far.
+In a bid to counteract the economic fallout from the lockdown, South Africa’s central bank slashed its main lending rate by another 100 basis points on Tuesday, to a record-low 4.25%, after moving forward its monetary policy committee (MPC) meeting scheduled for May.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/south-africa/sa-coronavirus-cases-rise-by-143-to-2415/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

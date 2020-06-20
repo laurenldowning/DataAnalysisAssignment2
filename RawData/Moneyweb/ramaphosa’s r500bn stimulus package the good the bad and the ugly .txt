@@ -1,0 +1,95 @@
+ 
+
+On Tuesday evening our president announced an economic stimulus package of R500 billion. This is huge in anyone’s book. It’s also equal to approximately 10% of our shrinking economy. In this note I will share my first impressions of this disaster driven largesse.
+Read: Grant increases, food vouchers in R500bn stimulus package
+Immediately after the man had unpacked his plan and promised us that we, his fellow South Africans, will recover, overcome and prosper, I pondered whether this was a good or a bad package. Initially I found myself unable to answer the question, but then realised that the issue at stake was not so much the contents but the context.
+Let’s first look at a short summary of the main announcements, keeping in mind that Ramaphosa’s focus was to manage the health situation, to support those in need, to support the economy through specific measures and lastly, to hint at what the future holds.
+On health issues
+Health expenditure will enjoy a sizeable slice of the stimulus cake, with indications that international funding will be sought towards this relief. More specifically, an amount of R20 billion is likely to be borrowed from institutions like the International Monetary Fund or World Bank which will be used to import medical supplies from abroad.
+Two points are important in this regard. Firstly, these will most likely be “soft” loans without many strings attached. Secondly, these loans will be earmarked to pay for medical-related imports and not for the general support of the economy.
+On support for the needy
+There will be temporary, yet significant, increases across the spectrum of social grants. Covering a period of six months, the cost of these increases is set at approximately R50 billion. Over and above existing grants, special support will be extended for those not covered by other means or programmes.
+Further support measures will include the announcement of a R20 billion support package for municipalities to cover expenditures such as food, shelter, water and transport. The Sassa network, which will be used to issue food vouchers, will also be supported.
+On support for the economy
+An amount of R100 billion will be “set aside” to protect and “create” jobs. Not much detail has been given, but I suppose this probably means some measures to assist distressed businesses to keep paying salaries. The Sarb, Treasury and the banks will collaborate on a scheme to provide loans to businesses in distress under guarantee from Treasury. An amount of R200 billion will be provided for this.
+More announcements regarding the administration and postponement of taxes and other measures were made, with the tax relief target set at R70 billion.
+On how all this will be funded
+This is, of course, the R500 billion question. The Minister of Finance is expected to deliver an “adjustment” budget over the next few days/weeks in which he will hopefully provide more clarity on exactly who will pay for what.
+Until such time, the following is, or at least, seems clear: the plans are to reprioritise R100 billion worth of existing spending plans, while some money to pay for imports is likely to be sourced from international sources.
+Some other announcements
+The economy, says the president, will be gradually “opened” up, and I suspect more announcements on this front can be expected later this week. Finally, he made it clear that significant, and wide-ranging, changes can be expected in the country: from a “new social compact”, a new “economic strategy” and “economic reforms” to infrastructural spending, “transformation”, “inclusive growth” and certain changes regarding SOEs.
+Comments
+So, to get back to where we started; is this a good or a bad package?
+In the unlikely event that we are forgetting, we must remember that our state machinery is characterised by corruption and inefficiency. The measures that were announced will inevitably mean more state interventions and more power to politicians and bureaucrats; power that is unlikely to be rescinded. Radically reducing the chance that any support package will be implemented successfully; this does not bode well.
+We all know that the economy was already in deep trouble long before the woes from Wuhan hit our shores. And, of course, it was again mostly no thanks to the mismanagement and looting of state resources by our bureaucratic elite. This large scale and long-term plundering has left will very little spare capacity to manage a crisis of these proportions, which means the financial measures announced on Tuesday evening will have a long lasting and mostly negative impact on the state’s finances for many years to come. This, inevitably, means a significant increase in future taxes or a reduction in state spending which, in an environment of increasing need, will become even more politically unpalatable.
+Although the measures toward supporting the needy will go a long way, the dangers are obvious. Firstly, there are few things as permanent as a temporary increase in “support”. There is no way these increases will be temporary. Secondly, the support for those not covered by other projects may well be the beginning of a basic income grant.
+Last but not least, the part of the plan that scares me is Ramaphosa’s use of loaded terms such a new social compact and restructuring. That we need to change, a different approach to SOEs and growth, is a given. But here is my concern: will it be the kind of change driven by an interventionist ideology managed by an inefficient administration? Or will it be a change that will lead to liberty, individual freedom, the protection of property rights and an end to mismanagement and plunder?
+No need to answer that R500 billion question.
+The rock bottom line
+So, what does all of this mean for the economy, for investments, for the rand, inflation and all those things that economists track?
+I am afraid we are probably entering a period of prolonged economic hardship, continued weakness in our currency, higher taxes, and more state intervention, marked and aggravated by an undermining of liberty and safety.
+Hindsight being an exact science, we should have started fixing what needed to be fixed long ago. Now we have a president that just keeps on digging his own grave – because he has few other options.
+It could have been so different ….
+Dawie Roodt is chief economist at Efficient Group.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/moneyweb-opinion/ramaphosas-r500bn-stimulus-package-the-good-the-bad-and-the-ugly/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

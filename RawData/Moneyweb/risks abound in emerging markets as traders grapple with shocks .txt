@@ -1,0 +1,109 @@
+ 
+
+If the first week of the month is anything to go by, the sell-in-May mantra looks set to continue in emerging markets.
+Despite optimism that the US-China trade-war truce will broadly hold, it was a losing week for both stocks and currencies, while local bonds were little changed. And the list of uncertainties in the week ahead will likely ensure caution remains in the driving seat.
+China’s central bank said on the weekend it will resort to “more powerful” policies to counter the hit that the developing world’s biggest economy has suffered from the Covid-19 outbreak. And as distressed-debt levels rise across emerging markets, South African President Cyril Ramaphosa called for African countries to be allowed a two-year debt standstill to provide them with the fiscal space to fight the fallout from the pandemic.
+
+“After an initial bounce in activity after the opening of lockdowns, several factors are likely to restrain the recovery: high debt, corporate defaults, inefficient labour markets, de-globalisation and China-US tensions,” David Hauner, a London-based strategist at Bank of America Merrill Lynch, wrote in a report. “The experience with the opening up in China implies caution for risk appetite in the rest of emerging markets.”
+While a number of countries are moving toward easing restrictions, the impact of lockdowns will probably persist. China, Mexico and the Philippines reported economic contractions last quarter.
+“The state of national lockdowns, securing new sovereign finance, disbursing announced stimulus and the full horror of disruption as seen through corporate results will continue to drive markets,” said Hasnain Malik, the head of equity strategy at Tellimer in Dubai.
+Mexico and Egypt decide
+Mexico’s central bank will probably cut interest rates by a further 50 basis points on Thursday as the pandemic’s impact deepens. Investors will also watch for the release on Tuesday of industrial production figures from March
+Egypt’s central bank will likely hold interest rates unchanged after it saw $14 billion of capital outflows in March, when it slashed borrowing costs by the most ever
+“Rate cuts could lead to a new round of capital flight, further declines in international reserves and a dwindling of foreign assets at commercial banks,” Bloomberg Economics said
+Moreover, the country’s monthly inflation rate rose to a nine-month high of 1.3% in March, the state statistics agency said Sunday
+
+Minutes from Brazil’s most recent central bank meeting will be released Tuesday. Policy makers cut rates to a record low earlier this month
+Retail sales data for March on Wednesday will probably show a sharp contraction, while a reading of the country’s economic activity index this week will probably mirror the impact
+
+Argentine angst
+President Alberto Fernandez is waiting on counteroffers from Argentina’s creditors
+He said in an interview with Futurock radio that all parties are seeking to avoid default, and that he expects counter-proposals in the coming days after Friday’s deadline for bondholders to accept a $65 billion restructuring offer passed without an agreement. The nation’s bonds traded little changed at the end of last week
+The government may consider easing the country’s ultra tight capital controls once it finishes negotiations with bondholders and coronavirus uncertainty clears, Economy Minister Martin Guzman said
+Bloomberg economists expect Argentina’s April inflation data on Thursday to show a decline linked to the nationwide quarantine
+
+Turkey currency trading
+Turkey might lift its ban on trading liras with Citigroup, BNP Paribas and UBS Group if they meet their local-currency obligations to Turkish lenders, the banking regulator told state-run Anadolu Agency
+The banking watchdog imposed the ban last week after currency interventions and new anti-manipulation rules failed to stem the lira’s slide to a record low
+
+Chinese data, Malaysian politics
+China is scheduled to report inflation and producer price index data for April on Tuesday, while industrial production and retail sales figures are due Friday
+The data will probably show the economy continued to improve, but with the post-lockdown recovery held back by the global slump, according to Bloomberg Economics
+Industrial production may have swung back into expansion, while declines in investment and retail sales may have narrowed, it said
+While the onshore yuan has declined this year, its drop is less than 2%, among the least in Asia
+
+The ringgit, among the worst performers in Asia, may face more headwinds. Malaysia’s economy probably contracted in the first quarter, according to Bloomberg Economics, which predicts a decline of 3.3% from a year ago. Tourism-related sectors suffered, while the oil-price war, political tension and the lockdown deepened the slump, it said, ahead of data due Wednesday
+Political uncertainties may continue to weigh on Malaysian markets. Mahathir Mohamad and Anwar Ibrahim said over the weekend “it’s time” to restore an election mandate that they won two years ago, issuing a statement together for the first time since internal bickering in February led to the collapse of their ruling coalition. The two leaders — now in the opposition — said the current government led by Prime Minister Muhyiddin Yassin isn’t the choice of voters and doesn’t have a mandate to rule
+
+India will release inflation and industrial production reports on Tuesday, and trade figures on Friday
+Despite some temporary pressures starting to show up in higher food prices due to supply bottlenecks, headline inflation will come down and average close to the Reserve Bank of India’s medium-term target of 4%, Goldman Sachs Group said in a note
+The RBI is likely to reduce policy rates by 100 basis points by the end of the third quarter, it said
+The rupee has recovered after sliding to a record low in April
+
+Indonesia is due to report trade data on Friday
+The rupiah is the top-performing emerging-market currency this quarter
+
+Investors will watch for signs of a slowdown in Colombia during the first quarter when gross domestic product figures are released on Friday. The nation’s national quarantine, which began in late March, has been extended through at least May 25.
+© 2020 Bloomberg
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news-fast-news/risks-abound-in-emerging-markets-as-traders-grapple-with-shocks/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

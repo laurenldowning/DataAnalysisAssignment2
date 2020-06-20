@@ -1,0 +1,72 @@
+ 
+
+South Africa’s economy is expected to contract by 5.8% in 2020 before rebounding to 4% growth next year, according to a National Treasury presentation to parliament’s finance committee quoting International Monetary Fund projections.
+Africa’s most industrialised nation was already in recession before the coronavirus shut down the economy, with overall GDP growth for 2019 at only 0.8%, owing largely to power shortages that hurt industry.
+President Cyril Ramaphosa last week announced a R500 billion rand stimulus package to help prop up the economy, including tax relief measures to small companies, as a spate of sovereign downgrades raise the cost of borrowing at a time of low growth.
+Talking to lawmakers on Thursday, Finance Minister Tito Mboweni said the government was willing to sell cash-burning state-owned firms to ease pressure on government finances in the wake of the coronavirus pandemic and sharply falling tax revenue.
+“There will be sales, and that’s privatisation, there will be sales of some poorly functioning state-owned enterprises,” Mboweni said in a virtual parliamentary committee meeting.
+However, he said there could be exceptions where the government may need to continue support to troubled state-owned firms, such as the Land Bank, which last week defaulted on bond payments worth R50 billion.
+“What are we going to do with the Land Bank? We cannot afford for the Land Bank to fail, the Land Bank is probably too big to fail in the agriculture sector,” Mboweni said.
+At the same meeting, South Africa’s tax commissioner said year-to-date revenue collection was already down R13 billion and likely to get “significantly worse” once coronavirus tax relief measures kick in.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news-fast-news/treasury-expects-5-8-economic-contraction-this-year/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

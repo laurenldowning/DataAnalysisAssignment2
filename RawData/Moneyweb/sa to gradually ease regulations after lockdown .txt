@@ -1,0 +1,75 @@
+ 
+
+South Africa will gradually ease regulations in various sectors to restart activity after the national lockdown and will work on fast-tracking some structural reforms to help the economy recover.
+A meeting of the president’s Coordinating Council on Saturday “agreed on the need for a risk-adjusted approach to the resumption of economic activity at the completion of the lockdown period,” the Presidency said in a statement.
+The virtual gathering, chaired by President Cyril Ramaphosa, “discussed progress and challenges in the implementation of the nationwide lockdown with specific emphasis on the need for relief of social distress suffered by many South Africans who have suffered a loss of income, who are experiencing food shortages or who do not have access to water,” according to the statement.
+Sunday sees South Africa on day 24 of a five-week national lockdown that was extended from an initial planned 21 days. While the restrictions first halted all economic activity, except essential services, Cooperative Governance Minister Nkosazana Dlamini-Zuma announced last week that mines can resume work at 50% capacity. The central bank projects the economy will contract by 6.1% this year and cut its key interest rate to a record low on April 14 following the decision to keep the restrictions in place until the end of April.
+Recommendations
+The council also made recommendations for the cabinet to consider on April 20, the Presidency said.
+These relate to the need for an economic reconstruction plan and a recovery map for municipalities.
+“The meeting was unanimous that the impact on the South African economy would depend on the pace and magnitude of the interventions which would be required of all social partners,” according to the statement. “This includes the need to fast-track the implementation of identified structural reforms.”
+Labour union representatives told Ramaphosa at a special meeting of the National Economic Development and Labour Council on Friday that a R40 billion rand ($2.1 billion) fund to compensate temporarily laid-off workers is not being distributed fast enough and that the 17 million people on welfare need more assistance.
+The president’s council “agreed that measures should be put in place to ensure that more cash is put in the hands of households to induce economic activity in the medium term”.
+© 2020 Bloomberg LP
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news-fast-news/sa-to-gradually-ease-regulations-after-lockdown/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

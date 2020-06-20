@@ -1,0 +1,72 @@
+ 
+
+The rand opened weaker on Monday, mirroring moves elsewhere in emerging markets as fears over global economic growth dented appetite for riskier assets.
+At 0600 GMT, the rand traded at 18.91 versus the US dollar, roughly 0.6% weaker than its close on Friday.
+The rand fell more than 4% versus the dollar last week, hurt by a surprise central bank interest rate cut and predictions that the domestic economy would suffer a severe contraction because of the Covid-19 pandemic.
+On Monday, President Cyril Ramaphosa’s cabinet is due to meet to discuss new measures to contain the economic impact of Covid-19, including whether to close ailing state airline South African Airways, which has been a major drain on state resources.
+Read: Unions respond to SAA severance package offer
+South Africa’s public finances were in bad shape before it detected its first case of the new coronavirus in March, constraining its ability to provide stimulus.
+The country had recorded 3 158 coronavirus cases and 54 deaths as of Sunday.
+South African government bonds were mixed in early trade, with the yield on the 2030 instrument down 6 basis points to 10.29% after rising earlier.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news-fast-news/rand-opens-weaker-as-growth-fears-hurt-riskier-assets/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

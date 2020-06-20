@@ -1,0 +1,77 @@
+ 
+
+Britain is to trial electric scooters as a possible solution to getting more people back to work without overburdening trains and buses as it eases its coronavirus lockdown.
+Like many other countries, Britain is keen to reopen for business, but wants to avoid people crowding back onto public transport as that could lead to a new spike in Covid-19 cases.
+The trials will look at how e-scooters, which can reach speeds of 20mph (32km/h), could be safely used in urban areas and integrated into the wider transport system.
+The vehicles have become an increasingly popular form of urban transport in many cities around the world.
+But some countries including Spain, France and Germany have clamped down, introducing speed limits and pavement bans, amid a rise in accidents, including a fatal crash in Singapore last year.
+Britain currently only allows e-scooters to be used on private property.
+But the government said e-scooter trials originally slated for next year would be brought forward to June because of the need to reduce pressure on public transport.
+The department of transport told the Thomson Reuters Foundation it would recommend a 15.5 mph speed limit in regulations governing scooter use.
+Trials will be limited to rental e-scooters while authorities gather evidence on their safety. The rules for privately owned scooters will not change, the department said.
+The trials are part of a wider plan to invest £2 billion ($2.5 billion) in cycling and walking as the country emerges from lockdown and to foster a new era of greener travel.
+Britain’s Prime Minister Boris Johnson said this week that people who cannot work from home should be encouraged to return to work.
+But transport bosses have warned that London’s underground train and bus networks, which normally carry millions of passengers a day, will only be able to safely accommodate 13-15% of pre Covid-19 passenger numbers as lockdown eases.
+London’s Mayor Sadiq Khan announced a major revamp of the capital’s streets this month to accommodate a potential 10-fold increase in cycling and five-fold increase in walking when restrictions ease.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news-fast-news/uk-trials-e-scooters-to-ease-post-lockdown-transport-crunch/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

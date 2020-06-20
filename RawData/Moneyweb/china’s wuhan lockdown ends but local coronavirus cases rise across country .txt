@@ -1,0 +1,82 @@
+ 
+
+The Chinese city where the coronavirus epidemic first broke out, Wuhan, ended a two-month lockdown on Wednesday, allowing people to leave the city, if they were healthy, amid concerns of a second wave of infections as cases in mainland China rose.
+China sealed off the city of 11 million people in late January to stop the spread of the flu-like virus to other parts of the country. Over 50 000 people in Wuhan caught the virus, and more than 2 500 of them died, according to official figures.
+But restrictions have eased in recent days as new infections dropped to a trickle. Wuhan, capital of Hubei province, saw just three new confirmed infections in the past 21 days.
+Around 55 000 people are expected to leave Wuhan by train on Wednesday. More than 10 000 travellers have left the city by plane so far as flights resume at Wuhan Tianhe airport. Flights to Beijing and international locations have not been restored.
+“I’m very happy, I’m going home today,” migrant worker Liu Xiaomin told Reuters as she stood with her suitcases inside Wuhan’s Hankou railway station, bound for Xiangyang city.
+Wuhan residents have also been urged not to leave their neighbourhood, their city and even the province unless absolutely necessary.
+People from Wuhan arriving in the Chinese capital will have to undergo two rounds of testing for the virus.
+China maintains strict screening protocols, concerned about any resurgence in domestic transmissions due to virus carriers who exhibit no symptoms and infected travellers arriving from overseas.
+Imported cases
+Asymptomatic patients and imported infections have become China’s chief concern.
+Mainland China’s new coronavirus cases doubled in 24 hours as the number of infected overseas travellers surged, and new asymptomatic infections more than quadrupled.
+New confirmed cases rose to 62 on Tuesday from 32 a day earlier, the National Health Commission said, the highest since March 25. New imported infections accounted for 59 of the cases.
+The number of new asymptomatic cases rose to 137 from 30 a day earlier, the health authority said on Wednesday, with incoming travellers accounting for 102 of the latest batch.
+Chinese authorities do not count asymptomatic cases as part of its tally of confirmed coronavirus infections until patients show symptoms such as a fever or a cough.
+As of Tuesday, 1 095 asymptomatic patients were under medical observation in China, with 358 of them travellers arriving from abroad.
+To stem infections from outside its borders, China has slashed the number of international flights and denied entry to virtually all foreigners. It also started testing all international arrivals for the virus this month.
+Screening of travellers arriving overland was also recently tightened.
+As of Tuesday, the total number of confirmed cases in mainland China stood at 81 802, including 3 333 fatalities, the National Health Commission said.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news-fast-news/chinas-wuhan-lockdown-ends-but-local-coronavirus-cases-rise-across-country/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

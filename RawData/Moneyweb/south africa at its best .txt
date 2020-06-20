@@ -1,0 +1,87 @@
+ 
+
+Something remarkable happened across South Africa on Monday evening. President Cyril Ramaphosa announced that the government was taking away a number of basic human rights, and he was widely applauded for it.
+In announcing a 21-day lockdown, Ramaphosa denied our right to freedom of movement, our right to assembly, and the right to freedom of trade. It was a drastic decision, of the type that you don’t expect in a liberal democracy.
+Yet the overwhelming response from South Africans has been appreciation, support, and even enthusiasm.
+Social media has resonated with goodwill towards the president. His leadership has been praised, and his decisiveness welcomed. All the country’s political parties have stood with him, and business has given its backing.
+The country’s attitude was summed up by Gerhard Papenfus, chief executive of the National Employers’ Association of SA, an organisation that has been largely critical of the state: “It cannot be expected of government to make perfect decisions,” he said. “What is expected is for government to act decisively; and that is what government did.”
+It is striking feature of the country’s psyche that we react this way in a time of crisis. It takes this kind of extreme adversity for us to see the best in ourselves.
+We’re not dead
+For some time now the general narrative around the South African economy was that our prospects are dire, and we may even be helpless in the face of its continued slide. Some South Africans had even resigned themselves to its total collapse.
+Today, our prospects are far worse. Twenty-one days of closed mines, shuttered factories and empty shops is unquestionably going to drive us into a deep recession.
+Yet South Africans are more upbeat today than they were even 72 hours ago.
+Now we see the opportunity to unite in action to protect the most vulnerable and keep our economy going at all costs. There is a determination to succeed, and a sense of optimism that we will, even though the challenge that we face now is far greater than it was before.
+Looking up
+Placing us under this extraordinary strain appears to have reminded us how resilient we are. We have rediscovered our self-confidence.
+Perhaps that is because what we face now is an external threat. It’s easier to stand together when we’re combating something that we can identify and name, and which isn’t of our own making.
+It is nevertheless extraordinary that we can move so quickly from despair to hope, and from anxiety to courage.
+Suddenly, we all want to be South African again. We are expressing our pride in the country and its leadership on social media, and expressing our pity for friends and family living in the UK or the USA.
+The personal hardship is not too much to bear because it is for the good of the country as a whole, and particularly the weak and the poor. We are enjoying a rare moment of national cohesion and unity.
+Our intention is to be able to remember this time as a monumental challenge that we confronted and defeated. This is an opportunity to show off what we can do as South Africans, and we are determined to do it.
+This too shall pass
+Of course it would be wonderful if South Africa could always express this attitude and self-belief. That is, however, a romantic notion.
+The crisis will pass, and our solidarity will drip away. We will retreat back into our disparate lives, and our discordant views.
+One can only hope that it isn’t forgotten – that we can reflect on it as a time when we reminded ourselves just how much we are capable of.
+It may be deeply ironic that we have to suffer the worst as South Africans to remind us of our best. But it is better than never being reminded of it at all.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/moneyweb-opinion/south-africa-at-its-best/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

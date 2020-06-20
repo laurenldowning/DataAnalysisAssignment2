@@ -1,0 +1,96 @@
+ 
+
+Fears about an escalation of Covid-19 cases in the Eastern Cape due to its location next to the hard-hit Western Cape have proved true.
+Health Minister Zweli Mkhize revealed on Tuesday that the Eastern Cape has overtaken Gauteng with the second highest number of confirmed Covid-19 cases in South Africa.
+Mkhize tweeted that the Eastern Cape now has 4 324 confirmed cases. This means that it has 48 more cases than Gauteng (4 276), the country’s economic hub and most populous province.
+He noted that the Western Cape’s tally of confirmed Covid-19 cases now stands at 23 583. The province, which is the epicentre of the pandemic in South Africa, accounts for almost two-thirds of the country’s 35 812 confirmed cases thus far (as of Tuesday).
+
+The provincial breakdown is as follows:
+Eastern Cape4324
+Free State299
+Gauteng4276
+KwaZulu-Natal2637
+Limpopo193
+Mpumalanga132
+North West271
+Northern Cape91
+Western Cape23583
+Unknown6
+— Dr Zweli Mkhize (@DrZweliMkhize) June 2, 2020
+
+Mkhize traditionally issues a daily statement in the evening updating the nation on new Covid-19 statistics.
+On Tuesday evening he confirmed 50 further fatalities linked to the coronavirus, which takes the country’s death toll to 755.
+The Western Cape accounted for the majority of new deaths (43), taking its overall Covid-19 death toll to 568.
+With 88 deaths currently, the Eastern Cape also accounts for the second highest number of Covid-19 fatalities, ahead of KwaZulu-Natal (53) and Gauteng (33). The province overtook KwaZulu-Natal and Gauteng in terms of virus-related deaths in early April.
+Source: National Health Department.
+The Eastern Cape overtaking Gauteng with the second highest number of Covid-19 cases comes after both Mkhize and other government officials raised concerns in April about migrant workers travelling between the Western Cape and their homes in the Eastern Cape. Interprovincial travel is currently banned to curb the spread of the virus, but many workers opted to go back to the Eastern Cape ahead of the initial lockdown in March.
+Touring the town of Ceres and the Witzenberg Municipality on Tuesday as part of a Covid-19 oversight visit to the Western Cape, Mkhize said the municipality has been hard hit by the virus with cluster outbreaks in the farming community.
+The minister added that Witzenberg has developed a protocol for seasonal workers travelling between the Western and Eastern Cape.
+
+This area is responsible for 45% of the agricultural export of the country. The biggest challenge is that there was no lockdown in this area, because most of the workers are essential service. Therefore the response had to be proactive. #WCOversightVisit
+— Dr Zweli Mkhize (@DrZweliMkhize) June 2, 2020
+
+Meanwhile, Mkhize noted in his evening statement that there were 18 313 confirmed coronavirus recoveries in South Africa.
+He also said 761 434 Covid-19 tests have thus far been done countrywide.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/south-africa/eastern-cape-overtakes-gauteng-in-confirmed-covid-19-cases/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

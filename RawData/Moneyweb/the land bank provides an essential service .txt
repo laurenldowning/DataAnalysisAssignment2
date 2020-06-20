@@ -1,0 +1,214 @@
+ 
+
+The first indication of liquidity problems at the Land and Agricultural Development Bank of South Africa (Land Bank) came to light on February 24, when National Treasury provided it with a R5.7 billion guarantee.
+The problems escalated last week when it defaulted on payments on domestic medium-term notes worth R50 billion, triggered by its failure to make a due payment to a lender.
+Read: Land Bank: Possible default on R50 billion notes
+To be fair to Land Bank, it doesn’t obtain regular state funding, and yet it is required to carry out the government’s mandate of providing developmental finance at an affordable rate.
+It provides an essential service in providing finance and insurance cover to small farmers, helping to navigate the devastating impact of drought, pestilence and fluctuating commodity prices.
+Read: Land Bank debt default draws attention to SOEs’ finances
+Land Bank’s business model
+A development bank such as the Land Bank cannot make profit its overall goal, and it is mandated to provide accessible finance to small-scale farmers who would have a higher risk rating.
+It is evident from the Land Bank’s financials that it has been raising new debt to fund debt repayments. Further, it lends out more than it borrows.
+With small profitability, a negligible asset base, possible underprovision of expected credit losses, and without regular state funding, it was inevitable that it would eventually reach a liquidity crisis. This can be seen in the table below.
+R million
+2019
+2018
+2017
+
+
+
+
+Loans and advances
+44 465
+43 418
+40 975
+Interest income
+5 030
+4 846
+4 256
+% interest income/loans and advances
+11.31%
+11.16%
+10.39%
+
+
+
+
+Funding liabilities
+44 257
+41 576
+37 839
+Interest expense
+3 824
+3 568
+3 043
+% interest expense/funding liabilities
+8.64%
+8.58%
+8.04%
+
+
+
+
+Total comprehensive income
+165
+193
+356
+
+
+
+
+Cash funding movement
+
+
+
+New funding raised
+9 073
+13 631
+7 819
+Funding repaid
+-6 391
+-9 894
+-4 003
+
+2 681
+3 736
+3 815
+% funding raised/paid
+141.95%
+137.76%
+195.3%
+The Land Bank may struggle to obtain finance from a non-governmental source, so who will step up to the plate?
+It is unlikely to be the Government Employees Pension Fund (GEPF). As at March 31, 2019, it had already loaned the Land Bank R6.6 billion, mainly comprising promissory notes of R6.2 billion. Unless these promissory notes have since been repaid by the Land Bank.
+Two other contenders for emergency funding would be the Development Bank of South Africa (DBSA) and the Industrial Development Corporation (IDC). Neither discloses details of loans granted to state-owned entities (SOEs) or investments in bonds, hence it is not known if they have already provided the Land Bank with any financing.
+Rising industry risks
+On March 31, Moody’s downgraded the issuer ratings not only of the Land Bank, but also of the DBSA and the IDC, on the basis of Moody’s expectation of rising industry risks and that these institutions are “increasingly focused on higher-risk segments and clients”.
+Moody’s didn’t indicate whether any of these clients included credit-strapped SOEs such as Eskom. However, Moody’s, in its credit opinion dated July 29, 2019, estimated that approximately 19% of the DBSA’s loan book represented Eskom. This is roughly R15 billion. The DBSA annual financial statements as at March 31, 2019, indicate that exposure to the energy sector (excluding municipalities) was R39 billion, and to the roads and transport sector R9.9 billion.
+Moody’s also recognised the “weakening capacity of the South African government to support these development banks in case of need”.
+The Covid-19 pandemic and the economic fallout arising from the lockdown is sure to accelerate the “weakening capacity”. And if the government’s support for the essential finance houses is weakened, this must surely be true of loan defaults in the other SOEs?
+SOE funding arrangements
+The opaque funding arrangements between the various SOEs is a can of worms.
+Only the GEPF has disclosed details of bonds, loans and promissory notes in SOEs as at March 31, 2019:
+
+
+R million
+Land Bank
+Bond
+421
+Land Bank
+Fixed deposit
+15
+Land Bank
+Promissory notes
+6 191
+DBSA
+Certificate of deposit
+452
+DBSA
+Parastatal bonds
+12 595
+IDC
+Direct loan
+5 074
+IDC
+Parastatal bonds
+517
+SA National Roads Agency
+Promissory notes
+70
+SA National Roads Agency
+Parastatal bonds
+23 137
+Eskom
+Bills and bonds
+539
+Eskom
+Parastatal bonds
+84 487
+Eskom
+Direct loan
+15 000
+Transnet
+Parastatal bonds
+21 088
+Trans-Caledon Tunnel Authority
+Parastatal bonds
+6 926
+Additional funding in 2020?
+
+
+Total
+
+176 512
+These bonds, loans and promissory notes represent some 9% of the GEPF’s assets.
+It is to be noted that the DBSA doesn’t disclose details of finance raised, which at March 31, 2019 amounted to R51 billion. Nor does the DBSA disclose details of its bonds held and loans issued, amounting to R77 billion. With Some R15 billion owing by Eskom, does this put the DBSA at risk?
+The IDC also does not disclose any details of the parties to whom it has advanced funds, nor does it disclose any details of finances raised. Nevertheless, as at March 31, 2019, it had advanced R35.6 billion of which R9.7 billion was impaired, and its borrowings amounted to R39.5 billion. Additional borrowings had been raised of R6.3 billion.
+There is a risk that an SOE defaulting on a loan due and payable to another SOE will set off a chain reaction of defaulting payments.
+It is time to cull non-essential SOEs
+The liquidity problems at the Land Bank are a forerunner of worse to come, as the world braces for a global recession not experienced since the Great Depression prior to World War II.
+The government needs to make some tough decisions. Covid-19 isn’t the only existential threat.
+The DBSA, IDC and the Land Bank are essential. All other funds should be consolidated and placed under these entities.
+The government has mismanaged the major SOEs, therefore, imagine the state of all the other entities and funds not in the public view? All non-essential SOEs should be culled.
+If the government can bring the country to an immediate standstill to stop the spread of the coronavirus, it can bring an immediate end to the SOEs that are squandering much needed funds.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/moneyweb-opinion/columnists/the-land-bank-provides-an-essential-service/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

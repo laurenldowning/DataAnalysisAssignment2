@@ -1,0 +1,100 @@
+ 
+
+Murray & Roberts (M&R) says its global portfolio of projects has experienced a significant impact as a result of restrictions implemented to limit the spread of Covid-19. The group expects its earnings to deteriorate by “considerably more than 20%” in the year to end-June compared to the previous year.
+The JSE-listed engineering and construction services group said on Monday it expects this deterioration in its total diluted and basic earnings per share (eps) and total headline earnings per share (heps) in the year to end-June. In the year to end-June 2019, M&R reported total diluted heps of 78 cents and total eps of 83 cents.
+M&R said few projects continued with little or no disruption because of Covid-19, with the suspension of certain projects and others placed on care and maintenance.
+Read: Is SA heading toward life without a construction sector?
+“Where projects were able to operate, measures were implemented to safeguard employees as far as possible from exposure to the virus. Currently, the majority of the group’s projects are again operational and ramping up to pre-restriction production levels,” it said.
+The group in early March this year reported that Covid-19 had at that stage only impacted two of its projects, one in South Africa and the other in Mongolia.
+Read: Two M&R contracts affected by virus outbreak
+M&R said on Monday the group’s 2021 financial year is expected to be a tale of two halves, with it continuing to experience the effects from the Covid-19 impact in the first half and the second half delivering a much stronger earnings response, supported by the group’s current order book.
+Order book growth
+The group on Monday reported further growth in its order book to R51.5 billion at end-March from R50.8 billion in December.
+It also has near orders of about R6.6 billion compared to R6.4 billion in December and an opportunity pipeline of about R721.1 billion compared to R667.7 billion in December.
+M&R also disclosed that support from clients has varied from compensation for costs incurred and time lost to only allowing extensions of time for the delay as a result of Covid-19 regulations.
+The group expects the commercial close-out of all Covid-19 related impacts will take some time and only after some level of normality has returned.
+‘Early action’
+Commenting on the group’s balance sheet and liquidity, M&R said it entered the Covid-19 period of disruption and uncertainty with a strong balance sheet and took early action to preserve its financial position.
+It added that prudent cash and working capital management initiatives were implemented across the group and no clients have defaulted on payments due to the Covid-19 impact.
+M&R said the group’s liquidity position remains strong and at end-March it had in excess of R1.7 billion of cash available and R1.1 billion of unutilised credit facilities plus a robust balance sheet with a net asset value of about R5.6 billion.
+“The group does not anticipate the need to seek covenant relief on its banking facilities in the short to medium term and enjoys ongoing commitment and support from its funding providers,” it said.
+“There has also been no need to raise further facilities since the outbreak of the Covid-19 pandemic.”
+M&R said the Gautrain is operating at limited capacity in accordance with the South African lockdown regulations, adding that ridership is low and the duration that ridership will be impacted by these regulations is uncertain.
+The group has a 50% shareholding in the Bombela Concession Company (BCC), the special purpose vehicle established for the design, partial financing, delivery, operation and maintenance of the Gautrain. The BBC holds the 15-year concession for operating and maintaining the Gautrain.
+Read: R2bn Gautrain investment delayed due to Covid-19
+M&R said in early April this year the shutdown of the Gautrain was expected to impact the fair value adjustment of its investment in the BBC in its current financial year.
+Deterioration ‘not surprising’
+An analyst who did not want to be named said the expected deterioration in M&R earnings is not that surprising in light of the Covid-19 pandemic.
+However, the analyst said it is a debacle that M&R did not accept the takeover offer from German family-owned holding company Aton and believes the group “manufactured” the Competition Commission’s rejection of the proposed deal.
+Read:
+CompCom against Aton’s hostile takeover bid for M&R
+M&R anticipates new offer from Aton before the end of 2020
+ 
+The analyst questioned how the independent committee at M&R could say the fair-value price range for control of the group was between R20 and R22 per share, adding “look where they are now”.
+Shares in M&R rose 16.53% on Monday to close at R4.37.
+ 
+if(mnyArticleGraphs == undefined){var mnyArticleGraphs = {};}mnyArticleGraphs.n1165838MURData = {title: 'Murray and Roberts share price',graphID:'1165838MUR',graphType: 'currency',graphAction: 'hist',graphPeriod: '60',instrumentIDs: [{code: 'MUR', title: 'MUR', type: 'index'},]};jQuery(window).load(function(){getGraph( mnyArticleGraphs.n1165838MURData );});Murray and Roberts share price
+ 
+ 
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/companies-and-deals/covid-19-to-dent-mr-earnings-more-than-20/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

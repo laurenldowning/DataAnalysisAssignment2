@@ -1,0 +1,73 @@
+ 
+
+Alan Winde, the Western Cape’s energetic premier has confirmed that he is going into self-quarantine for seven days after having come into close contact with eNCA cameraman, Lungile Tom, who passed away in Cape Town on Wednesday from Covid-19.
+Winde interacted closely in an interview with Tom last week, ironically after a press conference linked to the coronavirus pandemic.
+“Because I had a one-on-one interview with Lungile after the press conference, being in close range for some time, I am deemed a close contact and will now self-quarantine. It has been nearly seven days since our contact, and I will therefore go into self-quarantine for another seven days,” the premier said in a statement.
+“Members of the public should be reassured that I have not experienced any symptoms associated with Covid-19, but if I do, I will have a test performed straight away,” he added.
+Winde, one of SA’s most proactive and energetic premiers in responding to the Covid-19 pandemic, said that he would continue to work “full steam ahead” from home.
+“Because of our developed systems, I can continue to join all meetings, and will be overseeing our new [Covid-19] hotspot targeted strategy. It is imperative that we take the utmost care and lead by example in our approach to Covid-19,” he noted.
+President Cyril Ramaphosa’s planned Covid-19 tour of the Western Cape, which was set for Friday, has now been postponed due to Winde going into precautionary self-quarantine.
+Meanwhile, Winde noted that in line with good practice for workplaces, screenings will also be arranged for those Western Cape government staff members who were in the room with him and Tom during the press conference and one-on-one interview.
+“Should any of them require testing, in terms of our established protocols, this will be arranged,” he said.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/south-africa/western-cape-premier-goes-into-precautionary-self-quarantine/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

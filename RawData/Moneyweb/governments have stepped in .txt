@@ -1,0 +1,95 @@
+ 
+
+In an economic crisis like the one the world is facing now, a lot of lines get blurred. One of the most obvious, and most significant, is the role of governments in the economy.
+Proponents of the free market would usually argue that governments should involve themselves as little as possible. Their role should be to create an enabling environment for business and then get out of the way.
+However, these rules tend to be disregarded when economies face the kind of disruption they are at the moment.
+Over the line
+“Most governments don’t necessarily want to meddle too much in the free market,” says Brett Hamilton, visiting lecturer in corporate finance at the University of Stellenbosch Business School and director of First River Capital. “However, what we have seen with lockdowns is that governments have over-stepped some of their own self-imposed boundaries.”
+Firstly, this is through the lockdowns themselves. It is an extreme imposition on the part of governments, with enormous consequences, to stop many businesses from operating altogether.
+And, secondly, authorities have acted through massive stimulus packages that are explicitly targeted at keeping banks and businesses afloat.
+“In crises like these, the state is there to play an expanded and essential role to protect people and organise some sort of response,” says Sanisha Packirisamy, economist at Momentum Investments. “That is what we are seeing playing out now.
+“There is this power shift occurring from the private sector into government hands that is challenging laissez-faire ‘leave it alone’ type practices,” she adds.
+“Central banks like the US Fed [Federal Reserve] and the European Central Bank are saying that they will do everything they can to prop up markets,” Packirisamy points out. “Governments are talking about rescuing entire industries like airlines, hotels, and cruise liners that have been quite heavily impacted.”
+Be careful what you wish for
+The scale of these government interventions is already far greater than the money that was made available through stimulus packages during the great financial crisis between 2007 and 2010. The G20 alone has pledged to spend $5 trillion. The $2 trillion being spent in the US is 11% of that country’s GDP.
+Few people would argue that these efforts shouldn’t be happening. After all, the US Fed’s decision to allow so many banks to fail in the early 1930s is widely regarded as the biggest policy mistake of the Great Depression.
+However, that doesn’t mean they should go unchecked.
+“What we’ve seen in crisis after crisis is that there is a reluctance by the state to roll back on its involvement and expenditure,” Hamilton points out. “Individuals and businesses also begin to expect that governments will continue to play a certain role.”
+Learning from history
+Two notable examples bear this out.
+In 1917 Canada introduced personal income tax as a measure to fund its war effort. It was explicitly subject to review once the war was over. Canadians were, however, still taxed under the Income Tax War Act until 1948, when it was finally recognised that this was no longer a temporary arrangement, and the Income Tax Act was enacted.
+The second example is more recent. The quantitative easing that was adopted by major central banks in the great financial crisis in 2007 and 2008 was initially meant to be a short-term response to an immediate threat. More than a decade later, however, markets and economies have become largely dependent on it.
+What needs to be recognised is that once the state intervenes in the private sector, even when it is to save it, it doesn’t easily withdraw.
+This is something that will be relevant globally, but must be particularly guarded against in South Africa.
+Firstly, this is because the country already faced significant challenges before Covid-19. Even once the pandemic has been dealt with, those will remain.
+“Ultimately what we want to do in the South African context is build a framework for longer-term growth,” Packirisamy points out. “But providing short-term relief to spend on goods and services today doesn’t necessarily mean that we are going to have higher long-term growth, because we are not spending on things like fixed-term investments.”
+Seeing beyond the immediate crisis
+In other words, the country can’t afford to lose sight of the longer-term imperatives. The kind of fiscal support that is needed now is not what the country needs to get onto a sustainable growth path. It therefore has to be rolled back at some point to allow for spending in other areas.
+An additional risk is that the steps taken now may also be seen as a precedent by supporters of certain political ideologies.
+“For instance, the South African Reserve Bank has really stepped up in making available all of its powers to stimulate the economy,” Hamilton says. “Usually the central bank would not be as liberal as it is right now.
+“The concern could be that as politicians have now seen what power the Reserve Bank has and what levers it could pull, they might lean a little bit harder on the central bank and its role in future,” he notes.
+Just as importantly, creating the right environment for an economic recovery after the crisis will require the kinds of extensive structural reforms that have been talked about for years. Largely, these needless state intervention, not more.
+That means taking difficult decisions to withdraw government involvement in some areas, even while it may still look like it is needed.
+This will take political courage and foresight, and South Africa will need a lot of that in the months and years ahead.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/governments-have-stepped-in/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

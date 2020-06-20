@@ -1,0 +1,99 @@
+ 
+
+Under lockdown, South Africa has had to come to terms with a new concept – the idea of an ‘essential business’. These are the companies that the government has allowed to keep operating during this period.
+In a broad sense, the way that essential businesses have been defined seems reasonable. The government has clearly applied its mind to what is required to keep a country going.
+Healthcare services are obviously necessary. Grocery stores need to stay open so that people can get food. The media must be able to keep the country informed. Financial services need to facilitate payments and keep capital markets functioning.
+In order to slow the spread of Covid-19, it makes sense to limit activity to companies in these sectors. However, does that really mean that all other businesses aren’t ‘essential’?
+Recognising reality
+In a recent webcast, Jerry Gundlach, founder and chair of US investment firm DoubleLine Capital, posed exactly this question.
+“There is no such thing as a non-essential business,” Gundlach argued. “They are all essential to their owners, and those businesses are interconnected to one another.”
+This is something South Africa is going to have to grapple with in a very real sense when the lockdown is over. It is a reality that will be recognised in two ways.
+The first is that every business exists because it is supplying something to somebody. Your local hairdresser might seem the furthest thing from ‘essential’, but it wouldn’t exist if customers didn’t feel they needed it.
+
+Read: Rupert’s R1bn donation: SMEs may apply for funding of up to R1m
+
+In fact, after weeks of South Africans having to go without a visit to the hairdresser, any salon that is able to open its doors again is likely to be inundated with clientele. It will quite possibly be a boom time not only for them, but also for beauty parlours, spas and wellness centres.
+This will be a demonstration of just how ‘essential’ these businesses are.
+Links in the chain
+Examples like this, where companies and individuals are able to respond to a pent-up demand, could well be a good news story post-lockdown. However, there will be others that are far less positive.
+Many businesses that are supplying parts or services within larger supply chains are going to struggle to survive. Even if they do, they may start operating at reduced capacity after the lockdown.
+This will have knock-on effects. Any supply chain only runs as well as its least efficient component, and this could mean major disruptions to many parts of the economy as capacity is re-established. This could take years.
+Read: Banks are taking applications for Oppenheimer donation
+Put another way, every business in a supply chain is ‘essential’ to keeping it functioning in a productive manner. Unfortunately, the lockdown is going to prove how true this is.
+Bread and butter
+The second reality, which the country is already having to face up to, is that every business is ‘essential’ to its owners and the people who work there. Companies provide jobs and livelihoods to millions of South Africans.
+Some businesses are already accepting that they cannot survive for 21 days without any cash flow. People are already being retrenched. This is going to make life extremely hard for many South Africans, some of whom would have felt they were in secure jobs just a few weeks ago.
+What can’t be ignored is that companies that create jobs and pay wages are an ‘essential’ part of any social system. By generating profits and paying taxes, they are also an ‘essential’ contributor to the country’s greater wellbeing.
+If South Africa loses large numbers of businesses due to the need to respond to the threat of Covid-19, the country will be significantly worse off.
+This is an unpleasant reality, but perhaps it will also be a necessary shock. It will be very obvious when South Africa emerges from lockdown just how ‘essential’ business is. In a country where attitudes towards business are often antagonistic, this will hopefully be eye-opening.
+The country will not recover and will certainly not prosper unless we recognise just how ‘essential’ every business is.
+Encouragingly, a lot of money and effort has been pledged to supporting as many businesses as possible through this period. Hopefully the same focus can be brought to creating a more enabling environment for them once it is over.
+Listen to Melitta Ngalonkulu’s interview with Kim Polley of Instinctif Partners Africa: 
+
+
+Content hosted by iono.fm
+
+
+
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/moneyweb-opinion/a-non-essential-business-theres-no-such-thing/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

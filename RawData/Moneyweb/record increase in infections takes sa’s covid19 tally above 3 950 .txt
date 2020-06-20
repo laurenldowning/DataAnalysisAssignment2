@@ -1,0 +1,80 @@
+ 
+
+South Africa’s new Covid-19 infections increased by 318 on Thursday – the biggest daily increase since the outbreak of the pandemic in the country, Health Minister Zweli Mkhize has revealed.
+The previous record increase was on Saturday (April 18), when 251 new cases were reported. The latest increase comes as government’s nationwide virus screening and testing campaign is being intensified, with more than 3.6 million people having already been screened.
+Read: Coronavirus cases escalate to 90 at Mediclinic Morningside
+Releasing an update ahead of President Cyril Ramaphosa’s latest address to the nation on Thursday evening, Mkhize reported that the increase takes the country’s tally of cases up to 3 953. He also confirmed 10 further virus-related deaths, with the nationwide death toll now at 75.
+Read: SA remains in lockdown with a little more freedom
+The Western Cape has seen 200 new infections and has usurped Gauteng as the province with the greatest number of confirmed cases of Covid-19 cases in SA. There are now 1 279 reported cases in the Western Cape, 1 252 in Gauteng and 807 in KwaZulu-Natal.
+Source: National Institute for Communicable Diseases (NICD)/ Department of Health
+The Western Cape is also now home to the most virus-related deaths, with 27, just ahead of KwaZulu-Natal’s 26.
+Mkhize noted that of the 10 newly reported deaths, six had occurred in the Western Cape, two in KwaZulu-Natal and one each in Gauteng and the Eastern Cape.
+Read: Netcare’s R450m Covid-19 fight as another hospital halts admissions
+“It is notable that today the Western Cape has surpassed Gauteng’s confirmed cases and now has the highest number of Covid-19 positive cases in the country. A further analysis is being done as we are observing outbreak clusters in the Western Cape,” he said.
+“This means that a large number of people who operate and interact in the same area, for example factories or shopping centres, are testing positive,” he added.
+Mkhize said that while the country is “observing a steady increase” in the number of positive Covid-19 cases, he is pleased that government’s community screening and testing campaign is intensifying.
+He pointed out that, as of Thursday, 3 633 037 people across the country had been screened, of which 24 174 have been referred for testing.
+“We commend all the health workers and tracers for their hard work in different parts of our country. We also thank members of the community for heeding government’s call to participate in the mass screening and testing,” said Mkhize.
+“This allows us to take the necessary actions such as isolation, quarantine or hospitalisation if required. The epidemiologists also continue to analyse these trends in order for the country to better understand the impact of the outbreak as it unfolds.”
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/qa/record-increase-in-infections-takes-sas-covid-19-tally-above-3-950/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

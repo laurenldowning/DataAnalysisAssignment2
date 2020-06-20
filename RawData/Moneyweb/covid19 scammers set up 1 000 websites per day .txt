@@ -1,0 +1,79 @@
+ 
+
+Research published by service provider Atlas VPN suggests that fraudsters created over 35 500 unique websites related to Covid-19 last month. This is a projection based on work done by Chad Anderson, a senior security researcher at DomainTools.
+These websites mostly claim to offer products to combat Covid-19. Some make wild claims about their efficacy. Others may simply not exist.
+Anderson identified one site selling a “corona necklace air purifier” selling for $59 (R1 090) that claimed to offer “all day protection”. Another was selling a $299 (R5 500) “anti-viral protection” pill that promised 30 day protection from the virus.
+A number of sites are offering home test kits for between $29.99 (R550) and $79 (R1 450). None of these have been approved by the US Food and Drug Administration, and there is no proof that any of them work.
+Shutting down
+The proliferation of these sites has been made by possible by e-commerce platforms like Shopify that make it easy for any retailer to register a site. All that is needed is an email address and a credit card.
+According to Atlast VPN, Shopify has already closed more than 4 500 sites selling fake or mislabelled products related to Covid-19.
+Online retail giant Amazon has also removed more than half a million coronavirus-related product listings due to price gouging. It also blocked more than one million misleading listings, such as pills that claimed to be able to kill the virus.
+Scale of the fraud
+Scammers have also drawn the attention of Interpol, which Atlas VPN notes blocked 18 bank accounts during March and froze $730 000 (R13.5 million) in suspicious transactions. Interpol reported that victims have reported losses as large as $100 000 (R1.8 million) in a single case.
+In many of these cases, orders for items like surgical masks and medical supplies are simply never delivered after they have been paid for. Fraudulent activity related to Covid-19 also extends to phishing emails, cyberattacks and even telephone scams.
+Authorities have warned that as criminals take advantage of the crisis, these will continue to evolve.
+For example, there have been reports of cybercriminal gangs sending phishing emails to healthcare professionals with titles such as “coronavirus awareness”. In the Czech Republic, a cyberattack shut down a hospital’s entire IT network.
+Some fraudsters are employing modifications of the infamous “419 scams” that have plagued the internet for decades. For example, people are sent emails or receive phone calls claiming that they have a sick relative who needs help covering their medical bills.
+
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/covid-19-scammers-set-up-1-000-websites-per-day/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

@@ -1,0 +1,82 @@
+ 
+
+Any investor who got through March 2020 will have a story to tell their grandchildren. The turmoil in global stock markets last month will be remembered as one of the most significant market events in history.
+The heatmap below shows how widespread the sell-off was.
+
+“U.S. equities posted their worst quarter since 2008, with the S&P 500 down 20% and smaller-caps performing even worse,” notes Chris Bennett, Director, Index Investment Strategy at S&P Dow Jones Indices (SPDJI). “The S&P Europe 350 fell 14% in March to complete a 22% drop in the first quarter, the worst monthly and quarterly performance since September 2002. Very few countries have limited the losses to single digits this month, and March will be the worst month since October 2008 for the S&P Global BMI.”
+In total, nearly $8 trillion was shaved off the market capitalisation of equity markets worldwide.
+“Global markets are down $7.88 trillion for the month, down $14.88 trillion from the high of 19 February, and up $6.07 trillion from the recent low of 23 March,” according to SPDJI.
+As the table below shows, even though markets around the world have generally recovered from their lowest points, the losses sustained are still extreme. Only Japan, Switzerland, Hong Kong and China finished the month better than 20% down from their 2020 highs.
+
+The worst hit markets were those in Latin America, particularly Argentina’s MERVAL Index, and South Africa. Despite a 12.5% bounce off its lowest point, the S&P South Africa Composite was still 41.1% down from its 2020 peak at the end of the month.
+The ups and downs
+The speed of the sell-off is illustrated by the fact that March recorded six of the S&P 500’s 10 largest daily point losses in history. The largest of these was three times the biggest drop of any day in 2008.
+
+Source: S&P Dow Jones Indices (click to enlarge)
+In amongst these losses, however, the S&P 500 also saw its seven largest daily point gains ever. The jumps of over 9% on 13 March and 24 March were also the ninth and 10th largest daily percentage gains the index has ever experienced.
+
+Source: S&P Dow Jones Indices (click to enlarge)
+This level of volatility is unprecedented. The VIX, which measures volatility on the S&P 500, closed at a record high of 82.69 on 16 March.
+
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/investing/global-markets-lost-nearly-8-billion-in-value-in-march/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

@@ -1,0 +1,73 @@
+ 
+
+Ratings agency Moody’s cut its forecast for South Africa’s economy to a 2.5% contraction in 2020, citing the impact of a nationwide, five-week shutdown aimed at limiting the spread of the novel coronavirus.
+In early March, before it downgraded the country’s credit rating to subinvestment status, Moody’s had forecast an expansion of 0.4%. Fitch and S&P Global Ratings also rank South Africa at “junk” status.
+“We forecast real GDP will contract by 2.5% in 2020, as the coronavirus crisis weighs on economic activity,” Moody’s said in a research report dated April 14.
+The country has the most confirmed coronavirus cases in sub-Saharan Africa, at 2,415, a number expected to rise significantly as more tests are conducted. The national lockdown started on March 26.
+“The lockdown will reduce the country’s productive capacities, with the transport, hospitality, mining and manufacturing industries particularly affected, while weighing on households’ consumption,” Moody’s said.
+On Tuesday the South African Reserve Bank said it saw gross domestic product (GDP) shrinking 6.1% this year, while major banks locally and abroad see the likelihood of an even deeper recession, especially if the shutdown is extended beyond May 2.
+In the report Moody’s reiterated its view that a credit upgrade back to investment level was unlikely given the negative outlook on the ‘Ba1’ ratings.
+“We would likely change the rating outlook to stable if the government consolidated its finances in line with our baseline expectations, growth picked up slowly but durably and financing risks remained limited,” it said.
+The ratings firms said it forecast the fiscal deficit to rise to a record 8.5% of GDP in 2020 and the debt-to-GDP ratio to climb 22 percentage points over the next four fiscal years.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/economy/moodys-sees-south-africa-gdp-shrinking-2-5/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

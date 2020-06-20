@@ -1,0 +1,73 @@
+ 
+
+Citigroup is stepping up its role as a mediator between borrowers in sub-Saharan Africa and institutions such as the World Bank and International Monetary Fund to provide access to cheaper financing in markets hit by the coronavirus pandemic.
+The importance of multilateral lenders, including others like the African Development Bank and Overseas Private Investment Corporation, is growing as lockdowns to contain the spread of Covid-19 slow economic growth, stoke global market turbulence and increase borrowing costs. Those gyrations are also putting mergers, acquisitions and share sales on hold.
+“Multilateral agencies help to mitigate risk and to manage the increasing premium,” Citigroup’s sub-Saharan Africa head Akin Dawodu said in an interview. This helps clients who are now less concerned with strategic-type transactions like market access or M&A and more interested in “conversations around risk management, risk mitigation, hedging, advisory and protection” than in the past.
+Funders including the IMF and private creditors have extended at least $57 billion to African governments this year to provide front-line health services, support for the poor and to keep economies afloat, the World Bank said last month. The continent may need an estimated $114 billion in 2020 to fight the virus, the lender said.
+That means there is more than enough work for all banks seeking to act as mediators with multilateral lenders, said Aziz Rahman, the US bank’s managing director and corporate bank head for sub-Saharan Africa. With the outlook still unclear on the aftermath of the pandemic, big deals are on the back-burner.
+“Some clients will be looking opportunistically at Africa, while some based here will be looking for outbound opportunities,” Rahman said. “Many have the capacity, they have the targets. But are they pulling the trigger now? Many of our customers are waiting for the dust to settle to see what the new normal will be. We’re still right in the middle of it.”
+Supply-chain finance is also emerging as another opportunity for banks, Dawodu said. Here, lenders can use their relationships with big companies to arrange finance for their suppliers — possibly at lower rates than with their regular banks. This is done by using the larger company’s assurance to pay the supplier within a certain time to mitigate risks.
+“It’s a very good tool for companies to use as a source of funding and to ensure products are getting out,” Dawodu said. “Supply-chain finance is emerging as a key to ensuring businesses remain intact.”
+© 2020 Bloomberg
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news-fast-news/citigroup-turns-to-mediating-cheap-loans-as-african-deals-dry-up/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

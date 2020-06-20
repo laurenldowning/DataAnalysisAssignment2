@@ -1,0 +1,79 @@
+ 
+
+JSE-listed restaurant franchise giant Spur Corporation is not charging its more than 600 franchisees across South Africa any franchise fees currently due to the impact of the coronavirus pandemic on business.
+The move was confirmed by the group’s chief operations officer, Mark Farrelly, this week.
+Read: Spur to defer interim dividend payment
+It comes as all restaurants, takeaways and coffee shops have been forced to close, together with thousands of other “non-essential” services, as part of a government-declared national lockdown meant to curtail the spread of the virus.
+“Following our President Cyril Ramaphosa’s call to isolate and close all non-essential business, Spur Corporation closed over 600 restaurants on March 25 in support of the national lockdown,” the group noted in a statement.
+Read: Domino’s fall for Taste
+“When the president initially announced the coronavirus as a national disaster on March 15, we understood the impact this would have on our 600-plus franchisees and as exco we immediately zero-rated franchisee and marketing fees for the second half of March and the entire month of April,” said Farrelly.
+“We have tried to set a national example by providing our franchisees with significant financial relief because our people are our primary concern,” he added.
+Read: Former Famous Brands CEO backs new wellness venture
+Spur Corporation’s eight restaurant brands include Spur Steak Ranches, Spur Grill & Go, Panarottis Pizza Pasta, RocoMamas, The Hussar Grill, Casa Bella, Nikos Coalgrill Greek, and John Dory’s Fish, Grill, Sushi.
+Farrelly said the group is “entirely supportive of the national drive to flatten the curve” of the pandemic.
+“Although tragic in many circumstances, the sentiment is also strongly supported by our franchisee body,” he noted. “We have also encouraged our franchisees to look after their staff by making use of available disaster relief resources at their disposal. We also know that the franchisees are in negotiations with their landlords on the challenges of meeting rental obligations.
+“This is a humanitarian disaster that necessitates that we all walk this journey together in order to survive,” he said.
+Listen to Nompu Siziba’s interview with Franchise Association of SA executive director Vera Valasis:
+Content hosted by iono.fm
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/companies-and-deals/spur-suspends-franchise-fees-amid-clovid-19-closures/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

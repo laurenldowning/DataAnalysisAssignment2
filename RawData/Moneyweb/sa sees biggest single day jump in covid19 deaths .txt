@@ -1,0 +1,77 @@
+ 
+
+The total number of Covid-19 deaths in South Africa now stands at 238, with Health Minister Zweli Mkhize reporting 19 further fatalities on Thursday.
+This represents the biggest single-day increase in coronavirus-related deaths since the outbreak of the pandemic in the country.
+The Western Cape accounts for over half of these deaths, at 129, while the Eastern Cape has seen a spike in deaths, which now stands at 31. It has more Covid-19 deaths than Gauteng, which stands at 24. KwaZulu-Natal still has the third highest number of deaths, at 44.
+Read: Western Cape premier goes into precautionary self-quarantine
+Mkhize noted in a brief statement that, as of Thursday, the total number of confirmed cases in South Africa is 12 739.
+The country’s active Covid-19 cases stand at 7 063, with the minister reporting 5 676 recoveries.
+He added that 16 666 new Covid-19 tests had been done over a 24-hour cycle, taking the total number of tests in the country beyond the 403 000-mark.
+Source: National Institute for Communicable Diseases (NICD)/ Department of Health
+During his latest address to the nation on Wednesday night, President Cyril Ramaphosa said that more than nine million people had also been screened as part of the country’s health response to the pandemic.
+In addition to a significant increase in testing and screening capacity, he said that government has been able to acquire 25 000 more beds for quarantine, as well as more personal protective equipment and medical equipment.
+Ramaphosa noted that this represents the “largest and most extensive public health mobilisation in the history of our country”.
+“By delaying the spread of the disease, we have been able to strengthen the capacity of our health system and to put in place wide-ranging public health programmes to better manage the inevitable increase in infections,” he said.
+Read: Most parts of the country could move to Level 3 by month-end
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/south-africa/sa-sees-biggest-single-day-jump-in-covid-19-deaths/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

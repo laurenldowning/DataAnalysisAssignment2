@@ -1,0 +1,112 @@
+ 
+
+In normal times, the decision by Moody’s to downgrade South Africa’s sovereign rating to below investment grade last Friday would have been headline news for days. However, with the world consumed by the implications of the coronavirus, the downgrade has taken second place.
+To some extent this is because the impact that Covid-19 has had on markets has already far surpassed the likely short-term response to a downgrade. By the time of the Moody’s announcement on Friday, the rand, local government bonds and South African stocks had already been battered in the global sell-off.
+SA asset performance to 27 March 2020
+ 
+1 January 2020
+27 March 2020
+Change
+ZAR / USD
+R 14.11
+R 17.36
+-18.72%
+10 year government bond yield
+8.26%
+11.63%
+-28.98%
+FTSE/JSE All Share Index
+57 084
+42 946
+-24.77%
+It is therefore reasonable to ask whether the downgrade will have any additional implications for South African assets. With the rand, government bonds and South African equities already at these levels, is a downgrade a big enough event to push them further?
+The market saw it coming
+This is a particularly relevant question because it was not an unexpected event.
+“The timing of Moody’s decision was unfortunate, but hardly unanticipated,” Cannon Asset Managers points out in a note.
+“At the recent reading of the national budget, government made all the right noises about addressing the rating agencies’ concerns after Moody’s last rating review in November, but ultimately failed to give any evidence to its good intentions,” it added.
+Read: Our uncertain future
+When the market knows that something is going to happen, it has generally already factored it in to valuations. This is what analysts mean when they talk about the downgrade already being ‘priced in’.
+“The downgrade has been widely expected since the budget in February indicated a worsening fiscal position, so it has been largely priced into the values of stocks, bonds and the rand,” says Andrew Davison, Head of Advice at Old Mutual Corporate Consultants. “This means that, for instance, the interest rates being demanded by bond investors already reflect the lower creditworthiness. This can be seen by comparing the interest rates on our bonds to other countries that are already sub-investment grade.”
+Lessons from Brazil
+The animation below compiled by Corion Capital puts this in perspective.
+
+Source: Corion Capital
+South Africa’s situation is reasonably comparable to Brazil’s when that country was downgraded in 2015. Yet, the local stock market and South African government bonds have already sold off more than their Brazilian equivalents did five years ago in the lead up to its downgrade.
+Local bond yields are also substantially higher than for the country’s peers at the moment – even those with lower credit ratings.
+It’s also worth noting is that, following Brazil’s downgrade, stocks and bonds actually rallied. This is because at this point of weakness, these assets are cheap and attractive to investors willing to accept some additional risk.
+As Davison notes: “Although investors with investment-grade-only mandates will be sellers of South African bonds, other investors with less restrictive mandates will be potential buyers. In the sub-investment grade universe, South African bonds are likely to be very attractive on a risk-adjusted basis. So, demand might be quite strong.”
+Looking at stocks
+When it comes to the local equity market, the downgrade does mean that companies may face higher funding costs, and that could be challenging for those with weaker balance sheets. However, this is already a significant concern in the current environment.
+Read: Moody’s downgrade compounds Covid-19 challenges
+Prices on the local stock exchange therefore already reflect companies under pressure. This suggests that there is a margin of safety for investors.
+“South African corporates have been operating in a weak environment for an extended period already and will find the environment very challenging with some demand capacity permanently leaving the market,” says Jason Liddle, head of institutional business at Sanlam Investments.
+“We do expect this to be for a period of time only and that companies will recover over the medium term.”
+Liddle adds that it is also worth noting that nearly 40% of the income earned by JSE-listed companies comes from outside of South Africa.
+“Our stock market has therefore become less reliant on the fate of the local economy,” he points out. “This protects investors from rand weakness and South Africa-specific risks.”
+The caveat
+It is therefore possible that the downgrade will have no serious implications for South African investors above the risks that they already face from the Covid-19 pandemic. However, it may take a few months before anyone can say this for certain.
+“Many analysts and commentators have suggested that the downgrade is already reflected in our market prices, and if that is true, then the agency will have finally called what markets have been saying for a long time,” Cannon Asset Managers notes. “But in good economics, there is always a ‘however’.
+“In this case, the ‘however’ is that we will only know whether this is true when capital market participants begin responding to the rating assessment.”
+As South Africa will only officially fall out of the FTSE World Government Bond Index at the end of April, the effects may be delayed. Investors may therefore have to wait until May before this question is fully answered.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/investing/the-downgrade-and-your-investments/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

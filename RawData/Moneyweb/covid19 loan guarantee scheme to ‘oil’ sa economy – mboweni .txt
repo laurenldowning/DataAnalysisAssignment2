@@ -1,0 +1,94 @@
+ 
+
+The government-backed R200 billion Covid-19 loan guarantee scheme to support small and medium businesses, announced by President Cyril Ramaphosa on Tuesday night as part of a wider R500 billion social relief and economic stimulus package, will be ready for launched as early as next week.
+That’s the word from Finance Minister Tito Mboweni, who briefed the media on Friday with more details on the total package, which represent government’s response to the economic fallout from the pandemic.
+Read:
+Ramaphosa’s R500bn Covid-19 relief and stimulus response
+Covid-19: Freeze dividends and exec bonuses, Sarb tells bankers
+Responding to questions around the loan guarantee scheme, Mboweni said that National Treasury would be working with the private sector (essentially banks), together with the South African Reserve Bank (Sarb), to unlock between R100 billion to R200 billion through a national credit guarantee scheme.
+“The scheme would function, in particular, to favour those businesses with turnover of R300 million or less. That’s very important because it doesn’t mean these are funds are in the hands of the fiscus, but this will be funding in the economic system, which should help keep oiling the functioning of the economy system,” he said.
+“It is very important in that we are not statist in our approach, but we bring together the public and private sector,” he added.
+“The profits and losses on that guarantee scheme will revert back to the national revenue fund. But we have to take a positive approach, and not only look at the losses,” noted Mboweni, adding that there were also benefits that would accrue to the economy.
+Credit guarantee schemes have historically not been significantly used by government to support business in the South African market, barring government bailouts of parastatals like SAA and Eskom. However, there are much smaller credit guarantee initiatives offered by state driven small business support institutions such as the Small Enterprise Finance Agency.
+Read: How loan insurance can boost the economy
+Listen: The benefits of credit guarantee schemes
+Such schemes are quite popular in other developing nations such as India, which are used by governments to support banks in de-risking funding to small and medium businesses. The R200 billion Covid-19 loan guarantee scheme may yet be the biggest such initiative to be launched by government.
+During his address on Tuesday night, Ramaphosa noted that the loan guarantee scheme would assist enterprises that have been hard-hit by the Covid-19 economic fallout with funding to pay operational costs, such as salaries, rent and the payment of suppliers.
+“It is expected that the scheme will support over 700 000 firms and more than 3 million employees through this difficult period. A number of the banks are ready to roll out the product before the end of the month,” said Ramaphosa.
+Meanwhile, the National Treasury published a leaflet and posted details on its website related to how businesses can access funding from the Covid-19 loan guarantee scheme.
+“In terms of this scheme, R200 billion will be ultimately made available for new loans to existing customers. The initial phase will be R100 billion,” it noted.
+Listed below are the key features of the Covid-19 loan guarantee scheme
+Covid-19 loans will be available from banks to eligible businesses in good standing with their commercial banks with an annual turnover of less than R300 million
+Funds borrowed through this scheme can be used for operational expenses such as salaries, rent and lease agreements, contracts with suppliers, etc. Loans will cover up to three months of operational costs and will be drawn down monthly.
+Banks are not obliged to extend Covid-19 loans, and those that do will use their normal risk evaluation and credit-application processes. A business’s owners may be required to sign surety for the loan
+Each business may accept only one Covid-19 loan
+Covid-19 loans will be offered at a single, agreed lending rate by all banks participating in the scheme. The rate will track the repo rate
+A six-month repayment holiday will commence from the first drawdown, although interest will accumulate from the date on which the first drawdown on the loan occurs
+Repayment of interest and capital starts after six months and businesses have a maximum of 60 months to do so. Borrowers can repay the loan ahead of schedule
+The scheme will be rolled out by banks over the next few weeks.
+The Treasury noted in its Covid-19 loan guarantee scheme leaflet that the scheme works on the principle that profits and losses are ultimately shared between government and the banks.
+“This will include a guarantee fee charged to the banks in relation to the scheme. These profits will be used to offset any losses that the scheme makes. If the scheme suffers any further losses, these will be absorbed by the banks themselves, capped at 6% of the size of the loan,” it added.
+“Any further losses will ultimately be covered by the fiscus,” it said.
+The Treasury said that interested businesses should contact banks directly for more details and eligibility criteria.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/companies-and-deals/covid-19-loan-guarantee-scheme-to-oil-sa-economy-mboweni/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

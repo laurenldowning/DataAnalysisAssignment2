@@ -1,0 +1,83 @@
+ 
+ 
+Trevor Wittles, the owner of Shawarma Express, showed determination to save his restaurants and his employees’ jobs, by delivering Shawarma ingredients instead of hot Shawarmas during lockdown level 5. This week he tells us how he saved his business from closing shop and adapted to the changing business environment.
+
+ 
+MELITTA NGALONKULU: Hello, and welcome to the small business conversation podcast, Episode 2. My name is Melitta Ngalonkulu. This week we shine the spotlight on resilient entrepreneurs who have been able to turn around their business model in order to accommodate the lockdown regulations. Our focus will be on restaurants as they form part of the tourism industry, which will remain the hardest hit by the pandemic that has brought the global economy to its knees. As we are easing into Alert Level 3, restaurants will remain prohibited from selling meals for sit-down or onsite consumption, but food collections or drive-throughs and pickups are allowed.
+Unfortunately, this comes after two months of having small businesses in the sector unable to operate. Some have already folded, while others are on the brink of collapse. But Trevor Wittles, owner of Shawarma Express, showed determination to save his restaurants and the jobs of his employees by delivering shawarma ingredients instead of hot shawarmas. Trevor, where did you find the strength to do business differently during this period?
+TREVOR WITTLES: I don’t know if it’s strength, or if it’s a matter of necessity and survival. One has got responsibilities for staff members and for a business, and we just go into survival mode and do what needs to be done, and not wait for other people or government or anybody else to do, but just do what has to be done. It’s as simple as that and as straightforward as that.
+MELITTA NGALONKULU: Now, Trevor, in doing what actually needs to be done, as you have just said, would you say changing how Shawarma Express did business in the past two months helped increase your trade?
+TREVOR WITTLES: I won’t say it’s increased our trade. We’ve managed to survive, and that’s a lot better than lots of other companies have done, or lots of other restaurants have done. We’ve managed to stay afloat, we’ve managed to survive, and hopefully we will come out of this stronger. We have adapted. We’ve changed how we’ve done business. And every day there are new challenges and new changes. Every time there’s a new Level change we have to adapt to the changes within the new level change, and do our utmost best to survive. So I can’t say that we have grown our business. We’ve got a little bit of different clientele and new clients. We’ve seen support from people that we did not know before, and hopefully our other clients will be back and coming out of this. I really believe that we’ll be stronger, because there are other companies that have not adapted and have not survived. So yes.
+MELITTA NGALONKULU: Trevor, speaking of alert-level changes, how will you take advantage of the current shift in the regulations?
+TREVOR WITTLES: I think the shift from Level 5 to Level 4 was the biggest shift for us. And, funnily enough, we had a drop in business between Level 5 and Level 4, because at Level 5 we were doing home deliveries of essential goods. When Level 4 came around, every single restaurant that was a sit-down restaurant that never was in the takeaway business – which is our core business – became a takeaway restaurant. And then every single person that found themselves sitting at home who was a home cook also decided, okay, I’m going to start providing home-cooked meals to people. And all of a sudden the delivery industry or the takeaway industry became saturated very quickly.
+Moving to Level 3 we have seen within the last 24 hours – yesterday was the first day – quite a big increase of movement of people and more people coming in to do takeaways. And we’re hoping that this will increase our business in Level 3, but it’s been very, very interesting. And I hope that Level 3 will bring better pastures than Level 4 did, because Level 4 was very difficult.
+MELITTA NGALONKULU: What concerns you the most about the current restaurant business and how it’s politically changing?
+TREVOR WITTLES: I would hate to be a restaurant that’s got 200, 300, 400 seats, because if you have got 200 seats or 1 000 seats, you can never do enough deliveries and takeaways. I can see a big change in the restaurant industry. We’re very fortunate that our core business was takeaway, but I would hate to be in the position of another restaurant that has got 200 staff and a 1 000 seats a restaurant, because they won’t survive this. The restaurant industry, I think, is going to change in the long term. We’re going to see lots of change in the restaurant industry. We’re going to see lots of these bigger restaurants that would not have survived, and did not survive this, have to adapt to different times. Social distancing is going to be a big thing for a long time. I can’t see a change before September this year.
+I can’t see sit-down restaurants getting back to normal trade – and what will normal trade be? There’ll have to be more spacing between tables, there’ll have to be fewer customers per service. And big restaurants that deal with sit-down customers are going to really, really have to adapt to spacing out their place and finding other ways to upsell, to get the turnover that they need, or move bigger volumes through the restaurants. I actually don’t know how they’re going to survive.
+We’re very fortunate that we are a takeaway in essence, so 80% of our customers collect their food and leave. We’ve changed our business also, and we’ve adapted our menu going forward. Our Table View branch is going to not only going be Shawarma Express only, but now we are opening up a Burger Express and a Pizza Express also. So we’ve added on to our offering to try and appeal to more consumers and get more takeaways – specifically in the takeaway space. That’s how we’ve chosen our menu items that will adapt and be confined to takeaway in the future.
+MELITTA NGALONKULU: Trevor, what advice would you give to entrepreneurs that are basically feeling down at this point, because you’ve shown a lot of determination and strength and resilience during this lockdown.
+TREVOR WITTLES: I think entrepreneurs in spirit are people that can think on their feet, and that’s the point. You need to be able to adapt – and that’s the strength of small businesses and entrepreneurs, and specifically the smaller ones. We can adapt. We don’t need big boardrooms and big meetings to make decisions. We need to make decisions, make decisions quickly, and adapt. Just go ahead, get ideas, adapt, change, try it out. If it doesn’t work, adapt again, change again, try the next thing. If it doesn’t work, adapt again, change again. And without entrepreneurs adapting and changing we won’t have a market. You won’t have coffee shops, you won’t have restaurants. And this is in all industries, not only in the food industry.
+I think that one has to be able to think on one’s feet and never give up. Just carry on, remembering why we do what we do. We are doing this to provide food for our families. We are doing this to provide food for our staff. And the only way we are going to succeed is by trying and trying again. That’s the spirit of any entrepreneur, who is a person who knows how to fail and get up and try again. I don’t think I need to give that advice to any entrepreneur. It is who they are. That’s why they are entrepreneurs. That’s why they are business owners because they’ve got that capability of failing and getting up and trying harder and trying new things, until you get a recipe that works.
+MELITTA NGALONKULU: That was the owner of Shawarma Express, Trevor Wittles, talking about how he’s been able to navigate the effect of Covid-19 on his business.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/moneyweb-radio/small-business-conversations/trevor-wittles-a-restaurateur-adapting-to-the-times/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

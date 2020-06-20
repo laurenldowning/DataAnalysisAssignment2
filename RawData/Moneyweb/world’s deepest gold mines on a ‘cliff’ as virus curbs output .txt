@@ -1,0 +1,81 @@
+ 
+
+South Africa’s gold industry output has dwindled to a fifth of its 1970s’ peak as ever-deepening shafts and higher costs take their toll. The coronavirus may pose an even bigger threat.
+The pandemic jeopardises the future of a 134-year-old industry that once employed more than half a million workers on the world’s biggest gold field. While Cyril Ramaphosa’s government has been praised for its rapid response to the health crisis, the country’s five-week lockdown and the strict conditions attached to reopening gold mines risks undermining their viability.
+To ensure the social distancing needed to safeguard tens of thousands of workers in the world’s deepest mines, the nation’s gold producers will only be allowed to operate with half their normal employees. That may make them unprofitable, even as they struggle with the added burden of screening workers for virus symptoms and testing of those who display them.
+“They are pretty much on a cliff,” said Rene Hochreiter, an analyst at Noah Capital Markets Ltd. “Nobody is going to make money at 50%.”
+With no sign of a cure or vaccine for Covid-19 anytime soon, much will depend on how long the operating restrictions are applied.
+Gold Fields Ltd. may limit cost increases at its South Deep mine to 5%, but only if it can reach full capacity by the end of May, according to Chief Executive Officer Nick Holland. In the meantime, further virus infections could temporarily halt operations again, he said.
+“How much are we going to lose on productivity? That’s a tough one,” Holland said. “If we are stuck at 50% beyond the end of May, then we will have to relook at all the numbers.”
+South African gold mines already have some of the world’s highest production costs, averaging about $1,000 an ounce, according to RMB Morgan Stanley. That makes the industry “more vulnerable,” said James Wellsted, a spokesman for Sibanye Stillwater Ltd.
+“We are only building to 50% capacity, which is positive, but not viable for an extended period,” he said.
+Marian Van Der Walt, spokeswoman for Harmony Gold Mining Co., the nation’s largest gold producer by volume, declined to comment.
+Some mines may only achieve 30% of their previous output with half their workforce, said Tebello Chabana, senior executive for public affairs and transformation at the Minerals Council South Africa, which represents most producers. Others are warning it may already be too late.
+Village Main Reef, owned by Hong Kong-based Heaven-Sent Gold Group Co., has notified the government and labor unions that it may cut more than 6 000 jobs as losses deepen due to the national lockdown, CEO Jeff Dong said.
+“We had restructured the mines by cutting a lot of costs,” Dong said. “Unfortunately as we started to see signs of a turnaround, Covid-19 forced us to shut down completely.”
+Still, it’s too early to sound the death knell for South Africa’s gold industry, according to Noah Capital’s Hochreiter. Restarting the mines may at least allow producers to cover the costs of salaries and electricity, he said. The industry currently employs about 95 000 workers.
+Producers are also benefiting from the rand’s 24% decline against the dollar this year, which lowers their costs. At the same time, a 12% rise in the dollar price of bullion is boosting revenue.
+That may not be enough to counter the impact of reduced operating levels, according to Arnold Van Graan, a mining analyst at Nedbank Ltd.
+“One thing that’s critical for mining, especially deep-level underground mining, is volumes,” Van Graan said. “The industry needs to find a way to ramp up to full capacity as soon as possible.”
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/mineweb/worlds-deepest-gold-mines-on-a-cliff-as-virus-curbs-output/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

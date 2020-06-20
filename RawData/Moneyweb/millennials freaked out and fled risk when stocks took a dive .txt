@@ -1,0 +1,72 @@
+ 
+
+While stocks plummeted into a bear market at the fastest pace ever last month, millennials were losing their cool.
+For the first time ever, a measure of stock-market exposure for millennials who use TD Ameritrade dropped below the average for clients of all ages in March. That shift came as the firm’s Investor Movement Index, which has tracked clients’ positioning since 2010, fell to a seven-year low, the Omaha, Nebraska-based brokerage said Monday.
+“That has to do with living through a crisis as an adult — for many of them it’s their first time,” said JJ Kinahan, the chief market strategist at TD Ameritrade. “Every generation has that sort of moment where it’s like, ‘Wow.’”
+
+Each month, the brokerage pulls a sample from its client base of more than 12 million accounts to assess how exposed investors are to stocks. At the end of 2019, the measure rose to the highest in a year, before one of the most volatile periods in history sparked the latest bout of de-risking.
+Still, clients of the firm were net buyers overall in March. According to Kinahan, most of the selling occurred in the first half of the month, before a notable surge in equity purchases by clients. Still, they stuck to safer companies with larger cash balances and lower volatility profiles. Two weeks into March, the S&P 500 Index had fallen roughly 20% from its record high.
+“Then it was like somebody pulled the plug or something and said, ‘Time to buy, these stocks are just so low,’” Kinahan said. “They were heavy buyers the last two weeks of the month. A lot of the stocks they bought had been through 2008 before.”
+© 2020 Bloomberg
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news-fast-news/millennials-freaked-out-and-fled-risk-when-stocks-took-a-dive/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

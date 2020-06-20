@@ -1,0 +1,103 @@
+ 
+
+A question many are asking after the coronavirus started playing havoc with the markets this past fortnight or so, is whether we are witnessing the end of excessive financialisation of economic activity.
+Ever since we went off the gold standard, the world has used record levels of debt creation and money supply to stimulate economic growth. And it went much further than countering natural and essential economic cycles to include political and electioneering pressures, with the growing power of the financial elite in particular putting pressure on the monetary authorities to issue more debt and reduce interest rates.
+From a real economic growth point of view, it hasn’t really worked, a point emphasised recently by our own SA Reserve Bank Governor Lesetja Kganyago.
+While some economic growth may have been a spinoff of increased money supply and increased debt, the bulk of extra money creation did not find itself in the hands of the public or even in production capacity, where real value is created. Instead it found its way to the rentier financial elite, where it has been deployed in reinvesting in assets and causing some big bubbles in stock markets, upmarket property, and bonds.
+That broadly left us with two economic systems: financial and real, where the former has increasingly become disconnected from the latter.
+
+It took a small bug to trigger a clash of horns between the real economy and the financial economy.
+
+For a while it seemed as if the real economy was stamping its authority on financial markets and finally triggering a blow-off of the speculative froth that has been driving global economics for decades. But it is early days yet to see whether Wall Street has seen a long-predicted solid correction from years of prices being pumped by cheap money, share buybacks and private equity purchases and mergers.
+In the years since the 2008 global financial crisis, shares on average are still nearly 250% up; and 150% higher than five years ago.
+Source: Tradingeconomics.com
+Stock markets are the strongest connection between the real economy and the financial because while prices may be propped up by cheap debt, the effects of developments in the real economy are immediately felt in listed companies’ earnings and performance. These can only be ignored for so long and offer a trigger for speculators to take positions for and against various equities. The confusion between the two was blatantly clear in the performance of Wall Street.
+
+For weeks after the virus hit the headlines in early February, Wall Street simply ignored it and the Dow Jones Industrial Average continued to show daily gains.
+
+Wall Street’s reponses to the coronavirus were bizarre to say the least and showed the difficulty in balancing capital investment growth based on cheap debt with performance and earnings based on market factors.
+Down, up, down, up … where to next?
+When Wall Street realised that the latter could be severely affected by the Covid-19 outbreak, the Dow dropped like a stone. Then it quickly recovered some losses on an anticipated “unexpected” stimulus from the US Federal Reserve board. Then it fell again, because some saw the 50-point rate cut as a reflection that things were really bad. It then recovered somewhat when the positive effects of the cut were taken into account.
+At time of writing, this market was still very confused and is expecting a further 75-point rate cut this month.
+All of this shows that stock market investors, especially in the US, have been obsessed with shareholder value and capital growth and are more likely to take their lead from the monetary authorities than from earnings potential.
+In truth, rate cuts seem senseless. They may help some capital gains in shares, but they certainly won’t do anything for company earnings.
+
+What on earth are sick and quarantined supply chain operators going to do with cheap debt – if it reaches them in the first place?
+
+Real earnings and wages are going to be affected more by supply constraints than demand and it’s on the cards, albeit not fully calculated yet, that Covid-19, as exaggerated as it may be, is going to have significant impact on global economic growth on many fronts.
+
+One cannot at this time say that the stock market bubble has burst. But one can say that the bond bubble has inflated further.
+
+Panicky investors have run to ‘safe haven’ investments, of which one has been bonds. There, prices rose and yields tumbled further, to the point where the US 10-year bond was very close to negative yields for the first time – adding to the more than $15 trillion bonds where interest rates are negative.
+
+This is rewriting economic text books, and the only way for that froth to be blown off is for interest rates to increase. That in turn could plunge the world into a depression.
+
+But is that not a price that has to be paid for decades of money mismanagement and affluence?
+The point is that for some time now, the global malaise has largely been a financial one and while we have seen different markets heavily shaken by Covid-19, the real trigger for a global breakdown will most likely be financial, such as a major corporate or institutional insolvency, or monetary stimulus not working and running out of monetary options such as creating more debt and pushing interests to much below zero. Of course, that could be kindled by events in the real economy such as an oil price collapse.
+As far as South Africa is concerned, I have argued for some time now that while we desperately need corrective measures on a number of fronts, these are all going to be overtaken by global events. None more so than Finance Minister Tito Mboweni’s 2020 budget.
+Mboweni’s budget is closely dependent on what happens elsewhere – but more disturbing is that it is a budget of intentions rather than action.
+Intentions need solid commitments from all of those affected.
+He never had that and the cracks are becoming clearer.
+ 
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/moneyweb-opinion/columnists/the-reality-virus-bites-deep/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

@@ -1,0 +1,99 @@
+ 
+
+The economic impact of Covid-19 has been starkly apparent. Pictures of deserted streets in major cities like Paris, Madrid and Rome have been an eerie illustration of how far activity has been curtailed.
+And now South Africa will join those countries in lockdown.
+Read: Italy’s nightmare offers a chilling preview of what’s coming
+Across the world, airlines have drastically reduced flights, factories have closed, and bars and restaurants have been empty.
+“Basically, we have a forced shutdown,” says Peter Brooke, head of MacroSolutions at the Old Mutual Investment Group.
+However, it is important to appreciate that this won’t last forever.
+“I do think it’s very hard to look forward, and it’s very scary where we are now, but realistically the world will keep on turning,” Brooke says.
+Read: How the economy could emerge stronger from Covid-19
+It is also true that economic activity hasn’t stopped completely, even in those countries where citizens have been forced to stay indoors. Many people are still able to work from home, and goods and services are being delivered in new ways, often using the internet.
+Change is coming
+Essentially companies and customers are being forced to explore new ways to do business, and ironically they may discover that these options are better.
+“I think the process that most companies are going through now will have lasting effects on how business is done,” says Kevin Lings, chief economist at Stanlib. “I think there is a lot of learning going on.”
+In many cases, this means making better use of technology that has actually already been available for some time. Online shopping in South Africa is an obvious example.
+“People will spend more time shopping online,” says Jonathan Smit, MD of PayFast. “The long-term effect is that they will become accustomed to browsing and buying online, and not visiting physical stores as often.
+“If businesses can provide customers with a positive online experience, the short-term losses that brands may experience now could lead to their long-term gain,” Smit says.
+This will also extend to other areas in business like secure sharing of information electronically, or making use of online conferencing because people can’t travel to meetings. This could lead to both cost-savings and reducing a company’s carbon footprint by limiting air travel.
+“These options have been around and explored, but I don’t think they have really gained traction in the way you would have envisaged from a cost perspective,” says Lings.
+“But this is forcing people to use this technology more fully, and I think you are going to find there is quite a big shake-up in companies as to which systems they use, and how they can be utilised.”
+There is also the opportunity for small businesses and other organisations to come up with innovative ways of doing things that are usually done face to face. For instance, giving gym or yoga classes through online platforms, which vastly extends their reach, and therefore the potential revenue. The National Arts Festival has already announced that the event will be “completely virtual” this year.
+“People are becoming a bit more creative about how they are doing things now because they are worried about the virus spreading, and maybe some of these things will stick,” says Sanisha Packirisamy, economist at Momentum Investments.
+“Once the virus has died down maybe this will be an option for people who can’t get transport to a class, or who are maybe even in a different geography and still want to log in and participate.”
+Remote control
+A particularly significant change may come from the fact that this is the first time that companies will have their staff work entirely from home for an extended period. It may well lead to the realisation that this is better for everybody.
+“There are a number of reports globally that the average worker would accept lower pay for the flexibility of being able to work from home,” Packirisamy says. “That’s because they get a better quality of life, less disruption in their daily lives, and they don’t have to commute.”
+Studies also show that people who work from home are likely to be more productive.
+“They don’t take as much sick leave, go for fewer breaks, and are more productive during the time they would otherwise be trying to get to work,” Packirisamy explains.
+The additional benefit to companies is that they would require less office space and will be able to reduce the associated expenses. Economies on the whole would gain from lower congestion and reduced carbon emissions from people travelling to the office.
+In South Africa, however, there is still a stigma attached to allowing people to work remotely. Managers tend to believe that employees will only be productive in the office.
+“It almost seems that there is a bit of a trust deficit between management and employees on this,” says Packirisamy.
+“That seems to be a bit of a mental barrier. But with people being forced to work from home now, that might help to start breaking this down, and companies will have an opportunity to assess whether employees working from home do add to productivity.”
+Listen to Nompu Siziba’s interview with World Wide Worx CEO Arthur Goldstuck:
+
+
+Content hosted by iono.fm
+
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/will-the-coronavirus-permanently-change-business/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

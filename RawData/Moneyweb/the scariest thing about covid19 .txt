@@ -1,0 +1,92 @@
+ 
+
+The world has been through a lot in the last 100 years. From the First World War to the great financial crisis, major disruption is certainly not new.
+Nevertheless, a pandemic like the coronavirus in a globalised world is unprecedented. The extreme sell-off in financial markets over the past few weeks illustrates how worried many people are, primarily because so much is still unknown.
+Nobody can be certain what the human and economic cost will be, or for how long it will last. Optimistic assessments point out that China appears to have the spread of the disease under control less than three months after its first case, but more pessimistic projections suggest that the world won’t be truly in the clear until a vaccine is developed. That could be 18 to 24 months away.
+Read: ‘D’ word rears head as coronavirus-hit markets brace for recession
+History lesson
+The last time the world faced an economic event of this scale was the great financial crisis. The credit crunch that threatened the banking system in 2008 had serious and far-reaching consequences that were felt across the global economy.
+How the world responded to it is telling.
+Once it became clear that the crisis would not be limited to the US banking system, it also became apparent that countries acting on their own would not be able to deliver a sufficient response to the fall-out. This led to a deliberate and co-ordinated effort by the world’s major economies to mobilise resources to contain and ultimately reverse the damage.
+The first to act were central bankers, who cut rates around the world in late 2008. They also orchestrated ways to maintain liquidity.
+The fiscal response was slower, but within months governments were acting collectively. The US was at the forefront of this, not because that is where the crisis began, but because it was, and remains, the only power capable of prompting this kind of multilateral action. By engaging and working with the G20, it led efforts to reinforce the global financial system.
+The International Monetary Fund (IMF) was a recipient of much of the money that was made available, and it was able to provide support across the globe. This included providing financial or technical assistance to Greece, Portugal, Ireland and Spain when the eurozone debt crisis hit in 2009.
+Frenemies
+Even 12 years ago the US-China relationship was testy, but they found some common ground in the need to protect their economies. As a percentage of its GDP, China’s stimulus package was the biggest of any of the G20 nations at around 14%. In nominal terms, it spent about the same amount of money the US did, even though its economy was three times smaller at the time.
+Even though competition between these two nations remained high, there was a sense of common responsibility.
+Unfortunately, that appears to be lacking today at a time when the world once again needs coordinated, collective action.
+Covid-19 and its impacts cannot be contained by any country on its own. Yet, at a time when the world desperately requires a multilateral response, there is a risk that countries are instead preferring nationalistic isolation.
+Lockdown
+In particular, the US and China are far from seeing eye-to-eye at the moment. There is an ongoing diplomatic spat about who has responded better. The US blames China for not containing the coronavirus when it first appeared, while China is using the initial bungling by the US government to argue to its citizens that this is proof that western democracies can’t offer the same kind of protection that they have from their one-party state.
+This has spilled over into China accusing the US media and President Donald Trump of racism, particularly in his characterisation of Covid-19 as a ‘Chinese virus’, while the US has reduced the amount of journalists from Chinese news agencies it allows in the country.
+At the same time, senior politicians in both countries are engaging in a bizarre and dangerous argument about who has the better conspiracy theory. Was it the US military that brought the virus to China, or was it China that let the virus escape from a lab?
+Contributions
+The world can’t afford the two biggest economic powers to be so far apart at a time of crisis. The resources needed to contain both the virus and its economic impact have to come from a multinational effort.
+If the US and China fail to lead this effort, who will?
+Physically, many countries have shut themselves off from the rest of the world. They can’t afford to do so politically too.
+In 2009, in the midst of the great recession, OECD Secretary-General Ángel Gurría delivered a speech at the Finnish Institute of International Affairs in which he argued that “the only way out from this crisis is multilateral cooperation”.
+His sentiments are as relevant today as they were then: “The big lesson of this crisis is that we are all one,” Gurría noted.
+“As the song says, ‘we all go together when we go’. And this realisation of this interdependence is an opportunity to revise our theories, our concepts, or daily behaviour and its relation with the economy, with society, with the environment. At [the] OECD we are making a big effort to adapt to the new global economic reality.
+“But we must act together, for now we know this is not a ‘solo’ challenge, and surely you all have an important contribution to make.”
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/moneyweb-opinion/the-scariest-thing-about-covid-19/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

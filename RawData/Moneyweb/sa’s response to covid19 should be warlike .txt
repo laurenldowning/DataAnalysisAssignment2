@@ -1,0 +1,97 @@
+ 
+
+As South Africa enters its first day of a 21-day nationwide lockdown, it is stepping into a great number of unknowns. Nothing like this has ever been implemented before, and how deep and how lasting its effects will be cannot be fully foreseen.
+Read: Surviving lockdown
+Shutting down large parts of the economy for three weeks comes with enormous risks. However, government has decided that the risks to the health of the country’s citizens are greater.
+“We had to do something to avoid an extreme pandemic that would overwhelm the health services and create massive issues,” says Hendrik du Toit, CEO of Ninety One (previously Investec Asset Management). “I think the president was right to do it before peak infection, and not after the fact like some countries have done.”
+First, do no harm
+However, what South Africa cannot afford to do is underestimate the economic and social crisis this has the potential to create.
+“The question is: can you keep the economy alive while avoiding a significant number of deaths?” asks Du Toit. “In a poor country like ours, how do you go about it?
+“If we save a few thousand lives, but we’ve destroyed an equal number of businesses and negatively impacted the livelihoods of thousands of younger people, we will have created risks to social stability that we haven’t even started to comprehend,” he adds.
+A workable and effective economic intervention therefore has to be prioritised as much as the healthcare intervention. And just as the most vulnerable members of society have to be protected from Covid-19, they also need to be the primary beneficiaries of financial support.
+“My concern is that we could struggle to reach the people who have already been excluded from the economy,” says Du Toit. “We need genuine helicopter money in people’s pockets – we need for people who have lost their jobs to be compensated, and for businesses to be kept open.
+“The state alone can’t do this,” he emphasises. “The coordination between government and the private sector is going to be key.”
+War-like effort
+It is encouraging that there are already signs that there is willingness to work together. The pledges of R1 billion each from the Rupert and Oppenheimer families to help small businesses and their employees is significant. It is, however, no more than a first step.
+“The solidarity fund is also a meaningful and great proposal, but it’s too small on its own,” says Du Toit. “You have to take the bazookas out here.”
+Listen to Nompu Siziba’s interview with Small Business Institute CEO John Dludlu:
+
+Content hosted by iono.fm
+He believes the private sector will have to be engaged in meaningful and innovative ways to support the public effort to both avert a healthcare disaster and defend the economy.
+“We need a war-like effort,” Du Toit argues.
+As an example, he cites how engineers at Ferrari and McLaren are providing expertise to help with the rapid production of ventilators in Italy and the UK. Instead of building racing cars, they are dedicating their expertise to the national effort.
+Irish Distillers, the company behind brands such as Jameson, is now producing hand sanitiser and providing a free supply to the Health Service Executive of Ireland. Luxury goods giant LVMH is doing the same, donating hand sanitiser gels to hospitals across France.
+“In South Africa, we need to ask how do we do certain things, and who is good at what,” Du Toit argues. “Who is best at distributing cash to ordinary people, for instance? It would be banks with big branch networks like Capitec or Absa. We need to use the existing infrastructure of institutions to do what we need to do, but use government backing.”
+Reaction speed
+It is vital that South Africa moves quickly to do this because, as Du Toit points out, the countries that have moved fastest have dealt with Covid-19 the best.
+“This should not just be a case for state intervention,” he argues. “It should but be about combined action between various constituencies in society.”
+This includes local, provincial and national government, civil society, and large and small businesses.
+“The command and control centre that has started to take shape needs to be fully galvanised,” Du Toit says. “The government must ask companies and institutions to provide people and expertise.
+“If we just sit here and wait for it, too many businesses will go the wall.”
+Critically, President Cyril Ramaphosa has to be willing to delegate tasks to groupings other than central government.
+“Because if you are going to feed everything through cabinet, you are not going to get it done,” Du Toit says. “He has to create trusted groups to make things happen.”
+If South Africa gets this right, the country could look back on this as a period of renewal.
+As Du Toit says: “If we have achieved two things – clear Ramaphosa leadership and co-operation between social actors, we would have come out stronger than we went in, even if the economy would have been down and out for a few months.”
+Read: South Africa at its best
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/sas-response-to-covid-19-should-be-war-like/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

@@ -1,0 +1,83 @@
+ 
+
+As South Africa begins 21 days of national lockdown, certain regulations put in place by the government have caused confusion. It is important that businesses are clear on what will and won’t be allowed during this three week period.
+Can a business continue to operate remotely if it isn’t an essential service?
+The original lockdown regulations stated that only businesses “involved in the manufacturing, supply, or provision of an essential good or service” could continue to operate.
+This led many to question whether even businesses operating remotely had to stop. However, the regulations have since been amended to read:
+“During the lockdown, all businesses and other entities shall cease operations, except for any business or entity involved in the manufacturing, supply, or provision of an essential good or service, save where operations are provided from outside of the Republic or can be provided remotely by a person from their normal place of residence.”
+So as long employees are working from home, any business can go on functioning.
+Are all ICT services considered essential?
+One of the areas in which the regulations are not explicit is which parts of the ICT industry are considered essential. They only specifically mention “telecommunications infrastructure and services” and airtime.
+“It is still open to interpretation whether, for example, data centres are included in the ambit of telecommunications infrastructure and services,” notes Ridwaan Boda, a director at ENSAFrica. “Further, having regard to the 27 other categories of essential services as well as the other categories of essential goods, in a world driven by IT, it can be argued that it is implicit that any ICT infrastructure, services and goods required for essential services to be rendered and for essential goods to be produced will fall within the category of essential goods and services.
+“This is unfortunately open to interpretation as it is not explicit, and a case-by-case assessment would need to be undertaken by businesses,” Boda adds.
+Can contracts be signed electronically?
+Under lockdown, it will be impossible to circulate and physically sign documents. So will businesses be able to conclude contracts through the use of electronic signatures?
+The Electronic Communications and Transactions Act of 2002 states that an electronic signature does have legal force. The parties to a contract can therefore agree that an electronic signature is sufficient.
+“Important to note is that where the signature of a person is required by law and such law does not specify the type of signature, that requirement is only met if an advanced electronic signature is used,” Boda notes.
+It is also worth noting that there are certain documents that cannot legally be signed electronically at all. These include an agreement to sell immovable property, long-term leases of land for longer than 20 years, and wills.
+What is happening to the courts?
+The national lockdown has also affected the court system. Technically the courts remain open, as they would even under a state of emergency. This is because the constitution gives the courts power to rule on whether a declaration of a state of emergency is valid in the first place.
+However, the country’s courts will not be operating as normal. Although not all judge presidents have issued directives relating to their respective divisions, the general approach appears to be that courts will only be hearing urgent applications. There are some exceptions where courts will also consider matters relating to bail, urgent maintenance, domestic violence-related matters and cases involving children.
+Most cases set down for the lockdown period will, however, be postponed.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/legal-questions-around-lockdown-answered/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

@@ -1,0 +1,84 @@
+ 
+
+Since initial publication Moneyweb has learnt that H&M is in fact in discussions with its local landlords and has not indicated that it won’t pay rent. This article has been amended to reflect this. Moneyweb sincerely apologises to H&M and to our readers for the error.
+Edcon, the perennial patient, was expected to alert its long-suffering landlords that its already considerably trimmed-back rental obligations were likely to be an early victim of the Covid-19 lockdown.
+But for The Foschini Group (TFG) and Pepkor to lead the field of non-payers of rent was unexpected.
+One analyst who described the move as irresponsible said the same logic will surely help to justify non-payment by the millions of credit customers of the big retailers.
+“The move opens up a Pandora’s box that could have long-term ramifications for the entire sector,” said Sasfin analyst Alec Abraham.
+One lawyer told Moneyweb it would be very difficult for retailers to enforce payment by their credit customers before a judge if some of the major retailers themselves had refused to pay their debts.
+Efforts, resistance
+While every non-grocery retailer will be feeling huge pain during the lockdown many, such as Mr Price and Woolworths have said they will be engaging with their landlords in an effort to come to an acceptable arrangement.
+Read: Retail landlord alliance reveals Covid-19 relief package for tenants
+The conciliatory position, reflecting the reality that blame cannot be allocated to either of the parties and that this is a battle everyone is facing, is in keeping with the grim mood of the lockdown, said the lawyer.
+But not all retailers are inclined to be conciliatory.
+TFG has unilaterally decided it will not be paying any rent due at the end of April because of the lockdown. The retailer said it had taken legal advice before deciding to suspend payment. “The decision was not taken lightly and has been guided by legal counsel,” said head of properties Brad Rothenburg.
+Read: TFG insists it won’t pay April rent due to lockdown
+Abraham describes the decisions as “very, very irresponsible” and believes it will have a cascading impact throughout the retail chain. He believes that although trading has been difficult this year most of the retailers, with the exception of Edcon, should be able to handle a few weeks of lockdown.
+There’s certainly little sign of stress in TFG’s balance sheet given that in the six months to end-September 2019 it generated free cash flow of R1.1 billion. Its’ debtors’ book at end-September was R7.5 billion. Financial 2019 (to end-March) wasn’t too bad for the group or its executives. CEO Anthony Thunstrom picked up a R13.4 million bonus on top of his R7 million guaranteed pay for that year. And while the plummeting share price – from R150 in January to a low of R65 at the time of the rent decision – has added to the tension, some have used it as a buying opportunity. Former CEO Doug Murray paid R6 million to add 60 000 shares to his portfolio in late March.
+Pepkor has also said it will not be paying rent for the lockdown period and like TFG is relying on exemptions to the Competition Act gazette by Trade and Industry Minister Ebrahim Patel on March 24. The exemptions allow competing landlords and tenants to work together to reduce rentals or permit rental holidays during the lockdown.
+Read: Lockdown: Pepkor won’t pay retail landlords either
+The once-robust Pepkor has had a fairly torrid time since the implosion over two years ago of its controlling shareholder Steinhoff. The group generated about R7 billion cash in financial 2019 but it’s carrying a hefty debt burden. In mid-March the top three Pepkor executives were awarded a combined R30.6 million of shares at zero cost. The shares will vest over three years.
+While H&M has informed landlords in Germany it will not be paying rent and has threatened to exit UK leases early, H&M SA has told Moneyweb it has been in close contact with its local landlords “to find a solution regarding the payment of rent during this extraordinary time.”
+The company explained this is “an extreme situation and so, different for each market”. The goal is to find individual solutions as quickly as possible, said H&M, to be able to mitigate the negative effects as far as possible on its side, as well as on the sides of its landlords.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/companies-and-deals/retailers-and-rent-opening-pandoras-box/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

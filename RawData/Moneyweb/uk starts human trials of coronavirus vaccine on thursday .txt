@@ -1,0 +1,81 @@
+ 
+
+The UK will begin human trials of a coronavirus vaccine Thursday, Health Secretary Matt Hancock said, as he argued that the government’s strategy for fighting the disease had succeeded.
+“In the long run, the best way to defeat coronavirus is through a vaccine,” Hancock told the government’s daily news conference. “The UK is at the front of the global effort. We have put more money than any other country into a global search for a vaccine and, for all the efforts around the world, two of the leading vaccine developments are taking place here at home.”
+The trials will be of a drug developed at Oxford University. Hancock said the government would give 20 million pounds ($25 million) to support the research. “In normal times, reaching this stage would take years,” he said. Another 20.5 million pounds will go to a separate project at London’s Imperial College.
+Hancock was trying to show progress as the government faces criticism over shortages of protective medical equipment. He was speaking on the day that the Office for National Statistics released data showing the dramatic toll of the virus. It said that in the week ending April 10, 18 516 deaths had been registered, the highest weekly number in more than two decades and 76% more than the average for that week.
+Complaints from health workers about the availability of personal protective equipment continue, but Hancock was keen to emphasise the government’s achievements. He said that with the number of people hospitalised with the virus declining, the ministers had achieved their goal of protecting the National Health Service from being overwhelmed.
+“At no point in this crisis has anyone who could benefit from critical care been denied that care because there weren’t enough staff, or beds, or ventilators to treat them,” Hancock said.
+His announcement came as:
+A further 852 people were announced to have died in UK hospitals from the virus, a sharp increase from prior days, taking the total to 17 366
+Prime Minister Boris Johnson told President Donald Trump that he was “feeling better and on the road to recovery,” according to the White House
+The government’s scientific advisory committee met to discuss whether the public should wear face masks
+But deputy chief medical officer Jonathan Van-Tam told reporters the government didn’t want to do anything that might lead to shortages for medical staff
+The health secretary said the process for finding a vaccine would take “trial and error,” but he has told UK scientists leading the search he would “back them to the hilt and give them every resource they need” in order to succeed. “After all, the upside of being the first country in the world to develop a successful vaccine is so huge that I am throwing everything at it,” he said.
+‘Balancing act’
+Van-Tam said the number of new cases being diagnosed in the UK remained high. “It isn’t clear there is an enormous downturn at this point,” he said. “The numbers are varying day to day, but they remain high and we remain in a situation of danger that we must take very seriously indeed.”
+He also set out the difficulty facing governments in deciding how to ease restrictions on public activities. “We do at some point hope that we turn this curve down,” he said. The difficulty then, he said, was “easing some of the restrictions we are under without letting this virus just chase off again. That’s a really difficult balancing act.”
+The UK has been in a nationwide lockdown since March 23 and will continue to be so for at least another three weeks.
+© 2020 Bloomberg
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news-fast-news/uk-starts-human-trials-of-coronavirus-vaccine-on-thursday/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

@@ -1,0 +1,73 @@
+ 
+
+South Africa will not consider International Monetary Fund funding accompanied by a structural adjustment programme as it battles to contain the economic impact of the coronavirus pandemic, Finance Minister Tito Mboweni said on Tuesday.
+Africa‘s most industrialised economy was already in recession before the coronavirus outbreak, and the shock from the pandemic is to lead to a steep contraction this year.
+Addressing journalists on a conference call, Mboweni said of any possible IMF loans: “We are not looking for budget support, we would be looking for the COVID-19 specific packages that we can access, and we are talking to them about that.
+“We are looking at programmes which would not be accompanied by any structural adjustment programme,” he said. “We know what to do, we know what our structural reform programme is. We will not be looking into that at all.”
+Asking multilateral institutions, especially the IMF, for cash is deeply unpopular with a faction in the governing African National Congress and trade unions the party uses to rally support ahead of elections.
+Mboweni also said on Tuesday that the government would revise its fiscal framework to take into account the effects of COVID-19. No agreement had yet been reached on pay increases for public-sector employees due to take effect this month, he said.
+A copy of the minister’s speaking notes circulated by National Treasury said there were a number of elements to the government’s fiscal response, including re-prioritising some expenditure towards healthcare, a clear plan to stabilise debt and shutting down South African Airways.
+The airline is under a form of bankruptcy protection and depends on government bailouts for its survival.
+Mboweni added the government had not yet decided whether to introduce a basic income grant but that it had to be considered.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news-fast-news/sa-not-looking-for-covid-19-funding-with-structural-reform-conditions-finmin/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

@@ -1,0 +1,83 @@
+ 
+
+With countries around the world easing lockdown measures, it’s a matter of time before international borders reopen and travellers can explore their destinations of choice.
+As domestic, regional and international travel is set to resume in different stages, it is likely that we will see the emergence of certain trends, which the tourism sector will have to embrace and adapt to accordingly.
+It, therefore, becomes important to consider how post-Covid-19 travel will look like. What is going to drive, influence and motivate travel decision-making post-Covid-19?
+These are important questions to tackle because it is a matter of time before the restrictions end and we can discover new destinations.
+South Africa is implementing various lockdown measures through a risk-adjusted strategy aimed at easing restrictions over five alert levels. When the risk-adjusted strategy was initially introduced in April, the tourism sector was placed at alert level 1 with some operations permissible at alert level 2.
+Following industry-wide engagements, the sector’s phased reopening commenced at Level 3 on June 1, 2020. Therefore, domestic tourism has opened for business travel and other limited activities, with partial domestic air travel for business purposes allowed.
+This move is largely thanks to the sector’s proactive initiatives to de-risk itself. In this regard, the sector is taking the necessary steps to embed standardised and evidence-based health and safety measures at all touchpoints in the tourism value chain. This will go a long way in laying a foundation for a stronger and sustainable tourism sector.
+As the South African government implements a phased re-opening of the economy, tourism sub-sectors are taking practical steps to ensure that, as travel and tourism activities resume gradually, travellers feel safe and secure.
+It goes without saying that health and safety will be top of mind whether we are visiting a local park, attending a conference going on vacation, boarding a flight or staying at a hotel. The need for such reassurance underpins the case for sector-wide health and safety protocols and standards in order to boost traveller confidence.
+Safety measures
+The Travel and Tourism Industry Standard Protocols for Covid-19 Operations, which the sector has developed through the Tourism Business Council of South Africa (TBCSA), go a long way to assure government, travellers and staff that tourism can operate safely as Covid-19 restrictions are eased. These protocols will ensure standard safety measures are employed across all tourism subsectors.
+In these protocols the sector has proposed a number of measures to minimise the spread of the virus. These include the designation of Covid-19 health and safety officers and team leaders, requiring guests, visitors, passengers and clients to complete medical and travel declarations, compulsory temperature monitoring and standard physical distancing and capacity controls.
+As South Africa works tirelessly preparing to welcome tourists back to our shores, the tourism sector is mindful of evolving customer preferences.
+We allow ourselves to be driven by what the traveller wants as that gives us leverage to preempt preferences in the interest of seamless traveller experiences, with safety at the forefront.
+While no one has definitive answers about the future of travel, there are some dominant trends emerging from the conversations that the sector is having with clients about their concerns, expectations and aspirations when travel resumes.
+These conversations give us insight into what travellers expect in South Africa, with many preferring to spend time outdoors in nature, away from crowded spaces.
+The traveller of the future is likely to prefer staycations and houses instead of hotels.
+With our open spaces, parks, nature reserves and pure unspoiled nature, South Africa remains a destination of choice.
+Sisa Ntshona is CEO of South African Tourism
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/moneyweb-opinion/soapbox/laying-the-ground-for-future-travel/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

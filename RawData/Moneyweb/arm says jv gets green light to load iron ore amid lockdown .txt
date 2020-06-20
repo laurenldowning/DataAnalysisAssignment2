@@ -1,0 +1,70 @@
+ 
+
+African Rainbow Minerals (ARM) said on Thursday it had received the green light from South African authorities to load iron ore from stockpiles at its joint venture mines despite a 21-day nationwide coronavirus lockdown.
+The diversified miner said Assmang, a 50-50 venture with Assore, had received authorisation from the mines ministry to operate its load-out stations at the Khumani and Beeshoek mines to distribute iron ore from the mines’ respective stockpiles.
+South Africa called the shutdown last week to try to slow the spread of the coronavirus outbreak and ordered all underground mines and furnaces be put on care and maintenance – or minimum operations – from midnight on March 26.
+All ARM’s mining operations, including Khumani and Beeshoek, had been temporarily shut, but the company said the list of essential goods and services had been refined through continuous engagement with officials.
+“Exemptions to the lockdown restrictions have been granted for certain additional goods which are considered critical to the nation’s economy and its revitalisation post the COVID-19 pandemic,” ARM said in a statement.
+The miner said that state-owned logistics firm Transnet had also reactivated the rail and port export system from the Northern Cape to the Port of Saldanha and planned to ramp up volumes for the remainder of the lockdown period, depending on availability of rail and port services.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news-fast-news/arm-says-jv-gets-green-light-to-load-iron-ore-amid-lockdown/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

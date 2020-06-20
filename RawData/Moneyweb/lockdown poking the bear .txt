@@ -1,0 +1,120 @@
+ 
+
+There is no doubt – poverty kills more people than all the other nasties put together.
+And there is no doubt that the current lockdown will lead to more poverty – which, accordingly, will kill more people.
+So will the lockdown save more lives than the number that will be taken as a result of poverty?
+Wealth is good and poverty is bad. Everything that most people regard as good correlates with wealth: good education, good health systems, low crime, long lives and so on. Correspondingly, everything perceived as bad relates back to poverty, from unemployment and low life expectancy to corruption and, as the saying goes, much, much more.
+Against this background, I want to present a rather edifying piece of data: Europeans are approximately three times wealthier than South Africans and they expect to live, on average, to the ripe old age of 80. Our live expectancy, on the other hand, is a mere 60 years, which basically means that our lives are cut short by an average of 20 years, for no other reason than poverty.
+We have been in lockdown for almost three weeks with more than two to go, and poverty will skyrocket.
+Here are some of our (continuously changing) estimates:
+GDP contraction of around 7%
+Fiscal deficit to GDP – 12%
+State revenue under-collection approximately R200-R300 billion
+Below budget, state debt to exceed 80% of GDP in two years
+More than one million jobs lost, more social and political tension
+A fall in life expectancy, and
+The list goes on.
+All these statistics point to another certainty, namely that the income of the average South African will fall, likely by about 10%. Some will lose all their income, and others a part of their income while a few lucky ones stand to gain. Imagine a stretched budget. Now imagine your income falling sharply, or even worse, disappearing altogether.
+Despite these real and dire possibilities, some people still argue that heartless economists choose ‘money’ before lives. This is not true.
+A healthy economy shelters healthy citizens. The health of a country equates to the wealth of a national economy.
+The current lockdown is intentionally undermining the economy – obviously in the belief that it will lower or limit the number of lives lost to Covid-19 as opposed to the number of lives lost as a result of increased poverty.
+But is this so? Let’s see.
+Precise modelling is not possible, particularly given the current high degree of uncertainty. However, based on a reasonable estimate, it’s certain that poverty will increase in tandem with a contraction in GDP. If more lives are lost to Covid-19 than to an increase in poverty, the lockdown might be justified. However, we need to keep in mind that the disease will spread after the lockdown, leaving us with an increased death toll due to poverty.
+If “too many” lives are lost to poverty as a result of the economic impact of the lockdown, the solution is glaringly obvious: lift the lockdown!
+I am admittedly no health expert or virologist, but as I understand it, the coronavirus can, in exceptional cases, kill up to 10% of those infected. Without getting embroiled in that debate, it seems to me that a more likely mortality rate is, in fact, less than 1% of those confirmed to be infected. But for argument’s sake, let’s go with a 1% mortality rate, and let’s assume that all South Africans get infected this year.
+These estimates are unrealistically high. A more likely worst-case scenario is that fewer than 1% will perish while the infection rate is unlikely to be 100%. Hospitals and other medical facilities would not be able to cope with the huge numbers of people needing care.
+What the full implications of such an event would be, I don’t know. However, a simple calculation shows that a 1% mortality rate out of a population of, say, 60 million, amounts to 600 000 people (again, if everyone in South Africa contracts Covid-19).
+A more realistic worst-case scenario is approximately 300 000 deaths in SA.
+It follows that whatever we do in terms of locking down the economy, the price in terms of deaths due to an increase in poverty must be less than 600 000 for the lockdown to make sense, or rather 300 000 or even much less to be more realistic.
+Forming a picture
+Trying to find a way to determine how many people will die because of an increase in poverty required some out-of-the-box thinking.
+Here’s what I did: I decided to find a country that has experienced a huge collapse in economic activity to determine the impact of the corresponding increase in poverty on the number of deaths, and then to apply this experience to local data.
+To make the exercise effective, it was important to choose a country with data as ‘clean’ as possible. By way of illustration: it doesn’t make sense to use the economic collapse(s) of, for example, Argentina, as many people were killed by their own army and not by poverty.
+Similarly, it doesn’t make sense to look at countries that were at war or that experienced some other disaster, which is another reason I decided not to use South African data.
+We have seen a huge increase in the number of deaths since the early years of this millennium when the economy was growing and poverty was falling – mostly because of the idiotic Aids policies of our government at the time.
+After working through a lot of information in my search for a country that experienced economic hardship but not war or pestilence, I finally found the ideal candidate: Greece.
+After joining the EU, Greece experienced amazing economic growth, with deaths per 1 000 remaining relatively stable at between 9.6 in 1999 and 9.7 in 2008. In the 10 years up to 2008, the figure averaged 9.6.
+As we all know, Greece was particularly hard hit by the global financial crisis in 2008 and, like most countries, its economy experienced a huge contraction – and, consequently, an increase in poverty.
+In 1999, the average Greek per capita GDP (constant 2010 $) was $22 489, which rose to a peak of $30 055 in 2007. From 2009 onwards this figure collapsed – reaching a low of $22 251 in 2013, after which it gradually increased.
+By 2018 Greece’s per capita GDP was still lower than it was in 2008. For the 10 years from 2009 to 2018, the average Greek GDP amounted to $23 947, a decrease of more than 20% compared to the peak in 2007. A similar but opposite pattern emerges when it comes to deaths per 1 000. The stable average of 9.6 deaths per 1 000 from 1999 to 2008 increased to a peak of 11.6 in 2017 and an average of 10.6 for the period 2009 to 2018 – an increase of one per 1 000 compared to the previous 10 years.
+In 2017 the country experienced two more deaths per 1 000 compared to the average of 1999 to 2008. Crunching the relevant numbers from these periods reveals that on average GDP per capita fell by 20.3% compared to the previous 10 years after the 2008 crisis, while deaths per 1 000 increased by one over the same period.
+Ergo, for every 20% fall in GDP, deaths per 1 000 increased by approximately one.
+Assuming this ratio will remain the same, a 10% fall in GDP will result in an increase in deaths of 0.5 persons per 1 000; one additional death per 2 000 people.
+Assuming this ratio will be applicable to South Africa, how many people will die because of an increase in poverty?
+Here one must keep in mind a number of other factors at play, such as the fact that we are still in the process of getting back to our pre-HIV/Aids days in terms of deaths per 1 000. In addition, and no thanks to a destructive government, we have been getting poorer on a per capita basis since 2014. Also relevant is the fact that the Greek population was older on average than the current South African population. Also, our population may have more underlying conditions, such as TB and Aids, which could make us particularly susceptible to the virus.
+All in all, there were existing and well-established underlying trends, including the fact that our deaths per 1 000 have actually been falling in recent years, mostly thanks to the way in which Aids is treated these days. But let’s, for the moment, ignore these trends.
+Let’s assume the effect on poverty and death due to a falling GDP will be the same as in Greece. And then let’s revisit the question.
+How many South Africans will die because of the increase in poverty caused by the lockdown?
+If the average GDP falls by 10% in 2020, a very likely scenario, deaths per 1 000 will increase by 0.5 persons. Our current deaths per 1 000 rate (2018) of 9.4 will increase to approximately 10 deaths per 1 000, an increase of more or less 30 000 per annum. It is probably fair to assume that it will take us at least 10 years to get back to our pre-crisis levels in terms of GDP, probably longer given the quality of our political leadership. Against this background, we can expect 300 000 more people to die over the next 10 years because of an increase in poverty.
+The grim reality
+The options are grim: to lock down the economy and kill 300 000 people over time due to the rise in the poverty rate, or not to lock down and potentially kill a maximum of 600 000 people if all South Africans get the virus in a short period of time, at a morality rate of 1% (mentioned above, far too ugly an estimate).
+Unfortunately, it’s not an either/or choice; people will die of the virus whether we lock down or not.
+In fact, some analysts reckon that everybody will eventually get the virus, and some will die. The sum of these statistics and projections are not encouraging.
+The total number of South Africans that will die over the next 10 years could be more than 300 000 killed by poverty, plus the number that will die from the virus despite all efforts to limit or contain the spread.
+That many people will die from the virus is a given. Locking down the economy will simply serve to increase the number of poverty-related deaths. This has been a very rough thought experiment and I am sure that the patterns emerging over the next few years will differ from the estimates I present here.
+I am equally certain that other analysts will come to different conclusions. In fact, I am looking forward to seeing a wide variety of approaches.
+Finally, and above all, I am convinced that the poverty that is being created by the lockdown as I write will also kill people. The only thing I’m not certain of is how many.
+Shouldn’t we consider a different approach?
+Dawie Roodt is chief economist at the Efficient Group.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/moneyweb-opinion/soapbox/lockdown-poking-the-bear/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

@@ -1,0 +1,74 @@
+ 
+
+Around 1 240 German passengers stranded in Cape Town after their cruise ship was quarantined for almost a week due to a coronavirus scare had either begun their journey home or would do so in the next day, the South African Maritime Safety Authority (Samsa) said on Sunday.
+The MV AidAmira’s more than 1 700 passengers and crew had been unable to leave the ship since March 16 after a crew member on a separate cargo ship who shared a plane with six passengers on the liner showed symptoms of the coronavirus.
+Port authorities quarantined the Italian-flagged AidAmira while the six passengers were tested for coronavirus. All tested negative for the respiratory illness, which has killed thousands worldwide since first emerging in China.
+Authorities on Saturday bussed the first batch of 276 passengers directly to Cape Town International Airport where they were flown out on special flights chartered by the German government, Samsa spokesman Tebogo Ramatjie said.
+On Sunday, approximately 658 passengers were due to leave, with the last seen leaving on Monday.
+Liners banned
+South Africa imposed new regulations from March 18 that banned all cruise liners from the country’s ports and prohibited crew and travellers from getting on or off ships.
+Another cruise liner, Norwegian Spirit, with 1 759 passengers onboard and already en route to Cape Town before the new rules were implemented, will also need to conform to the new maritime regulations as South Africa looks to contain the spread of coronavirus, Samsa said.
+By Saturday, there were 240 confirmed cases of the virus, known as Covid-19, in South Africa. President Cyril Ramaphosa last week declared a state of disaster and is expected to address the nation again on Sunday.
+ 
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news-fast-news/german-cruise-ship-passengers-stranded-in-cape-town-start-returning-home/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

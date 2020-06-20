@@ -1,0 +1,119 @@
+ 
+
+The speed of market movements over the last month has been almost unprecedented.
+Statistics from S&P Dow Jones Indices show that in the space of just two weeks in March the S&P 500 experienced two of its ten largest daily drops ever as well as two of its ten biggest daily gains ever.
+As the tables below indicate, all four of these significant movements happened between March 12 and 24 – a period of just 12 days.
+S&P 500 largest daily losses
+Date
+% move
+Rank
+16/03/2020
+-11.98%
+3rd
+12/03/2020
+-9.51%
+6th
+Source: S&P Dow Jones Indices
+S&P 500 largest daily gains
+Date
+% move
+Rank
+24/03/2020
+9.38%
+9th
+13/02/2020
+9.29%
+10th
+Source: S&P Dow Jones Indices
+Read: Global markets lost nearly $8 trillion in value in March
+The only time something like this has happened before was at the start of the Great Depression in 1929. Between October 28 and November 14 that year – a space of 17 days – the market experienced five equally substantial daily movements. On that occasion three of them were negative, and two were positive.
+Even in the financial crisis of 2008, although there was some massive market volatility, the biggest moves in the S&P 500 were spread over more than two and a half months. In that year, there were five substantial daily swings between September 10 and December 1.
+The moves last month were therefore extreme, and this is reflected in the local market as well. As the graph below from Cannon Asset Managers shows, the cumulative change in the FTSE/JSE All Share Index during March 2020 was the highest ever experienced.
+
+(Click to enlarge)
+A different era
+For investors, a question worth asking is whether the pace of market movements in March is another once-in-a-century event, as the similar period in 1929 turned out to be. Or is it less of an anomaly, and something that markets should get more used to seeing?
+In this regard, the virus that triggered the sell-off might provide an interesting analogy.
+As emeritus professor of finance at the London Business School Elroy Dimson pointed out in a recent interview with The Evidence Based Investor, Covid-19 is hardly the first severe pandemic the world has faced. In the 14th century, the Black Death killed as many as 50 million people, or 60% of Europe’s population. The Spanish Flu of 1918 killed a similar number.
+In the 14th century, it took around two years for the plague to move from England into other countries. The Spanish Flu took many months to travel around the world.
+Covid-19, however, was infecting people across the globe in a matter of weeks.
+“So, as far as we can tell, the coronavirus is far from being one of the most deadly viruses,” Dimson points out. “But international travel and factors like that have enabled it to spread with remarkable rapidity.”
+Newspapers are out, social media is in
+Similarly, news now flows around the world more quickly than it ever has. Global stock markets are more interconnected than they have ever been. Information has never been transmitted at this kind of speed.
+This has implications for how quickly share prices go up and down, because there is a truism in investing that markets move faster than information.
+So if information is moving more quickly than ever, so will markets.
+“The ubiquitous nature of today’s social media and news platforms means that news or information is disseminated a lot faster than when you had to wait for your newspapers the following morning,” points out Iain Power, chief investment officer at Truffle Asset Management. “To the extent that the world now experiences shocks or catastrophes, this information spreads quickly to all corners of the world, with markets repricing and trying to discount the impact of the new information much faster than they have in the past.”
+An additional complication this creates, says Power, is that there is now too much information, and it’s difficult to determine what is both true and relevant.
+Read: Covid-19: Third parties can be held liable for spreading fake news
+This adds to the extent of the volatility that markets can experience – such as what happened on March 12 and 13, when the S&P 500 followed one of its worst days ever with one of its best.
+You’re making this happen. Or are you?
+As Roland Rousseau from RMB Global Markets points out, this is what plays out when you mix markets, rapid news flow, and human behaviour.
+“Capital markets are discounting machines, and they are very good at anticipating bad times such as recessions, but they over- and under-react to the news based on ‘perceptions’ and the ‘psychology’ of behavioural science,” Rousseau says.
+“So if you combine faster access to information with an ‘excitable’ discounting machine, you get more volatility,” he adds.
+Read: Millenials freaked out and fled risk when stocks took a dive
+However, in modern markets it is not just humans who are making decisions. Increasingly, systematic trading systems and bots are processing and acting on information in microseconds.
+“The speed of information that is accessed by the big quant traders and their ability to implement those trades is unbelievably quick,” says Victoria Reuvers, MD of Morningstar Investment Management South Africa.
+All of which suggests that these extreme moves may become increasingly common in stock markets.
+“Should we get another shock to the system, we could absolutely experience events like this again,” Reuvers says.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/investing/investors-fasten-your-seatbelts/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

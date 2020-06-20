@@ -1,0 +1,74 @@
+ 
+
+Vodacom Group will spend more than R500 million ($27 million) over two months to increase network capacity as traffic surges across its mobile and fixed networks during the national lockdown.
+The telecoms sector has experienced a spike in network data traffic in recent weeks after the South African government imposed a five-week lockdown to the end of April in an effort to curb the spread of the coronavirus.
+The investment spend will help increase network resilience during the lockdown period and help the mobile phone operator to cope with any possible load shedding, Vodacom said in a statement on Wednesday.
+Vodacom expects network traffic to increase even further as customers connect for longer after it implemented price cuts of up to 40% on its 30-day data bundles and launched free access to certain websites, such as health sites and e-school platforms.
+“Prior to the lockdown, traffic typically peaked during certain hours of the day, but Vodacom is now experiencing sustained peak traffic patterns for almost the entire day,” it said.
+To ease network congestion, large international content providers such as Netflix, YouTube and Facebook have reduced the resolution of video content around the world during the outbreak, it added.
+Vodacom, which competes with MTN Group, has also applied to the ICASA telecoms regulator for temporary additional spectrum and is waiting for its application to be evaluated.
+“We are monitoring all traffic patterns daily and prioritising key network upgrades to add capacity and maintain the quality of services delivered to our customers where required,” said Chief Technology Officer Andries Delport.
+“We are hopeful that we will be able to gain temporary access to spectrum to enable additional capacity to be added in the quickest and most cost-effective manner.”
+ICASA this month said that the temporary release of spectrum to the sector will last for the duration of the national state of disaster declared by President Cyril Ramaphosa.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/companies-and-deals/vodacom-to-spend-r500m-to-add-network-capacity-during-lockdown/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

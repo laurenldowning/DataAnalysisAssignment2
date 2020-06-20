@@ -1,0 +1,80 @@
+ 
+
+
+NOMPU SIZIBA: The South African Chamber of Commerce and Industry released April’s Trade Activity Index. Naturally, given the Level 5 hard lockdown in that month, it doesn’t make for the best reading. The seasonally adjusted Trade Activity Index declined by 11 points to 26 index points, while the Trade Expectations Index also drop sharply by 10 points to 31 index points.
+To unpack the numbers for us, I’m joined on the line by Richard Downing, the senior economist at Sacci. Thanks very much, Richard, for joining us. It’s no real surprise that the trade activity numbers were on a downer, but just take us through the highlights – or shall I say the lowlights.
+RICHARD DOWNING: Well, the problem is that the all over the elements of trade actually have suffered a bit in April. That was a real suffering. Sale volumes, new orders – all items, actually – were much lower than they were in March. As you know, in March we had this sort of special buying spree, where people went into a panic in terms of buying, so the March figure was a little bit up on the February figure. But still, I think the April figure, I think, affects the real effect of the lockdown as such, and especially plagued the final sort of entry point to the consumer. And I think that what we see is only the top part of the problem, because the linkage effects goes into your manufacturing and all the other sectors.
+NOMPU SIZIBA: Yes.
+RICHARD DOWNING: And that is actually where the problem lies to some extent.
+NOMPU SIZIBA: You have your Trade Expectations Index, as well. That also dropped quite a lot. I suppose that really just speaks to confidence, and there’s so much uncertainty that people are really quite anxious right now.
+RICHARD DOWNING: I think the main thing is they are sort of moving into the inventories and cash to some extent. I think it will take a while for business, even after this lockdown process, which we hope will soon be lifted more and more. We’ve today seen some sense coming into the whole online transaction business and that type of thing, which might help a bit.
+But there are some other things I think we can do as well to unlock the economy – and that is the main issue that will take us forward. And for trade that will mean actually for six months from here, because that …… respond six months from here they will still find it difficult to replenish inventories and get supplies in again, and get the cash to do that, because at the moment they are still just trying to keep the people afloat. They must use some of their balance sheet items to keep that going.
+So that is the problem at the moment. It won’t be easy to get out of this, there is a lot of damage has been done in terms of this lockdown and the coronavirus and such. To keep the infection rate low is perhaps the main purpose of this, and we hope that, although we won’t cure the virus as such, we might actually loosen up the economy to some extent to get back on track as soon as possible.
+NOMPU SIZIBA: Richard, in the meantime what have you been hearing from your chamber members about their survivability as businesses after seven weeks of lockdown and being unable to generate revenue and so on? And we’ve also heard about surveys being done with businesses, indicating that if they hit three months they’ll have no reserves left to pay for anything.
+RICHARD DOWNING: Well, that is exactly the point. Some of our respondents actually indicated that one of the bigger problems is in terms of rental payment and paying accounts, and that type of thing. People are holding back and defaulting on payments. I think that is a major issue at the moment. It runs deep – not only in terms of the real economy, but also in terms of cash flow and budgets and that type of thing. Especially your small and medium sized businesses. Some of your bigger friends might survive this type of thing for a few months; but for a small firm two to three months is a critical time.
+If we come to the employment figures from the survey, we can see there was also a substantial drop in terms of employment or jobs at the moment, and even for six months from now there’s no light at the end of the tunnel in terms of employment. This is a real problem area, and it’s affecting the economy in the real sense of the word.
+NOMPU SIZIBA: Yes. We understand, [regarding] the new loan-guarantee scheme that is backed by the Reserve Bank, that businesses will be able to pay over a five-year period. Do you welcome this, do you think that’s quite a generous period?
+RICHARD DOWNING: I think so. It all depends one on the cost of that financing and that type of thing, of course which in future will place a burden on their cash flows and so on. A lot of the Reserve Bank actions are part of a minimum and short-term [programme], to get people just over the hump and try to keep people in business. I think that is the main purpose of the Reserve Bank. If you take the total relaxation of monetary policy and this creating money to finance the whole system, I think on one hand the Reserve Bank, the way they’ve gone in the past in terms of responsible monetary policy, we mustn’t see this now as a way to just shift all that responsibility, but just to help us see through this difficult period. I think it is important at this stage to do that type of thing. But one should just remember that we’ve got to man the situation in terms of monetary policy actions going forward.
+NOMPU SIZIBA: Richard, thank you so much for your time, as always.
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/moneyweb-radio/extraordinary-measures-needed-to-keep-businesses-afloat-index/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

@@ -1,0 +1,86 @@
+ 
+
+The decision by Moody’s to downgrade South Africa’s sovereign rating to below investment grade was not unexpected. Its timing, however, puts additional pressure on the country’s economy at an already precarious time.
+Read: Moody’s junks SA at the ‘worst time’
+“I have been expecting this downgrade since the February 2020 national budget,” said Johann Els, chief economist at Old Mutual. “While the budget contained some positive measures, such as the surprise willingness to cut the size of the public sector wage bill, there were many negative factors as well.
+“These included the execution risk around the planned reduction in the wage bill and an unsustainably high deficit targeted at the time (-6.8% of GDP),” he noted.
+“There was also no evidence for stabilising the debt-to-GDP ratio and lastly – and perhaps most importantly – no credible plan in executing a higher growth path for the South African economy.”
+What nobody anticipated last month, however, was the potential that Covid-19 had to further erode the country’s ability to grow its economy.
+“My expectations for GDP growth in South Africa this year is now -3.5%,” said Els.
+The response
+The timing of the downgrade could, however, also have an upside. As Business Unity South Africa (Busa) pointed out in a statement, the country’s response to the coronavirus and how it deals with the implications of Moody’s decision are now inextricably linked.
+“We recognise the urgency with which SA must respond to the Moody’s downgrade, but we do, as a country, need to mitigate the immediate economic impact of Covid-19,” Busa noted.
+“If we fail in our endeavours to mitigate the negative impact of Covid-19 on our economy, we will be in a far worse position to resuscitate our economy post the Covid-19 crisis, thus making it virtually impossible to rebuild our economy to be rated again as investment grade.”
+The Moody’s decision also has real implications for South Africa’s ability to deal with the pandemic.
+“Higher borrowing costs for government will crowd out spending on much needed social and economic programmes,” Sanisha Packirisamy, economist at Momentum Investments pointed out. “A further knock to business sentiment could lead to lower rates of fixed investment, weaker growth and increased downward pressure on employment.”
+The rand is also likely to weaken further in the short term, which generally means higher inflation. This will limit the Reserve Bank’s ability to be more aggressive in reducing rates to stimulate the economy.
+Concurrent and connected
+These are not, therefore, two separate issues for the government to deal with. They have to be dealt with together.
+Significantly, the steps necessary to rebuild the economy after the impact of Covid-19 and addressing the issues that led to the downgrade are now largely aligned. Structural reforms have to be implemented on a meaningful scale to create an enabling environment for the private sector to stage a recovery, the public sector wage bill must be curtailed to reduce pressure on the national budget, and the wasteful expenditure on state-owned enterprises that do not deliver any social or economic benefit must be cut.
+In a statement after Moody’s announcement, National Treasury said that “government remains committed to implementing structural reforms”, but that message is not new. The intention has been stated for some time. What can no longer wait, however, is the implementation.
+“The overall phrasing of the National Treasury statement is interesting, basically blaming the rest of government for not doing reform,” noted Peter Attard Montalto, head of capital markets research at Intellidex.
+“Indeed the minister, politically, is covered,” Montalto added. “He launched his ‘Tito paper’ last year which would have dealt with many of these issues, he pushed a harder consolidation line into both the medium term budget policy statement and the budget.”
+What is required now is for this to translate into action.
+“We have come together as a country in the last few weeks to fight the Covid-19 outbreak,” Busa said. “This ‘compact’ must form the platform from which we now address the crisis of the downgrade. We have now got to channel all our resources and capacity to addressing these two crises.”
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/moodys-downgrade-compounds-covid-19-challenges/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    

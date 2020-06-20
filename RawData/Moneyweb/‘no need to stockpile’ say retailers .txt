@@ -1,0 +1,99 @@
+ 
+
+South Africa’s three largest retail chains – Shoprite, Pick n Pay and Massmart – are calling on the public not to ‘panic buy’ in response to concerns over the possible impact of the Covid-19 outbreak.
+The plea comes after many stores saw their shelves cleared of meat products, long-life milk, toilet paper, sanitisers and related hygiene products by stockpiling consumers on Monday and Tuesday following President Cyril Ramaphosa’s declaration of a national disaster as a way to control the virus on Sunday.
+Read: Ramaphosa addresses the nation on Covid-19
+The declaration prohibits gatherings of more than 100 people and restricts travel from the UK, Italy, Iran, South Korea, Germany, Spain, China and the US. Schools will be closed from Wednesday until the end of the Easter holidays.
+Read: Business: Take money from non-essential SOEs to fight Covid-19
+The declaration made no mention of possible product shortages, but this did not stop consumers from wanting to stockpile.
+Only what you need
+The country’s largest retailer, Shoprite, is appealing to customers to “only buy what they need”. It has assured customers that it is doing everything in its power to restock shelves as quickly as possible and ensure that warehouses have stock available.
+“The gaps which are now evident on our shelves and those of other supermarkets are because of the unprecedented demand as a result of fear over the effect of the coronavirus, but we have new stock arriving regularly and we are working around the clock to keep shelves stocked,” says Shoprite Group CEO Pieter Engelbrecht.
+“We have also increased orders, are sourcing new and additional suppliers, and our warehouses have sufficient stock to replenish our store shelves.
+‘Unprecedented demand’
+“The unprecedented demand has made it difficult to eliminate gaps immediately on the shelves but we are working tirelessly to fill those shelves as quickly as possible from our warehouses.
+“May I appeal to our customers to please think before they buy and only buy what their families need so that others are not left without much-needed items.
+“If we all shop as we normally do, our stores will soon return to normal and there will not be empty shelves,” says Engelbrecht.
+There was a similar appeal from rival Pick n Pay:
+
+“We would like to encourage our customers to continue shopping responsibly. Where stocks are temporarily low due to heavy customer demand, we will be limiting the number of certain products per customer.”
+
+This was echoed by Massmart. “We are mindful that stockpiling hurts the most vulnerable consumers in our society and do not see a need for this type of buying behaviour,” says Massmart communication manager Refilwe Boikanyo.
+Massmart’s big-box retailer, Makro and Woolworths, are now enforcing customer limits at its store.
+Clicks chief commercial officer Rachel Wrigglesworth says the health and beauty chain is also limiting sales on some products and has “significantly” increased orders across all high-demand categories. It has also increased the number of deliveries made to its stores.
+PnP saw it coming
+Pick n Pay, however, makes the point that customers, on the whole, have been buying responsibly and generally only stocking up on what they usually buy.
+It points out that it has been preparing for Covid-19 “for some weeks” and has been working closely with its suppliers to make sure it has sufficient stock in its stores.
+It said consumers who want security of supply should consider shopping online. “Our online service is operating effectively and we have seen an increase in online purchasing over the past 10 days. Our technology systems are more than able to cope with increased activity online.”
+Read: How much could Covid-19 impact the SA economy?
+Needed boost
+The retailers may not be fond of how some consumers are panic buying, but this boost to sales comes as a welcome surprise to a sector that has taken strain over the past two years.
+Lower-than-inflation wage increases, higher municipal levies and increasing fuel prices have all taken their toll on the spending power of consumers.
+The sudden spending surge is certain to have brought some relief, but by how much, retailers are not saying.
+Massmart says it does not comment on sales performance outside JSE listing requirement protocols, and Pick n Pay, Woolworths and Shoprite did not answer questions on how the stockpiling is affecting overall sales.
+ 
+if(mnyArticleGraphs == undefined){var mnyArticleGraphs = {};}mnyArticleGraphs.n1142513SHPPIKWHLMSMData = {title: 'Big three retailers',graphID:'1142513SHPPIKWHLMSM',graphType: 'currency',graphAction: 'intra',graphPeriod: '0',instrumentIDs: [{code: 'SHP', title: 'SHP', type: 'index'},{code: 'PIK', title: 'PIK', type: 'index'},{code: 'WHL', title: 'WHL', type: 'index'},{code: 'MSM', title: 'MSM', type: 'index'},]};jQuery(window).load(function(){getGraph( mnyArticleGraphs.n1142513SHPPIKWHLMSMData );});Big three retailers
+ 
+ 
+
+                        jQuery(document).on('click', 'a[href*="#to-comments"]', function (event) {
+                            event.preventDefault();
+
+                            jQuery('html, body').animate({
+                                scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top
+                            }, 500);
+                        });
+                        jQuery(document).ready(function () {
+                            jQuery('img[class*="wp-image-"]').bind('click', function () {
+                                jQuery(this.parentElement).lightBox({
+                                    imageLoading: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/spinner_moneyweb.gif",
+                                    imageBtnPrev: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                    imageBtnNext: "https://www.moneyweb.co.za/wp-content/themes/moneyweb-domination/images/bg_direction_nav.png",
+                                })
+                            });
+
+                            function getSelectedText() {
+                                if (window.getSelection) {
+                                    var range = window.getSelection();
+                                    return range.toString()
+                                }
+                                else {
+                                    if (document.selection.createRange) {
+                                        var range = document.selection.createRange();
+                                        return range.text
+                                    }
+                                }
+                            }
+
+                            function createTweetLink(text, e) {
+
+                                var oldTweetLink = document.getElementById("tweetLink");
+                                if (oldTweetLink != null && typeof oldTweetLink != "undefined") {
+                                    oldTweetLink.parentNode.removeChild(oldTweetLink);
+                                }
+
+                                if (text === "")
+                                    return undefined;
+                                var newTweetLink = document.createElement("a");
+                                newTweetLink.href = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&url=https://www.moneyweb.co.za/news/companies-and-deals/no-need-to-stockpile-say-retailers/&via=Moneyweb";
+                                newTweetLink.id = "tweetLink";
+                                newTweetLink.target = "_blank";
+                                newTweetLink.innerHTML = '<i class="fa fa-twitter"></i> Tweet';
+                                var appendedTweetLink = document.getElementById("article-body-content").appendChild(newTweetLink);
+                                var x = (e.clientX + 5) + 'px',
+                                    y = (e.clientY + 5) + 'px';
+                                jQuery(appendedTweetLink).css({
+                                    "top": y,
+                                    "left": x
+                                });
+                                return newTweetLink;
+                            }
+
+                            var textParagraph = document.getElementById("textParagraph");
+							if (textParagraph) {
+								textParagraph.addEventListener("mouseup", function (e) {
+									tweetLink = createTweetLink(getSelectedText(), e);
+								}, false);
+							}
+                        });
+                    
