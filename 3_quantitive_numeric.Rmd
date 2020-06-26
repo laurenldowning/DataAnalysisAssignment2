@@ -1,0 +1,1026 @@
+---
+title: "A Computational Analysis of the Business Media's Response to Covid-19: Quantitive Numeric Analysis"
+author: "Caryn Biebuyck (20715978) & Lauren Downing (19202113)"
+output: html_notebook
+---
+
+
+```{r Setup, message=FALSE, warning=FALSE, include=FALSE}
+  library(dplyr)
+  library(ggplot2)
+  library(ggraph)
+  library(igraph)
+  library(scales)
+  library(stringr)
+  library(tidyr)
+  library(tidytext)
+  library(widyr)
+  library(wordcloud)
+```
+
+```{r Reading in required RDS files, message=FALSE, warning=FALSE, include=FALSE}
+  fin24 <- readRDS("~/tidy_fin24.rds")
+  moneyweb <- readRDS("~/tidy_moneyweb.rds")
+  biznews <- readRDS("~/tidy_biznews.rds")
+  EWNbusiness <- readRDS("~/tidy_ewn.rds")
+  businessTech <- readRDS("~/tidy_businesstech.rds")
+  mediaCompiled <- readRDS("~/tidy_mediacompiled.rds")
+```
+
+
+# 1. Word Counts
+
+## 1.1. Fin24
+```{r Fin24 Top Words}
+  fin24_topWords <- fin24 %>%
+    count(word) %>%
+    arrange(desc(n))
+
+  fin24_topWords
+  
+# Visualisation of top 25 words
+  fin24_topWords_visual <- fin24_topWords %>%
+    slice(1:25) %>%
+    ggplot(aes(x = reorder(word, -n), y = n, fill = word)) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("Frequency") +
+    scale_y_continuous(breaks = seq(0, 1000, 100)) +
+    xlab("") +
+    labs(title = "Most frequented words", subtitle = "Fin24") +
+    guides(fill = FALSE)
+  
+  fin24_topWords_visual
+  
+# Save the graph to disk  
+  ggsave(fin24_topWords_visual, filename = "fin24_topWords_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+## 1.2. Moneyweb
+```{r Moneyweb Top Words}
+  moneyweb_topWords <- moneyweb %>%
+    count(word) %>%
+    arrange(desc(n))
+
+  moneyweb_topWords
+  
+# Visualisation of top 25 words
+  moneyweb_topWords_visual <- moneyweb_topWords %>%
+    slice(1:25) %>%
+    ggplot(aes(x = reorder(word, -n), y = n, fill = word)) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    scale_y_continuous(breaks = seq(0, 1400, 100)) +
+    ylab("Frequency") +
+    xlab("") +
+    labs(title = "Most frequented words", subtitle = "Moneyweb") +
+    guides(fill = FALSE)
+  
+  moneyweb_topWords_visual
+  
+# Save the graph to disk  
+  ggsave(moneyweb_topWords_visual, filename = "moneyweb_topWords_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+## 1.3. BizNews
+```{r BizNews Top Words}
+  biznews_topWords <- biznews %>%
+    count(word) %>%
+    arrange(desc(n))
+
+  biznews_topWords
+  
+# Visualisation of top 25 words
+  biznews_topWords_visual <- biznews_topWords %>%
+    slice(1:25) %>%
+    ggplot(aes(x = reorder(word, -n), y = n, fill = word)) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("Frequency") +
+    scale_y_continuous(breaks = seq(0, 1000, 100)) +
+    xlab("") +
+    labs(title = "Most frequented words", subtitle = "BizNews") +
+    guides(fill = FALSE)
+  
+  biznews_topWords_visual
+  
+# Save the graph to disk  
+  ggsave(biznews_topWords_visual, filename = "biznews_topWords_visual.png", width = 185, height = 114, units = "mm")
+```
+
+## 1.4. EWN Business 
+```{r EWN Business Top Words}
+  EWNbusiness_topWords <- EWNbusiness %>%
+    count(word) %>%
+    arrange(desc(n))
+
+  EWNbusiness_topWords
+  
+# Visualisation of top 25 words
+  EWNbusiness_topWords_visual <- EWNbusiness_topWords %>%
+    slice(1:25) %>%
+    ggplot(aes(x = reorder(word, -n), y = n, fill = word)) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("Frequency") +
+    scale_y_continuous(breaks = seq(0, 4000, 250)) +
+    xlab("") +
+    labs(title = "Most frequented words", subtitle = "EWN Business") +
+    guides(fill = FALSE)
+  
+  EWNbusiness_topWords_visual
+  
+# Save the graph to disk  
+  ggsave(EWNbusiness_topWords_visual, filename = "EWNbusiness_topWords_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+## 1.5. BusinessTech
+```{r BusinessTech Top Words}
+  businessTech_topWords <- businessTech %>%
+    count(word) %>%
+    arrange(desc(n))
+
+  businessTech_topWords
+  
+# Visualisation of top 25 words
+  businessTech_topWords_visual <- businessTech_topWords %>%
+    slice(1:25) %>%
+    ggplot(aes(x = reorder(word, -n), y = n, fill = word)) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("Frequency") +
+    scale_y_continuous(breaks = seq(0, 4000, 250)) +
+    xlab("") +
+    labs(title = "Most frequented words", subtitle = "BusinessTech") +
+    guides(fill = FALSE)
+  
+  businessTech_topWords_visual
+  
+# Save the graph to disk  
+  ggsave(businessTech_topWords_visual, filename = "businessTech_topWords_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+## 1.6. Across All Media Outlets 
+```{r Compiled Media Top Words}
+  mediaCompiled_topWords <- mediaCompiled %>%
+    count(word) %>%
+    arrange(desc(n))
+
+  mediaCompiled_topWords
+  
+# Visualisation of top 25 words
+  mediaCompiled_topWords_visual <- mediaCompiled_topWords %>%
+    slice(1:25) %>%
+    ggplot(aes(x = reorder(word, -n), y = n, fill = word)) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("Frequency") +
+    scale_y_continuous(breaks = seq(0, 10000, 500)) +
+    xlab("") +
+    labs(title = "Most frequented words", subtitle = "All media outlets") +
+    guides(fill = FALSE)
+    
+  mediaCompiled_topWords_visual
+  
+# Save the graph to disk  
+  ggsave(mediaCompiled_topWords_visual, filename = "mediaCompiled_topWords_visual.png", width = 185, height = 114, units = "mm")
+```
+
+## 1.7. Comparing Media Outlets, Using EWN Business as a Basis (due to EWN Business having has the most overall words)
+
+### 1.7.1. EWN Business vs Fin24
+```{r EWN Business vs Fin24}
+ fin24vsEWN <- bind_rows(mutate(fin24, media.source = "Fin24"),  
+                         mutate(EWNbusiness, media.source = "EWN Business")) %>%
+    mutate(word = str_extract(word, "[a-z']+")) %>%
+    count(media.source, word) %>%
+    group_by(media.source) %>%
+    mutate(proportion = n/sum(n)) %>%
+    select(-n) %>%
+    spread(media.source, proportion) %>%
+    gather(media.source, proportion, Fin24)
+  
+ fin24vsEWN 
+ 
+# Visualisation 
+  fin24vsEWN_visual <- ggplot(fin24vsEWN, aes(x = proportion, y = `EWN Business`, color = abs(`EWN Business` - proportion))) +
+    geom_abline(color = "grey60", lty = 2) +
+    geom_jitter(alpha = 0.1, size = 2.5, width = 0.3, height = 0.3) +
+    geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+    scale_x_log10(labels = percent_format()) +
+    scale_y_log10(labels = percent_format()) +
+    scale_color_gradient(limits = c(0, 0.001), low = "grey20", high = "grey75") +
+    facet_wrap(~media.source, ncol = 2) +
+    theme_minimal() +
+    theme(legend.position = "none") +
+    labs(y = "EWN business", x = NULL)
+  
+  fin24vsEWN_visual
+  
+# Save the graph to disk  
+  ggsave(fin24vsEWN_visual, filename = "fin24vsEWN_visual.png", width = 185, height = 114, units = "mm")
+  
+# Correlation Test
+  cor.test(data = fin24vsEWN[fin24vsEWN$media.source == "Fin24",],
+           ~proportion + `EWN Business`)
+```
+
+### 1.7.2. EWN Business vs Moneyweb
+```{r EWN Business vs Moneyweb}
+ moneywebVsEWN <- bind_rows(mutate(moneyweb, media.source = "Moneyweb"),  
+                            mutate(EWNbusiness, media.source = "EWN Business")) %>%
+    mutate(word = str_extract(word, "[a-z']+")) %>%
+    count(media.source, word) %>%
+    group_by(media.source) %>%
+    mutate(proportion = n/sum(n)) %>%
+    select(-n) %>%
+    spread(media.source, proportion) %>%
+    gather(media.source, proportion, Moneyweb)
+  
+ moneywebVsEWN 
+ 
+# Visualisation 
+  moneywebVsEWN_visual <- ggplot(moneywebVsEWN, aes(x = proportion, y = `EWN Business`, color = abs(`EWN Business` - proportion))) +
+    geom_abline(color = "grey60", lty = 2) +
+    geom_jitter(alpha = 0.1, size = 2.5, width = 0.3, height = 0.3) +
+    geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+    scale_x_log10(labels = percent_format()) +
+    scale_y_log10(labels = percent_format()) +
+    scale_color_gradient(limits = c(0, 0.001), low = "grey20", high = "grey75") +
+    facet_wrap(~media.source, ncol = 2) +
+    theme_minimal() +
+    theme(legend.position = "none") +
+    labs(y = "EWN business", x = NULL)
+  
+  moneywebVsEWN_visual
+  
+# Save the graph to disk  
+  ggsave(moneywebVsEWN_visual, filename = "moneywebVsEWN_visual.png", width = 185, height = 114, units = "mm")
+  
+# Correlation Test
+  cor.test(data = moneywebVsEWN[moneywebVsEWN$media.source == "Moneyweb",],
+           ~proportion + `EWN Business`)
+```
+  
+### 1.7.3. EWN Business vs BizNews
+```{r EWN Business vs BizNews}
+ biznewsVsEWN <- bind_rows(mutate(biznews, media.source = "BizNews"),  
+                            mutate(EWNbusiness, media.source = "EWN Business")) %>%
+    mutate(word = str_extract(word, "[a-z']+")) %>%
+    count(media.source, word) %>%
+    group_by(media.source) %>%
+    mutate(proportion = n/sum(n)) %>%
+    select(-n) %>%
+    spread(media.source, proportion) %>%
+    gather(media.source, proportion, BizNews)
+  
+  biznewsVsEWN 
+ 
+# Visualisation 
+   biznewsVsEWN_visual <- ggplot(biznewsVsEWN, aes(x = proportion, y = `EWN Business`, color = abs(`EWN Business` - proportion))) +
+    geom_abline(color = "grey60", lty = 2) +
+    geom_jitter(alpha = 0.1, size = 2.5, width = 0.3, height = 0.3) +
+    geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+    scale_x_log10(labels = percent_format()) +
+    scale_y_log10(labels = percent_format()) +
+    scale_color_gradient(limits = c(0, 0.001), low = "grey20", high = "grey75") +
+    facet_wrap(~media.source, ncol = 2) +
+    theme_minimal() +
+    theme(legend.position = "none") +
+    labs(y = "EWN business", x = NULL)
+  
+   biznewsVsEWN_visual
+   
+# Save the graph to disk  
+  ggsave(biznewsVsEWN_visual, filename = "biznewsVsEWN_visual.png", width = 185, height = 114, units = "mm")
+  
+# Correlation Test
+  cor.test(data =  biznewsVsEWN[biznewsVsEWN$media.source == "BizNews",],
+           ~proportion + `EWN Business`)
+```
+  
+### 1.7.4. EWN Business vs BusinessTech
+```{r EWN Business vs BusinessTech}
+ businessTechVsEWN <- bind_rows(mutate(businessTech, media.source = "BusinessTech"),  
+                            mutate(EWNbusiness, media.source = "EWN Business")) %>%
+    mutate(word = str_extract(word, "[a-z']+")) %>%
+    count(media.source, word) %>%
+    group_by(media.source) %>%
+    mutate(proportion = n/sum(n)) %>%
+    select(-n) %>%
+    spread(media.source, proportion) %>%
+    gather(media.source, proportion, BusinessTech)
+  
+  businessTechVsEWN 
+ 
+# Visualisation 
+  businessTechVsEWN_visual <- ggplot(businessTechVsEWN, aes(x = proportion, y = `EWN Business`, color = abs(`EWN Business` - proportion))) +
+    geom_abline(color = "grey60", lty = 2) +
+    geom_jitter(alpha = 0.1, size = 2.5, width = 0.3, height = 0.3) +
+    geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+    scale_x_log10(labels = percent_format()) +
+    scale_y_log10(labels = percent_format()) +
+    scale_color_gradient(limits = c(0, 0.001), low = "grey20", high = "grey75") +
+    facet_wrap(~media.source, ncol = 2) +
+    theme_minimal() +
+    theme(legend.position = "none") +
+    labs(y = "EWN business", x = NULL)
+  
+  businessTechVsEWN_visual
+  
+# Save the graph to disk  
+  ggsave(businessTechVsEWN_visual, filename = "businessTechVsEWN_visual.png", width = 185, height = 114, units = "mm")
+  
+# Correlation Test
+  cor.test(data =  businessTechVsEWN[businessTechVsEWN$media.source == "BusinessTech",],
+           ~proportion + `EWN Business`)
+```
+
+# 2. Wordclouds
+
+## 2.1. Fin24
+```{r Wordcloud: Fin24}
+  fin24_wordcloud <- fin24 %>%
+    count(word) %>%
+    with(wordcloud(word, n, max.words = 100))
+
+  fin24_wordcloud
+```
+  
+## 2.2. Moneyweb
+```{r Wordcloud: Moneyweb}
+  moneyweb_wordcloud <- moneyweb %>%
+    count(word) %>%
+    with(wordcloud(word, n, max.words = 100))
+
+  moneyweb_wordcloud
+```
+  
+## 2.3. BizNews
+```{r Wordcloud: BizNews}
+  biznews_wordcloud <- biznews %>%
+    count(word) %>%
+    with(wordcloud(word, n, max.words = 100))
+
+  biznews_wordcloud
+```
+  
+## 2.4. EWN Business
+```{r Wordcloud: EWN Business}
+  EWNbusiness_wordcloud <- EWNbusiness %>%
+    count(word) %>%
+    with(wordcloud(word, n, max.words = 100))
+
+  EWNbusiness_wordcloud
+```
+  
+## 2.5. BusinessTech
+```{r Wordcloud: BusinessTech}
+  businessTech_wordcloud <- businessTech %>%
+    count(word) %>%
+    with(wordcloud(word, n, max.words = 100))
+
+  businessTech_wordcloud
+```
+  
+## 2.6. Across All Media Outlets
+```{r Wordcloud: Compiled Media}
+  mediaCompiled_wordcloud <- mediaCompiled %>%
+    count(word) %>%
+    with(wordcloud(word, n, max.words = 100))
+
+  mediaCompiled_wordcloud
+```
+  
+# 3. Term Frequency Inverse Document Frequency
+
+## 3.1. Fin24
+```{r TF-IDF: Fin24}
+  fin24_tfidf <- fin24 %>%
+    count(word, date) %>%
+    bind_tf_idf(word, date, n)
+
+  fin24_tfidf
+  
+  fin24_top_tfidf <- fin24_tfidf %>%
+    arrange(desc(tf_idf))
+  
+  fin24_top_tfidf
+  
+# Visualisation of top 25 TF-IDFs
+  fin24_top_tfidf_visual <- fin24_top_tfidf %>%
+    slice(1:25) %>%
+    ggplot(aes(x = reorder(word, -tf_idf), y = tf_idf, fill = date)) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("TF-IDF") +
+    scale_y_continuous(breaks = seq(0, 0.3, 0.05)) +
+    xlab("") +
+    labs(title = "Highest TF-IDF words", subtitle = "Fin24") +
+    guides(fill = guide_legend(title = "Date"))
+    
+    
+  fin24_top_tfidf_visual
+  
+# Save the graph to disk  
+  ggsave(fin24_top_tfidf_visual, filename = "fin24_top_tfidf_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+## 3.2. Moneyweb
+```{r TF-IDF: Moneyweb}
+ moneyweb_tfidf <- moneyweb %>%
+    count(word, date) %>%
+    bind_tf_idf(word, date, n)
+
+  moneyweb_tfidf
+  
+  moneyweb_top_tfidf <- moneyweb_tfidf %>%
+    arrange(desc(tf_idf))
+  
+  moneyweb_top_tfidf
+  
+# Visualisation of top 25 TF-IDFs
+   moneyweb_top_tfidf_visual <- moneyweb_top_tfidf %>%
+    slice(1:25) %>%
+    ggplot(aes(x = reorder(word, -tf_idf), y = tf_idf, fill = date)) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("TF-IDF") +
+    scale_y_continuous(breaks = seq(0, 0.3, 0.05)) +
+    xlab("") +
+    labs(title = "Highest TF-IDF words", subtitle = "Moneyweb") +
+    guides(fill = guide_legend(title = "Date"))
+    
+  moneyweb_top_tfidf_visual
+  
+# Save the graph to disk  
+  ggsave(moneyweb_top_tfidf_visual, filename = "moneyweb_top_tfidf_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+## 3.3. BizNews
+```{r TF-IDF: BizNews}
+ biznews_tfidf <- biznews %>%
+    count(word, date) %>%
+    bind_tf_idf(word, date, n)
+
+ biznews_tfidf
+  
+ biznews_top_tfidf <- biznews_tfidf %>%
+    arrange(desc(tf_idf)) %>%
+    mutate(word = factor(word, levels = rev(unique(word)))) %>%
+    group_by(date) %>% 
+    top_n(25) %>% 
+    ungroup() 
+  
+  biznews_top_tfidf
+  
+# Visualisation of top 25 TF-IDFs
+  biznews_top_tfidf_visual <- biznews_top_tfidf %>%
+    slice(1:25) %>%
+    ggplot(aes(x = reorder(word, -tf_idf), y = tf_idf, fill = date)) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("TF-IDF") +
+    scale_y_continuous(breaks = seq(0, 0.3, 0.05)) +
+    xlab("") +
+    ggtitle("Highest TF-IDF words", subtitle = "Biznews") +
+    guides(fill = guide_legend(title = "Date"))
+  
+  biznews_top_tfidf_visual
+  
+# Save the graph to disk  
+  ggsave(biznews_top_tfidf_visual, filename = "biznews_top_tfidf_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+## 3.4. EWN Business
+```{r TF-IDF: EWN Business}
+ EWNbusiness_tfidf <- EWNbusiness %>%
+    count(word, date) %>%
+    bind_tf_idf(word, date, n)
+
+ EWNbusiness_tfidf
+  
+ EWNbusiness_top_tfidf <- EWNbusiness_tfidf %>%
+    arrange(desc(tf_idf))
+  
+  EWNbusiness_top_tfidf
+  
+# Visualisation of top 25 TF-IDFs
+EWNbusiness_top_tfidf_visual <- EWNbusiness_top_tfidf %>%
+    slice(1:25) %>%
+    ggplot(aes(x = reorder(word, -tf_idf), y = tf_idf, fill = date)) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("TF-IDF") +
+    scale_y_continuous(breaks = seq(0, 0.3, 0.025)) +
+    xlab("") +
+    labs(title = "Highest TF-IDF words", subtitle = "EWN Business") +
+    guides(fill = guide_legend(title = "Date"))
+
+  EWNbusiness_top_tfidf_visual
+  
+# Save the graph to disk  
+  ggsave(EWNbusiness_top_tfidf_visual, filename = "EWNbusiness_top_tfidf_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+## 3.5. BusinessTech
+```{r TF-IDF: BusinessTech}
+  businessTech_tfidf <- businessTech %>%
+    count(word, date) %>%
+    bind_tf_idf(word, date, n)
+
+ businessTech_tfidf
+  
+ businessTech_top_tfidf <- businessTech_tfidf %>%
+    arrange(desc(tf_idf))
+  
+  businessTech_top_tfidf
+  
+# Visualisation of top 25 TF-IDFs
+  businessTech_top_tfidf_visual <- businessTech_top_tfidf %>%
+    slice(1:25) %>%
+    ggplot(aes(x = reorder(word, -tf_idf), y = tf_idf, fill = date)) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("TF-IDF") +
+    scale_y_continuous(breaks = seq(0, 0.3, 0.05)) +
+    xlab("") +
+    labs(title = "Highest TF-IDF words", subtitle = "BusinessTech") +
+    guides(fill = guide_legend(title = "Date"))
+    
+  businessTech_top_tfidf_visual
+  
+# Save the graph to disk  
+  ggsave(businessTech_top_tfidf_visual, filename = "businessTech_top_tfidf_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+## 3.6. Across All Media Outlets
+```{r TF-IDF: Compiled Media}
+ mediaCompiled_tfidf <- mediaCompiled %>%
+    count(word, date) %>%
+    bind_tf_idf(word, date, n)
+
+ mediaCompiled_tfidf
+  
+ mediaCompiled_top_tfidf <- mediaCompiled_tfidf %>%
+    arrange(desc(tf_idf))
+  
+  mediaCompiled_top_tfidf
+  
+# Visualisation of top 25 TF-IDFs
+  mediaCompiled_top_tfidf_visual <- mediaCompiled_top_tfidf %>%
+    slice(1:25) %>%
+    ggplot(aes(x = reorder(word, -tf_idf), y = tf_idf, fill = date)) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("TF-IDF") +
+    scale_y_continuous(breaks = seq(0, 0.3, 0.01)) +
+    xlab("") +
+    labs(title = "Highest TF-IDF words", subtitle = "All media outlets") +
+    guides(fill = guide_legend(title = "Date"))
+    
+  mediaCompiled_top_tfidf_visual
+  
+# Save the graph to disk  
+  ggsave(mediaCompiled_top_tfidf_visual, filename = "mediaCompiled_top_tfidf_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+# 4. Counting and Correlating Pairs of Words with `widyr`
+
+## 4.1. Fin24
+
+### 4.1.1. Word Pairs
+```{r Word Pairs: Fin24}
+  fin24_wordPairs <- fin24 %>%
+    pairwise_count(word, title, sort = TRUE)
+
+  fin24_wordPairs
+  
+# Pairwise correlation
+  fin24_wordPairs_cor <- fin24 %>%
+    group_by(word) %>%
+    filter(n() >= 20) %>% # Filtering for relatively common words
+    pairwise_cor(word, title, sort = TRUE)
+  
+  fin24_wordPairs_cor
+  
+# Filtering for words most associated with the Covid-19 pandemic
+  fin24_covid_cor <- fin24_wordPairs_cor %>%
+    filter(item1 %in% c("ban", "covid", "lockdown")) %>%
+    mutate(item2 = reorder(item2, correlation)) 
+    
+  fin24_covid_cor
+  
+# Visualising the 10 most associated words 
+  fin24_covid_cor_visual <-  fin24_covid_cor %>%
+    group_by(item1) %>%
+    top_n(10) %>%
+    ungroup() %>%
+    ggplot(aes(reorder(item2, correlation), correlation)) +
+      geom_bar(stat = "identity", fill = "royalblue2") +
+      labs(title = "10 most associated words", subtitle = "Fin24", x = "Associated words") +
+      theme_minimal() +
+      theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+            plot.title = element_text(size = 18),
+            plot.subtitle = element_text(color = "grey40")) +
+      facet_wrap(~item1, scales = "free") +
+      coord_flip()
+  
+  fin24_covid_cor_visual
+  
+# Save the graph to disk  
+  ggsave(fin24_covid_cor_visual, filename = "fin24_covid_cor_visual.png", width = 185, height = 114, units = "mm")
+```
+
+4.1.2. Word Clusters
+```{r Word Clusters: Fin24}
+# ggraph visualisation of the correlations and word clusters for the top 20 Covid-19-oriented word pairs
+fin24_covid_ggraph <- fin24_covid_cor %>%
+    group_by(item1) %>%
+    top_n(20) %>%
+    ungroup() %>%
+    filter(correlation > .15) %>%
+    graph_from_data_frame() %>%
+    ggraph(layout = "fr") +
+    geom_edge_link(aes(edge_alpha = correlation), show.legend = FALSE) +
+    geom_node_point(color = "royalblue2", size = 5) +
+    geom_node_text(aes(label = unique(name)), repel = TRUE) +
+    labs(title = "Word clusters", subtitle = "Fin24") +
+    theme_void() +
+    theme(plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40"))
+  
+  fin24_covid_ggraph
+  
+# Save the graph to disk  
+  ggsave(fin24_covid_ggraph, filename = "fin24_covid_ggraph.png", width = 185, height = 114, units = "mm")
+```
+  
+## 4.2. Moneyweb
+
+### 4.2.1. Word Pairs
+```{r Word Pairs: Moneyweb}
+  moneyweb_wordPairs <- moneyweb %>%
+    pairwise_count(word, title, sort = TRUE)
+
+  moneyweb_wordPairs
+  
+# Pairwise correlation
+  moneyweb_wordPairs_cor <- moneyweb %>%
+    group_by(word) %>%
+    filter(n() >= 20) %>% # Filtering for relatively common words
+    pairwise_cor(word, title, sort = TRUE)
+  
+  moneyweb_wordPairs_cor
+  
+# Filtering for words most associated with the Covid-19 pandemic 
+  moneyweb_covid_cor <- moneyweb_wordPairs_cor %>%
+    filter(item1 %in% c("ban", "covid", "lockdown")) %>%
+    mutate(item2 = reorder(item2, correlation)) 
+    
+  moneyweb_covid_cor 
+  
+# Visualising the 10 most associated words 
+  moneyweb_covid_cor_visual <-  moneyweb_covid_cor %>%
+    group_by(item1) %>%
+    top_n(10) %>%
+    ungroup() %>%
+    ggplot(aes(reorder(item2, correlation), correlation)) +
+      geom_bar(stat = "identity", fill = "royalblue2") +
+      labs(title = "10 most associated words", subtitle = "Moneyweb", x = "Associated words") +
+      theme_minimal() +
+      theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+            plot.title = element_text(size = 18),
+            plot.subtitle = element_text(color = "grey40")) +
+      facet_wrap(~item1, scales = "free") +
+      coord_flip()
+  
+  moneyweb_covid_cor_visual
+  
+# Save the graph to disk  
+  ggsave(moneyweb_covid_cor_visual, filename = "moneyweb_covid_cor_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 4.2.2 Word Clusters
+```{r Word Clusters: Moneyweb}
+# ggraph visualisation of the correlations and word clusters for the top 20 Covid-19-oriented word pairs
+  moneyweb_covid_ggraph <- moneyweb_covid_cor %>%
+    group_by(item1) %>%
+    top_n(20) %>%
+    ungroup() %>%
+    filter(correlation > .15) %>%
+    graph_from_data_frame() %>%
+    ggraph(layout = "fr") +
+    geom_edge_link(aes(edge_alpha = correlation), show.legend = FALSE) +
+    geom_node_point(color = "royalblue2", size = 5) +
+    geom_node_text(aes(label = unique(name)), repel = TRUE) +
+    labs(title = "Word clusters", subtitle = "Moneyweb") +
+    theme_void() +
+    theme(plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40"))
+  
+  moneyweb_covid_ggraph
+  
+# Save the graph to disk  
+  ggsave(moneyweb_covid_ggraph, filename = "moneyweb_covid_ggraph.png", width = 185, height = 114, units = "mm")
+```
+  
+## 4.3. BizNews
+
+### 4.3.1. Word Pairs
+```{r Word Pairs: BizNews}
+ biznews_wordPairs <- biznews %>%
+    pairwise_count(word, title, sort = TRUE)
+
+  biznews_wordPairs
+  
+# Pairwise correlation
+  biznews_wordPairs_cor <- biznews %>%
+    group_by(word) %>%
+    filter(n() >= 20) %>% # Filtering for relatively common words
+    pairwise_cor(word, title, sort = TRUE)
+  
+  biznews_wordPairs_cor
+  
+# Filtering for words most associated with the Covid-19 pandemic 
+  biznews_covid_cor <- biznews_wordPairs_cor %>%
+    filter(item1 %in% c("ban", "covid", "lockdown")) %>%
+    mutate(item2 = reorder(item2, correlation)) 
+    
+  biznews_covid_cor 
+  
+# Visualising the 10 most associated words 
+  biznews_covid_cor_visual <-  biznews_covid_cor %>%
+    group_by(item1) %>%
+    top_n(10) %>%
+    ungroup() %>%
+    ggplot(aes(reorder(item2, correlation), correlation)) +
+      geom_bar(stat = "identity", fill = "royalblue2") +
+      labs(title = "10 most associated words", subtitle = "BizNews", x = "Associated words") +
+      theme_minimal() +
+      theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+            plot.title = element_text(size = 18),
+            plot.subtitle = element_text(color = "grey40")) +
+      facet_wrap(~item1, scales = "free") +
+      coord_flip()
+  
+  biznews_covid_cor_visual
+  
+# Save the graph to disk  
+  ggsave(biznews_covid_cor_visual, filename = "biznews_covid_cor_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 4.3.2. Word Clusters
+```{r Word Clusters: BizNews}
+# ggraph visualisation of the correlations and word clusters for the top 20 Covid-19-oriented word pairs
+  biznews_covid_ggraph <- biznews_covid_cor %>%
+    group_by(item1) %>%
+    top_n(20) %>%
+    ungroup() %>%
+    filter(correlation > .15) %>%
+    graph_from_data_frame() %>%
+    ggraph(layout = "fr") +
+    geom_edge_link(aes(edge_alpha = correlation), show.legend = FALSE) +
+    geom_node_point(color = "royalblue2", size = 5) +
+    geom_node_text(aes(label = name), repel = TRUE) +
+    labs(title = "Word clusters", subtitle = "BizNews") +
+    theme_void() +
+    theme(plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40"))
+  
+  biznews_covid_ggraph
+  
+# Save the graph to disk  
+  ggsave(biznews_covid_ggraph, filename = "biznews_covid_ggraph.png", width = 185, height = 114, units = "mm")
+```
+  
+## 4.4. EWN Business
+
+### 4.4.1. Word Pairs
+```{r Word Pairs: EWN Business}
+  EWNbusiness_wordPairs <- EWNbusiness %>%
+    pairwise_count(word, title, sort = TRUE)
+
+  EWNbusiness_wordPairs
+  
+# Pairwise correlation
+  EWNbusiness_wordPairs_cor <- EWNbusiness %>%
+    group_by(word) %>%
+    filter(n() >= 20) %>% # Filtering for relatively common words
+    pairwise_cor(word, title, sort = TRUE)
+  
+  EWNbusiness_wordPairs_cor
+  
+# Filtering for words most associated with the Covid-19 pandemic 
+  EWNbusiness_covid_cor <- EWNbusiness_wordPairs_cor %>%
+    filter(item1 %in% c("ban", "covid", "lockdown")) %>%
+    mutate(item2 = reorder(item2, correlation)) 
+    
+  EWNbusiness_covid_cor 
+  
+# Visualising the 10 most associated words 
+  EWNbusiness_covid_cor_visual <-  EWNbusiness_covid_cor %>%
+    group_by(item1) %>%
+    top_n(10) %>%
+    ungroup() %>%
+    ggplot(aes(reorder(item2, correlation), correlation)) +
+      geom_bar(stat = "identity", fill = "royalblue2") +
+      labs(title = "10 most associated words", subtitle = "EWN Business", x = "Associated words") +
+      theme_minimal() +
+      theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+            plot.title = element_text(size = 18),
+            plot.subtitle = element_text(color = "grey40")) +
+      facet_wrap(~item1, scales = "free") +
+      coord_flip()
+  
+  EWNbusiness_covid_cor_visual
+  
+# Save the graph to disk  
+  ggsave(EWNbusiness_covid_cor_visual, filename = "EWNbusiness_covid_cor_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 4.4.2. Word Clusters
+```{r Word Clusters: EWN Business}
+# ggraph visualisation of the correlations and word clusters for the top 20 covid-oriented word pairs
+  EWNbusiness_covid_ggraph <- EWNbusiness_covid_cor %>%
+    group_by(item1) %>%
+    top_n(20) %>%
+    ungroup() %>%
+    filter(correlation > .15) %>%
+    graph_from_data_frame() %>%
+    ggraph(layout = "fr") +
+    geom_edge_link(aes(edge_alpha = correlation), show.legend = FALSE) +
+    geom_node_point(color = "royalblue2", size = 5) +
+    geom_node_text(aes(label = name), repel = TRUE) +
+    labs(title = "Word clusters", subtitle = "EWN Business") +
+    theme_void() +
+    theme(plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40"))
+  
+  EWNbusiness_covid_ggraph
+  
+# Save the graph to disk  
+  ggsave(EWNbusiness_covid_ggraph, filename = "EWNbusiness_covid_ggraph.png", width = 185, height = 114, units = "mm")
+```
+  
+## 4.5. BusinessTech
+
+### 4.5.1. Word Pairs
+```{r Word Pairs: BusinessTech}
+  businessTech_wordPairs <- businessTech %>%
+    pairwise_count(word, title, sort = TRUE)
+
+  businessTech_wordPairs
+  
+# Pairwise correlation
+  businessTech_wordPairs_cor <- businessTech %>%
+    group_by(word) %>%
+    filter(n() >= 20) %>% # Filtering for relatively common words
+    pairwise_cor(word, title, sort = TRUE)
+  
+  businessTech_wordPairs_cor
+  
+# Filtering for words most associated with the Covid-19 pandemic 
+  businessTech_covid_cor <- businessTech_wordPairs_cor %>%
+    filter(item1 %in% c("ban", "covid", "lockdown")) %>%
+    mutate(item2 = reorder(item2, correlation)) 
+    
+  businessTech_covid_cor 
+  
+# Visualising the 10 most associated words 
+  businessTech_covid_cor_visual <-  businessTech_covid_cor %>%
+    group_by(item1) %>%
+    top_n(10) %>%
+    ungroup() %>%
+    ggplot(aes(reorder(item2, correlation), correlation)) +
+      geom_bar(stat = "identity", fill = "royalblue2") +
+      labs(title = "10 most associated words", subtitle = "BusinessTech", x = "Associated words") +
+      theme_minimal() +
+      theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+            plot.title = element_text(size = 18),
+            plot.subtitle = element_text(color = "grey40")) +
+      facet_wrap(~item1, scales = "free") +
+      coord_flip()
+  
+  businessTech_covid_cor_visual
+  
+# Save the graph to disk  
+  ggsave(businessTech_covid_cor_visual, filename = "businessTech_covid_cor_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 4.5.2. Word Clusters
+```{r Word Clusters: BusinessTech}
+# ggraph visualisation of the correlations and word clusters for the top 20 covid-oriented word pairs
+  businessTech_covid_ggraph <- businessTech_covid_cor %>%
+    group_by(item1) %>%
+    top_n(20) %>%
+    ungroup() %>%
+    filter(correlation > .15) %>%
+    graph_from_data_frame() %>%
+    ggraph(layout = "fr") +
+    geom_edge_link(aes(edge_alpha = correlation), show.legend = FALSE) +
+    geom_node_point(color = "royalblue2", size = 5) +
+    geom_node_text(aes(label = name), repel = TRUE) +
+    labs(title = "Word clusters", subtitle = "BusinessTech") +
+    theme_void() +
+    theme(plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40"))
+  
+  businessTech_covid_ggraph
+  
+# Save the graph to disk  
+  ggsave(businessTech_covid_ggraph, filename = "businessTech_covid_ggraph.png", width = 185, height = 114, units = "mm")
+```
+  
+## 4.6. Across All Media Outlets
+
+### 4.6.1. Word Pairs
+```{r Word Pairs: Compiled Media}
+  mediaCompiled_wordPairs <- mediaCompiled %>%
+    pairwise_count(word, title, sort = TRUE)
+
+   mediaCompiled_wordPairs
+  
+# Pairwise correlation
+  mediaCompiled_wordPairs_cor <- mediaCompiled %>%
+    group_by(word) %>%
+    filter(n() >= 20) %>% # Filtering for relatively common words
+    pairwise_cor(word, title, sort = TRUE)
+  
+  mediaCompiled_wordPairs_cor
+  
+# Filtering for words most associated with the Covid-19 pandemic
+  mediaCompiled_covid_cor <- mediaCompiled_wordPairs_cor %>%
+    filter(item1 %in% c("ban", "covid", "lockdown")) %>%
+    mutate(item2 = reorder(item2, correlation)) 
+    
+  mediaCompiled_covid_cor
+  
+# Visualising the 10 most associated words 
+  mediaCompiled_covid_cor_visual <-  mediaCompiled_covid_cor %>%
+    group_by(item1) %>%
+    top_n(10) %>%
+    ungroup() %>%
+    ggplot(aes(reorder(item2, correlation), correlation)) +
+      geom_bar(stat = "identity", fill = "royalblue2") +
+      labs(title = "10 most associated words", subtitle = "All media outlets", x = "Associated words") +
+      theme_minimal() +
+      theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+            plot.title = element_text(size = 18),
+            plot.subtitle = element_text(color = "grey40")) +
+      facet_wrap(~item1, scales = "free") +
+      coord_flip()
+  
+  mediaCompiled_covid_cor_visual
+  
+# Save the graph to disk  
+  ggsave(mediaCompiled_covid_cor_visual, filename = "mediaCompiled_covid_cor_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 4.6.2. Word Clusters
+```{r Word Clusters: Compiled Media}
+# ggraph visualisation of the correlations and word clusters for the top 20 covid-oriented word pairs
+  mediaCompiled_covid_ggraph <- mediaCompiled_covid_cor %>%
+    group_by(item1) %>%
+    top_n(20) %>%
+    ungroup() %>%
+    filter(correlation > .15) %>%
+    graph_from_data_frame() %>%
+    ggraph(layout = "fr") +
+    geom_edge_link(aes(edge_alpha = correlation), show.legend = FALSE) +
+    geom_node_point(color = "royalblue2", size = 5) +
+    geom_node_text(aes(label = name), repel = TRUE) +
+    labs(title = "Word clusters", subtitle = "All media outlets") +
+    theme_void() +
+    theme(plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40"))
+  
+  mediaCompiled_covid_ggraph
+  
+# Save the graph to disk  
+  ggsave(mediaCompiled_covid_ggraph, filename = "mediaCompiled_covid_ggraph.png", width = 185, height = 114, units = "mm")
+```

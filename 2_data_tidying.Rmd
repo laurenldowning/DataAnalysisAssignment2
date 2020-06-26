@@ -1,0 +1,274 @@
+---
+title: "A Computational Analysis of the Business Media's Response to Covid-19: Data Tidying"
+author: "Caryn Biebuyck (20715978) & Lauren Downing (19202113)"
+output: html_notebook
+---
+
+
+```{r Setup, message=FALSE, warning=FALSE, include=FALSE}
+  library(dplyr)
+  library(readr)
+  library(tidyr)
+  library(tidytext)
+  library(tm)
+```
+
+
+# 1. Data Retrieval, Text Cleaning and Pre-Processing
+
+## 1.1. Fin24
+```{r Fin24, message=FALSE, warning=FALSE}
+# Retrieving the data
+  fin24_rds <- read_rds("~/fin24.rds")
+
+# Creating a one-word-per-row data structure
+  fin24 <- fin24_rds %>%
+    select(date, title, content) %>%
+    unnest_tokens("word", content)
+
+# Removing punctuation
+  fin24$word <- gsub("\\W", " ", fin24$word) 
+
+# Re-tokenizing
+  fin24 <- fin24 %>%
+    unnest_tokens("word", word)
+  
+# Removing stop words
+  data("stop_words")
+  fin24 <- fin24 %>%
+    anti_join(stop_words, by = "word") 
+  
+  fin24 <- fin24 %>%
+   filter(!grepl(c("r", "m", "bn", "pt", "ve", "s", "st", "nd", "rd", "th"), word)) 
+    
+# Removing numbers    
+  fin24$word <- gsub("\\d+", "", fin24$word) %>%
+    na_if("")
+    
+  fin24 <- fin24 %>%
+    drop_na()
+  
+# Stemming
+  fin24$word <- fin24$word %>%
+    stemDocument(., language = "english")
+  # "economi" and "econom" both appeared in the top words, so we equated them
+   for (i in seq(nrow(fin24))) {
+      if (fin24$word[i] == "economi") {
+        fin24$word[i] <- "econom"
+      }
+    }
+  
+  fin24
+  
+# Save tidied data to RDS
+  saveRDS(fin24, "~/tidy_fin24.rds")
+```
+
+## 1.2. Moneyweb
+```{r Moneyweb, message=FALSE, warning=FALSE}
+# Retrieving the data
+  moneyweb_rds <- read_rds("~/moneyweb.rds")
+
+# Creating a one-word-per-row data structure
+  moneyweb <- moneyweb_rds %>%
+    select(date, title, content) %>%
+    unnest_tokens("word", content)
+
+# Removing punctuation
+  moneyweb$word <- gsub("\\W", "", moneyweb$word) %>%
+    na_if("")
+  
+# Removing stop words
+  data("stop_words")
+  moneyweb <- moneyweb %>%
+    anti_join(stop_words, by = "word")
+  
+  moneyweb <- moneyweb %>%
+   filter(!(grepl(c("r", "m", "bn", "pt", "ve", "s", "st", "nd", "rd", "th"), word)))
+  
+# Removing numbers    
+  moneyweb$word <- gsub("\\d+", "", moneyweb$word) %>%
+    na_if("")
+    
+  moneyweb <- moneyweb %>%
+    drop_na()
+  
+# Removing escape characters
+  moneyweb$title <- gsub("\n", "", moneyweb$title)
+  
+# Stemming
+  moneyweb$word <- moneyweb$word %>%
+    stemDocument(., language = "english") 
+  # "economi" and "econom" both appeared in the top words, so we equated them
+    for (i in seq(nrow(moneyweb))) {
+      if (moneyweb$word[i] == "economi") {
+        moneyweb$word[i] <- "econom"
+      }
+    }
+  
+  moneyweb
+  
+# Save tidied data to RDS
+  saveRDS(moneyweb, "~/tidy_moneyweb.rds")
+```
+
+## 1.3. BizNews
+```{r BizNews, message=FALSE, warning=FALSE}
+# Retrieving the data
+  biznews_rds <- read_rds("~/biznews.rds")
+
+# Creating a one-word-per-row data structure
+  biznews <- biznews_rds %>%
+    select(date, title, content) %>%
+    unnest_tokens("word", content)
+  
+# Removing punctuation
+  biznews$word <- gsub("\\W", " ", biznews$word) 
+
+# Re-tokenizing
+  biznews <- biznews %>%
+    unnest_tokens("word", word)
+  
+# Removing stop words
+  data("stop_words")
+  biznews <- biznews %>%
+    anti_join(stop_words, by = "word")
+  
+  custom_stop_words <- data.frame(word = c("r", "m", "bn", "pt", "ve", "s", "st", "nd", "rd", "th"))
+  biznews <- biznews %>%
+   anti_join(custom_stop_words, by = "word")
+
+# Removing numbers    
+  biznews$word <- gsub("\\d+", "", biznews$word) %>%
+    na_if("")
+    
+  biznews <- biznews %>%
+    drop_na()
+  
+# Stemming
+  biznews$word <- biznews$word %>%
+    stemDocument(., language = "english")
+  # "economi" and "econom" both appeared in the top words, so we equated them
+   for (i in seq(nrow(biznews))) {
+      if (biznews$word[i] == "economi") {
+        biznews$word[i] <- "econom"
+      }
+    }
+  
+  biznews
+  
+# Save tidied data to RDS
+  saveRDS(biznews, "~/tidy_biznews.rds")
+```
+
+## 1.4. EWN Business
+```{r EWN Business, message=FALSE, warning=FALSE}
+# Retrieving the data
+  EWNbusiness_rds <- read_rds("~/ewn.rds")
+
+# Creating a one-word-per-row data structure
+  EWNbusiness <- EWNbusiness_rds %>%
+    select(date, title, content) %>%
+    unnest_tokens("word", content)
+
+# Removing punctuation
+  EWNbusiness$word <- gsub("\\W", " ", EWNbusiness$word) 
+
+# Re-tokenizing
+  EWNbusiness <- EWNbusiness %>%
+    unnest_tokens("word", word)
+  
+# Removing stop words
+  data("stop_words")
+  EWNbusiness <- EWNbusiness %>%
+    anti_join(stop_words, by = "word")
+  
+  custom_stop_words <- data.frame(word = c("r", "m", "bn", "pt", "ve", "s", "st", "nd", "rd", "th"))
+  EWNbusiness <- EWNbusiness %>%
+   anti_join(custom_stop_words, by = "word")
+  
+# Removing numbers    
+  EWNbusiness$word <- gsub("\\d+", "", EWNbusiness$word) %>%
+    na_if("")
+    
+  EWNbusiness <- EWNbusiness %>%
+    drop_na()
+  
+# Stemming
+  EWNbusiness$word <- EWNbusiness$word %>%
+    stemDocument(., language = "english")
+  # "economi" and "econom" both appeared in the top words, so we equated them
+   for (i in seq(nrow(EWNbusiness))) {
+      if (EWNbusiness$word[i] == "economi") {
+        EWNbusiness$word[i] <- "econom"
+      }
+    }
+  
+  EWNbusiness
+  
+# Save tidied data to RDS
+  saveRDS(EWNbusiness, "~/tidy_ewn.rds")
+```
+
+## 1.5. BusinessTech
+```{r BusinessTech, message=FALSE, warning=FALSE}
+# Retrieving the data
+  businessTech_rds <- read_rds("~/businesstech.rds")
+
+# Creating a one-word-per-row data structure
+  businessTech <- businessTech_rds %>%
+    select(date, title, content) %>%
+    unnest_tokens("word", content)
+
+# Removing punctuation
+  businessTech$word <- gsub("\\W", " ", businessTech$word) 
+
+# Re-tokenizing
+  businessTech <- businessTech %>%
+    unnest_tokens("word", word)
+  
+# Removing stop words
+  data("stop_words")
+  businessTech <- businessTech %>%
+    anti_join(stop_words, by = "word")
+  
+  businessTech <- businessTech %>%
+    filter(!grepl(c("r", "m", "bn", "pt", "ve", "s", "st", "nd", "rd", "th"), word))
+  
+# Removing numbers    
+  businessTech$word <- gsub("\\d+", "", businessTech$word) %>%
+    na_if("")
+    
+  businessTech <- businessTech %>%
+    drop_na()
+  
+# Stemming
+  businessTech$word <- businessTech$word %>%
+    stemDocument(., language = "english")
+  # "economi" and "econom" both appeared in the top words, so we equated them
+   for (i in seq(nrow(businessTech))) {
+      if (businessTech$word[i] == "economi") {
+        businessTech$word[i] <- "econom"
+      }
+    }
+  
+  businessTech
+  
+# Save tidied data to RDS
+  saveRDS(businessTech, "~/tidy_businesstech.rds")
+```
+
+## 1.6. Creating an all-encompassing data frame 
+```{r Compiled Media, message=FALSE, warning=FALSE}
+# Compile all the tidied data from the news outlets into a single dataframe
+  mediaCompiled <-  bind_rows(mutate(fin24, media.source = "Fin24"),  
+                              mutate(moneyweb, media.source = "Moneyweb"),
+                              mutate(biznews, media.source = "BizNews"),
+                              mutate(EWNbusiness, media.source = "EWNbusiness"),
+                              mutate(businessTech, media.source = "BusinessTech"))
+
+  mediaCompiled
+  
+# Save compiled data to RDS
+  saveRDS(mediaCompiled, "~/tidy_mediacompiled.rds")
+```

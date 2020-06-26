@@ -1,0 +1,1409 @@
+---
+title: "A Computational Analysis of the Business Media's Response to Covid-19: Sentiment Analysis"
+author: "Caryn Biebuyck (20715978) & Lauren Downing (19202113)"
+output: html_notebook
+---
+
+
+```{r Setup, message=FALSE, warning=FALSE, include=FALSE}
+  library(dplyr)
+  library(ggforce)
+  library(ggplot2)
+  library(scales)
+  library(tidytext)
+  library(widyr)
+```
+
+```{r Reading in required RDS files, message=FALSE, warning=FALSE, include=FALSE}
+  fin24 <- readRDS("~/tidy_fin24.rds")
+  moneyweb <- readRDS("~/tidy_moneyweb.rds")
+  biznews <- readRDS("~/tidy_biznews.rds")
+  EWNbusiness <- readRDS("~/tidy_ewn.rds")
+  businessTech <- readRDS("~/tidy_businesstech.rds")
+  mediaCompiled <- readRDS("~/tidy_mediacompiled.rds")
+```
+
+
+# Sentiment Analysis using the `loughran` financial lexicon
+
+## 1. Fin24
+```{r Sentiment Analysis: Fin24}
+  fin24_sentiment <- fin24 %>%
+    inner_join(get_sentiments("loughran")) %>%
+    count(word, sentiment, sort = TRUE) %>%
+    group_by(sentiment) %>%
+    summarise(sentiment_total = sum(n)) %>%
+    mutate(sentiment_ratio = sentiment_total/sum(sentiment_total)) %>%
+    ungroup() %>%
+    arrange(desc(sentiment_total)) %>%
+    mutate(sentiment = factor(sentiment, levels = as.character(sentiment)))
+
+  fin24_sentiment
+  
+# Visualisation
+  fin24_sentiment_visual <- fin24_sentiment %>%
+    mutate(end = 2 * pi * cumsum(sentiment_ratio)/sum(sentiment_ratio),
+           start = lag(end, default = 0),
+           middle = 0.5 * (start + end),
+           hjust = ifelse(middle > pi, 1, 0),
+           vjust = ifelse(middle < pi/2 | middle > 3 *pi/2, 0, 1)) %>%
+    ggplot() +
+    geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0, r = 1, start = start, end = end, fill = sentiment)) +
+    geom_text(aes(x = 1 * sin(middle), y = 1 * cos(middle), label = percent(fin24_sentiment$sentiment_ratio), hjust = hjust, vjust = vjust)) +
+    coord_fixed() +
+    scale_x_continuous(limits = c(-1.5, 1.4)) +
+    scale_y_continuous(limits = c(-1, 1)) +
+    theme_void() +
+    theme(plot.title = element_text(hjust = 0.5, size = 18)) +
+    ggtitle("Sentiment of Fin24 news articles") +
+    guides(fill = guide_legend(title = "Sentiment"))
+    
+  fin24_sentiment_visual
+  
+# Save the graph to disk  
+  ggsave(fin24_sentiment_visual, filename = "fin24_sentiment_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 1.1. Words contributing to `constraining`
+```{r Sentiment Analysis: Fin24 - Constraining}
+  fin24_constraining <- fin24 %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "constraining") %>%
+    count(word, sentiment, sort = TRUE)
+
+  fin24_constraining
+  
+# Visualisation 
+  fin24_constraining_visual <- fin24_constraining %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'constraining' sentiment", subtitle = "Fin24", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  fin24_constraining_visual
+  
+# Save the graph to disk  
+  ggsave(fin24_constraining_visual, filename = "fin24_constraining_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 1.2. Words contributing to `litigious`
+```{r Sentiment Analysis: Fin24 - Litigious}
+  fin24_litigious <- fin24 %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "litigious") %>%
+    count(word, sentiment, sort = TRUE)
+
+  fin24_litigious
+  
+# Visualisation
+  fin24_litigious_visual <- fin24_litigious %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'litigious' sentiment", subtitle = "Fin24", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  fin24_litigious_visual
+  
+# Save the graph to disk  
+  ggsave(fin24_litigious_visual, filename = "fin24_litigious_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 1.3. Words contributing to `negative`
+```{r Sentiment Analysis: Fin24 - Negative}
+  fin24_negative <- fin24 %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "negative") %>%
+    count(word, sentiment, sort = TRUE)
+
+  fin24_negative
+  
+# Visualisation  
+  fin24_negative_visual <- fin24_negative %>%
+    head(20) %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'negative' sentiment", subtitle = "Fin24", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  fin24_negative_visual
+  
+# Save the graph to disk  
+  ggsave(fin24_negative_visual, filename = "fin24_negative_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 1.4. Words contributing to `positive`
+```{r Sentiment Analysis: Fin24 - Positive}
+  fin24_positive <- fin24 %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "positive") %>%
+    count(word, sentiment, sort = TRUE)
+
+  fin24_positive
+  
+# Visualisation 
+  fin24_positive_visual <- fin24_positive %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'positive' sentiment", subtitle = "Fin24", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  fin24_positive_visual
+  
+# Save the graph to disk  
+  ggsave(fin24_positive_visual, filename = "fin24_positive_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 1.5. Words contributing to `superfluous`  
+```{r Sentiment Analysis: Fin24 - Superfluous}
+  fin24_superfluous <- fin24 %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "superfluous") %>%
+    count(word, sentiment, sort = TRUE)
+
+  fin24_superfluous
+  
+# Visualisation 
+  fin24_superfluous_visual <- fin24_superfluous %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'superfluous' sentiment", subtitle = "Fin24", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 10, 1))
+    
+  fin24_superfluous_visual
+  
+# Save the graph to disk  
+  ggsave(fin24_superfluous_visual, filename = "fin24_superfluous_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 1.6. Words contributing to `uncertainty`
+```{r Sentiment Analysis: Fin24 - Uncertainty}
+ fin24_uncertainty <- fin24 %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "uncertainty") %>%
+    count(word, sentiment, sort = TRUE)
+
+  fin24_uncertainty
+  
+# Visualisation 
+  fin24_uncertainty_visual <- fin24_uncertainty %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'uncertainty' sentiment", subtitle = "Fin24", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  fin24_uncertainty_visual
+  
+# Save the graph to disk  
+  ggsave(fin24_uncertainty_visual, filename = "fin24_uncertainty_visual.png", width = 185, height = 114, units = "mm")
+```
+ 
+## 2. Moneyweb
+```{r Sentiment Analysis: Moneyweb}
+   moneyweb_sentiment <- moneyweb %>%
+    inner_join(get_sentiments("loughran")) %>%
+    count(word, sentiment, sort = TRUE) %>%
+    group_by(sentiment) %>%
+    summarise(sentiment_total = sum(n)) %>%
+    mutate(sentiment_ratio = sentiment_total/sum(sentiment_total)) %>%
+    ungroup() %>%
+    arrange(desc(sentiment_total)) %>%
+    mutate(sentiment = factor(sentiment, levels = as.character(sentiment)))
+
+  moneyweb_sentiment
+  
+# Visualisation
+  moneyweb_sentiment_visual <- moneyweb_sentiment %>%
+    mutate(end = 2 * pi * cumsum(sentiment_ratio)/sum(sentiment_ratio),
+           start = lag(end, default = 0),
+           middle = 0.5 * (start + end),
+           hjust = ifelse(middle > pi, 1, 0),
+           vjust = ifelse(middle < pi/2 | middle > 3 *pi/2, 0, 1)) %>%
+    ggplot() +
+    geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0, r = 1, start = start, end = end, fill = sentiment)) +
+    geom_text(aes(x = 1 * sin(middle), y = 1 * cos(middle), label = percent(moneyweb_sentiment$sentiment_ratio), hjust = hjust, vjust = vjust)) +
+  coord_fixed() +
+  scale_x_continuous(limits = c(-1.5, 1.4)) +
+  scale_y_continuous(limits = c(-1, 1)) +
+    theme_void() +
+    theme(plot.title = element_text(hjust = 0.5, size = 18)) +
+    ggtitle("Sentiment of Moneyweb news articles") +
+    guides(fill = guide_legend(title = "Sentiment"))
+  
+  moneyweb_sentiment_visual
+  
+# Save the graph to disk  
+  ggsave(moneyweb_sentiment_visual, filename = "moneyweb_sentiment_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 2.1. Words contributing to `constraining`
+```{r Sentiment Analysis: Moneyweb - Constraining}
+  moneyweb_constraining <- moneyweb %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "constraining") %>%
+    count(word, sentiment, sort = TRUE)
+
+  moneyweb_constraining
+  
+# Visualisation
+  moneyweb_constraining_visual <- moneyweb_constraining %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'constraining' sentiment", subtitle = "Moneyweb", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  moneyweb_constraining_visual
+  
+# Save the graph to disk  
+  ggsave(moneyweb_constraining_visual, filename = "moneyweb_constraining_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 2.2. Words contributing to `litigious`
+```{r Sentiment Analysis: Moneyweb - Litigious}
+  moneyweb_litigious <- moneyweb %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "litigious") %>%
+    count(word, sentiment, sort = TRUE)
+
+  moneyweb_litigious
+  
+# Visualisation
+  moneyweb_litigious_visual <- moneyweb_litigious %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'litigious' sentiment", subtitle = "Moneyweb", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  moneyweb_litigious_visual
+  
+# Save the graph to disk  
+  ggsave(moneyweb_litigious_visual, filename = "moneyweb_litigious_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 2.3. Words contributing to `negative`
+```{r Sentiment Analysis: Moneyweb - Negative}
+  moneyweb_negative <- moneyweb %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "negative") %>%
+    count(word, sentiment, sort = TRUE)
+
+  moneyweb_negative
+  
+# Visualisation
+  moneyweb_negative_visual <- moneyweb_negative %>%
+    head(20) %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'negative' sentiment", subtitle = "Moneyweb", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  moneyweb_negative_visual
+  
+# Save the graph to disk  
+  ggsave(moneyweb_negative_visual, filename = "moneyweb_negative_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 2.4. Words contributing to `positive`
+```{r Sentiment Analysis: Moneyweb - Positive}
+  moneyweb_positive <- moneyweb %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "positive") %>%
+    count(word, sentiment, sort = TRUE)
+
+  moneyweb_positive
+  
+# Visualisation
+  moneyweb_positive_visual <- moneyweb_positive %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'positive' sentiment", subtitle = "Moneyweb", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  moneyweb_positive_visual
+  
+# Save the graph to disk  
+  ggsave(moneyweb_positive_visual, filename = "moneyweb_positive_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 2.5. Words contributing to `superfluous`
+```{r Sentiment Analysis: Moneyweb - Superfluous}
+  moneyweb_superfluous <- moneyweb %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "superfluous") %>%
+    count(word, sentiment, sort = TRUE)
+
+  moneyweb_superfluous
+  
+# Visualisation
+  moneyweb_superfluous_visual <- moneyweb_superfluous %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'superfluous' sentiment", subtitle = "Moneyweb", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 5, 1))
+    
+  moneyweb_superfluous_visual
+  
+# Save the graph to disk  
+  ggsave(moneyweb_superfluous_visual, filename = "moneyweb_superfluous_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 2.6. Words contributing to `uncertainty`
+```{r Sentiment Analysis: Moneyweb - Uncertainty}
+  moneyweb_uncertainty <- moneyweb %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "uncertainty") %>%
+    count(word, sentiment, sort = TRUE)
+
+  moneyweb_uncertainty
+  
+# Visualisation
+  moneyweb_uncertainty_visual <- moneyweb_uncertainty %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'uncertainty' sentiment", subtitle = "Moneyweb", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  moneyweb_uncertainty_visual
+  
+# Save the graph to disk  
+  ggsave(moneyweb_uncertainty_visual, filename = "moneyweb_uncertainty_visual.png", width = 185, height = 114, units = "mm")
+```
+ 
+## 3. BizNews
+```{r Sentiment Analysis: BizNews}
+  biznews_sentiment <- biznews %>%
+    inner_join(get_sentiments("loughran")) %>%
+    count(word, sentiment, sort = TRUE) %>%
+    count(word, sentiment, sort = TRUE) %>%
+    group_by(sentiment) %>%
+    summarise(sentiment_total = sum(n)) %>%
+    mutate(sentiment_ratio = sentiment_total/sum(sentiment_total)) %>%
+    ungroup() %>%
+    arrange(desc(sentiment_total)) %>%
+    mutate(sentiment = factor(sentiment, levels = as.character(sentiment)))
+
+  biznews_sentiment
+  
+# Visualisation
+  biznews_sentiment_visual <- biznews_sentiment %>%
+    mutate(end = 2 * pi * cumsum(sentiment_ratio)/sum(sentiment_ratio),
+           start = lag(end, default = 0),
+           middle = 0.5 * (start + end),
+           hjust = ifelse(middle > pi, 1, 0),
+           vjust = ifelse(middle < pi/2 | middle > 3 *pi/2, 0, 1)) %>%
+    ggplot() +
+    geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0, r = 1, start = start, end = end, fill = sentiment)) +
+    geom_text(aes(x = 1 * sin(middle), y = 1 * cos(middle), label = percent(biznews_sentiment$sentiment_ratio), hjust = hjust, vjust = vjust)) +
+    coord_fixed() +
+    scale_x_continuous(limits = c(-1.5, 1.4)) +
+    scale_y_continuous(limits = c(-1, 1)) +
+    theme_void() +
+    theme(plot.title = element_text(hjust = 0.5, size = 18)) +
+    ggtitle("Sentiment of BizNews articles") +
+    guides(fill = guide_legend(title = "Sentiment"))
+  
+  biznews_sentiment_visual
+  
+# Save the graph to disk  
+  ggsave(biznews_sentiment_visual, filename = "biznews_sentiment_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 3.1. Words contributing to `constraining`
+```{r Sentiment Analysis: BizNews - Constraining}
+  biznews_constraining <- biznews %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "constraining") %>%
+    count(word, sentiment, sort = TRUE)
+
+  biznews_constraining
+  
+# Visualisation
+  biznews_constraining_visual <- biznews_constraining %>%
+    head(20) %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'constraining' sentiment", subtitle = "BizNews", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  biznews_constraining_visual
+  
+# Save the graph to disk  
+  ggsave(biznews_constraining_visual, filename = "biznews_constraining_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 3.2. Words contributing to `litigious`
+```{r Sentiment Analysis: BizNews - Litigious}
+  biznews_litigious <- biznews %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "litigious") %>%
+    count(word, sentiment, sort = TRUE)
+
+  biznews_litigious
+  
+# Visualisation
+  biznews_litigious_visual <- biznews_litigious %>%
+    head(20) %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'litigious' sentiment", subtitle = "BizNews", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  biznews_litigious_visual
+  
+# Save the graph to disk  
+  ggsave(biznews_litigious_visual, filename = "biznews_litigious_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 3.3. Words contributing to `negative`
+```{r Sentiment Analysis: BizNews - Negative}
+  biznews_negative <- biznews %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "negative") %>%
+    count(word, sentiment, sort = TRUE)
+
+  biznews_negative
+  
+# Visualisation
+  biznews_negative_visual <- biznews_negative %>%
+    head(20) %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'negative' sentiment", subtitle = "BizNews", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  biznews_negative_visual
+  
+# Save the graph to disk  
+  ggsave(biznews_negative_visual, filename = "biznews_negative_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 3.4. Words contributing to `positive`
+```{r Sentiment Analysis: BizNews - Positive}
+  biznews_positive <- biznews %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "positive") %>%
+    count(word, sentiment, sort = TRUE)
+
+  biznews_positive
+  
+# Visualisation
+  biznews_positive_visual <- biznews_positive %>%
+    head(20) %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'positive' sentiment", subtitle = "BizNews", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  biznews_positive_visual
+  
+# Save the graph to disk  
+  ggsave(biznews_positive_visual, filename = "biznews_positive_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 3.5. Words contributing to `superfluous`
+```{r Sentiment Analysis: BizNews - Superfluous}
+  biznews_superfluous <- biznews %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "superfluous") %>%
+    count(word, sentiment, sort = TRUE)
+
+  biznews_superfluous
+  
+# Visualisation
+  biznews_superfluous_visual <- biznews_superfluous %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'superfluous' sentiment", subtitle = "BizNews", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 20, 1))
+    
+  biznews_superfluous_visual
+  
+# Save the graph to disk  
+  ggsave(biznews_superfluous_visual, filename = "biznews_superfluous_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 3.6. Words contributing to `uncertainty`
+```{r Sentiment Analysis: BizNews - Uncertainty}
+  biznews_uncertainty <- biznews %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "uncertainty") %>%
+    count(word, sentiment, sort = TRUE)
+
+  biznews_uncertainty
+  
+# Visualisation
+  biznews_uncertainty_visual <- biznews_uncertainty %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'uncertainty' sentiment", subtitle = "BizNews", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 20))
+    
+  biznews_uncertainty_visual
+  
+# Save the graph to disk  
+  ggsave(biznews_uncertainty_visual, filename = "biznews_uncertainty_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+## 4. EWN Business
+```{r Sentiment Analysis: EWN Business}
+  EWNbusiness_sentiment <- EWNbusiness %>%
+    inner_join(get_sentiments("loughran")) %>%
+    count(word, sentiment, sort = TRUE) %>%
+    group_by(sentiment) %>%
+    summarise(sentiment_total = sum(n)) %>%
+    mutate(sentiment_ratio = sentiment_total/sum(sentiment_total)) %>%
+    ungroup() %>%
+    arrange(desc(sentiment_total)) %>%
+    mutate(sentiment = factor(sentiment, levels = as.character(sentiment)))
+
+  EWNbusiness_sentiment
+  
+# Visualisation
+  EWNbusiness_sentiment_visual <- EWNbusiness_sentiment %>%
+    mutate(end = 2 * pi * cumsum(sentiment_ratio)/sum(sentiment_ratio),
+           start = lag(end, default = 0),
+           middle = 0.5 * (start + end),
+           hjust = ifelse(middle > pi, 1, 0),
+           vjust = ifelse(middle < pi/2 | middle > 3 *pi/2, 0, 1)) %>%
+    ggplot() +
+    geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0, r = 1, start = start, end = end, fill = sentiment)) +
+    geom_text(aes(x = 1 * sin(middle), y = 1 * cos(middle), label = percent(EWNbusiness_sentiment$sentiment_ratio), hjust = hjust, vjust = vjust)) +
+    coord_fixed() +
+    scale_x_continuous(limits = c(-1.5, 1.4)) +
+    scale_y_continuous(limits = c(-1, 1)) +
+    theme_void() +
+    theme(plot.title = element_text(hjust = 0.5, size = 18)) +
+    ggtitle("Sentiment of EWN Business articles") +
+    guides(fill = guide_legend(title = "Sentiment"))
+    
+ EWNbusiness_sentiment_visual
+ 
+# Save the graph to disk  
+  ggsave(EWNbusiness_sentiment_visual, filename = "EWNbusiness_sentiment_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 4.1. Words contributing to `constraining`
+```{r Sentiment Analysis: EWN Business - Constraining}
+  EWNbusiness_constraining <- EWNbusiness %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "constraining") %>%
+    count(word, sentiment, sort = TRUE)
+
+  EWNbusiness_constraining
+  
+# Visualisation
+  EWNbusiness_constraining_visual <- EWNbusiness_constraining %>%
+    head(20) %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'constraining' sentiment", subtitle = "EWN Business", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 1000, 50))
+    
+  EWNbusiness_constraining_visual
+  
+# Save the graph to disk  
+  ggsave(EWNbusiness_constraining_visual, filename = "EWNbusiness_constraining_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 4.2. Words contributing to `litigious`
+```{r Sentiment Analysis: EWN Business - Litigious}
+  EWNbusiness_litigious <- EWNbusiness %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "litigious") %>%
+    count(word, sentiment, sort = TRUE)
+
+  EWNbusiness_litigious
+  
+# Visualisation
+  EWNbusiness_litigious_visual <- EWNbusiness_litigious %>%
+    head(20) %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'litigious' sentiment", subtitle = "EWN Business", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 1000, 25))
+    
+  EWNbusiness_litigious_visual
+  
+# Save the graph to disk  
+  ggsave(EWNbusiness_litigious_visual, filename = "EWNbusiness_litigious_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 4.3. Words contributing to `negative`
+```{r Sentiment Analysis: EWN Business - Negative}
+ EWNbusiness_negative <- EWNbusiness %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "negative") %>%
+    count(word, sentiment, sort = TRUE)
+
+  EWNbusiness_negative
+  
+# Visualisation
+  EWNbusiness_negative_visual <- EWNbusiness_negative %>%
+    head(20) %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'negative' sentiment", subtitle = "EWN Business", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 1000, 25))
+    
+  EWNbusiness_negative_visual
+  
+# Save the graph to disk  
+  ggsave(EWNbusiness_negative_visual, filename = "EWNbusiness_negative_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 4.4. Words contributing to `positive`
+```{r Sentiment Analysis: EWN Business - Positive}
+ EWNbusiness_positive <- EWNbusiness %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "positive") %>%
+    count(word, sentiment, sort = TRUE)
+
+  EWNbusiness_positive
+  
+# Visualisation
+  EWNbusiness_positive_visual <- EWNbusiness_positive %>%
+    head(20) %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'positive' sentiment", subtitle = "EWN Business", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 1000, 25))
+    
+  EWNbusiness_positive_visual
+  
+# Save the graph to disk  
+  ggsave(EWNbusiness_positive_visual, filename = "EWNbusiness_positive_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 4.5. Words contributing to `superfluous`
+```{r Sentiment Analysis: EWN Business - Superfluous}
+ EWNbusiness_superfluous <- EWNbusiness %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "superfluous") %>%
+    count(word, sentiment, sort = TRUE)
+
+  EWNbusiness_superfluous
+  
+# Visualisation
+  EWNbusiness_superfluous_visual <- EWNbusiness_superfluous %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'superfluous' sentiment", subtitle = "EWN Business", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 15, 1))
+    
+  EWNbusiness_superfluous_visual
+  
+# Save the graph to disk  
+  ggsave(EWNbusiness_superfluous_visual, filename = "EWNbusiness_superfluous_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 4.6. Words contributing to `uncertainty`
+```{r Sentiment Analysis: EWN Business - Uncertainty}
+ EWNbusiness_uncertainty <- EWNbusiness %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "uncertainty") %>%
+    count(word, sentiment, sort = TRUE)
+
+  EWNbusiness_uncertainty
+  
+# Visualisation
+  EWNbusiness_uncertainty_visual <- EWNbusiness_uncertainty %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'uncertainty' sentiment", subtitle = "EWN Business", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 1000, 25))
+    
+  EWNbusiness_uncertainty_visual
+  
+# Save the graph to disk  
+  ggsave(EWNbusiness_uncertainty_visual, filename = "EWNbusiness_uncertainty_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+## 5. BusinessTech
+```{r Sentiment Analysis: BusinessTech}
+  businessTech_sentiment <- businessTech %>%
+    inner_join(get_sentiments("loughran")) %>%
+    count(word, sentiment, sort = TRUE) %>%
+    group_by(sentiment) %>%
+    summarise(sentiment_total = sum(n)) %>%
+    mutate(sentiment_ratio = sentiment_total/sum(sentiment_total)) %>%
+    ungroup() %>%
+    arrange(desc(sentiment_total)) %>%
+    mutate(sentiment = factor(sentiment, levels = as.character(sentiment)))
+
+  businessTech_sentiment
+  
+# Visualisation
+  businessTech_sentiment_visual <- businessTech_sentiment %>%
+    mutate(end = 2 * pi * cumsum(sentiment_ratio)/sum(sentiment_ratio),
+           start = lag(end, default = 0),
+           middle = 0.5 * (start + end),
+           hjust = ifelse(middle > pi, 1, 0),
+           vjust = ifelse(middle < pi/2 | middle > 3 *pi/2, 0, 1)) %>%
+    ggplot() +
+    geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0, r = 1, start = start, end = end, fill = sentiment)) +
+    geom_text(aes(x = 1 * sin(middle), y = 1 * cos(middle), label = percent(businessTech_sentiment$sentiment_ratio), hjust = hjust, vjust = vjust)) +
+  coord_fixed() +
+  scale_x_continuous(limits = c(-1.5, 1.4)) +
+  scale_y_continuous(limits = c(-1, 1)) +
+    theme_void() +
+    theme(plot.title = element_text(hjust = 0.5, size = 18)) +
+    ggtitle("Sentiment of BusinessTech articles") +
+    guides(fill = guide_legend(title = "Sentiment"))
+    
+ businessTech_sentiment_visual
+ 
+# Save the graph to disk  
+  ggsave(businessTech_sentiment_visual, filename = "businessTech_sentiment_visual.png", width = 185, height = 114, units = "mm")
+```
+    
+### 5.1. Words contributing to `constraining`
+```{r Sentiment Analysis: BusinessTech - Constraining}
+  businessTech_constraining <- businessTech %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "constraining") %>%
+    count(word, sentiment, sort = TRUE)
+
+  businessTech_constraining
+  
+# Visualisation
+  businessTech_constraining_visual <- businessTech_constraining %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'constraining' sentiment", subtitle = "BusinessTech", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 1000, 25))
+    
+  businessTech_constraining_visual
+  
+# Save the graph to disk  
+  ggsave(businessTech_constraining_visual, filename = "businessTech_constraining_visual.png", width = 185, height = 114, units = "mm")
+```
+    
+### 5.2. Words contributing to `litigious`
+```{r Sentiment Analysis: BusinessTech - Litigious}
+  businessTech_litigious <- businessTech %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "litigious") %>%
+    count(word, sentiment, sort = TRUE)
+
+  businessTech_litigious
+  
+# Visualisation
+  businessTech_litigious_visual <- businessTech_litigious %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'litigious' sentiment", subtitle = "BusinessTech", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  businessTech_litigious_visual
+  
+# Save the graph to disk  
+  ggsave(businessTech_litigious_visual, filename = "businessTech_litigious_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 5.3. Words contributing to `negative`
+```{r Sentiment Analysis: BusinessTech - Negative}
+  businessTech_negative <- businessTech %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "negative") %>%
+    count(word, sentiment, sort = TRUE)
+
+  businessTech_negative
+  
+# Visualisation
+  businessTech_negative_visual <- businessTech_negative %>%
+    head(20) %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'negative' sentiment", subtitle = "BusinessTech", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  businessTech_negative_visual
+  
+# Save the graph to disk  
+  ggsave(businessTech_negative_visual, filename = "businessTech_negative_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 5.4. Words contributing to `positive`
+```{r Sentiment Analysis: BusinessTech - Positive}
+  businessTech_positive <- businessTech %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "positive") %>%
+    count(word, sentiment, sort = TRUE)
+
+  businessTech_positive
+  
+# Visualisation
+  businessTech_positive_visual <- businessTech_positive %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'positive' sentiment", subtitle = "BusinessTech", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 10))
+    
+  businessTech_positive_visual
+  
+# Save the graph to disk  
+  ggsave(businessTech_positive_visual, filename = "businessTech_positive_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 5.5. Words contributing to `superfluous`
+```{r Sentiment Analysis: BusinessTech - Superfluous}
+  businessTech_superfluous <- businessTech %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "superfluous") %>%
+    count(word, sentiment, sort = TRUE)
+
+  businessTech_superfluous
+  
+# Visualisation
+  businessTech_superfluous_visual <- businessTech_superfluous %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'superfluous' sentiment", subtitle = "BusinessTech", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 20, 1))
+    
+  businessTech_superfluous_visual
+  
+# Save the graph to disk  
+  ggsave(businessTech_superfluous_visual, filename = "businessTech_superfluous_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 5.6. Words contributing to `uncertainty`
+```{r Sentiment Analysis: BusinessTech - Uncertainty}
+  businessTech_uncertainty <- businessTech %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "uncertainty") %>%
+    count(word, sentiment, sort = TRUE)
+
+  businessTech_uncertainty
+  
+# Visualisation
+  businessTech_uncertainty_visual <- businessTech_uncertainty %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'uncertainty' sentiment", subtitle = "BusinessTech", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 200, 5))
+    
+  businessTech_uncertainty_visual
+  
+# Save the graph to disk  
+  ggsave(businessTech_uncertainty_visual, filename = "businessTech_uncertainty_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+## 6. Across All Media Outlets
+```{r Sentiment Analysis: Compiled Media}
+  mediaCompiled_sentiment <- mediaCompiled %>%
+    inner_join(get_sentiments("loughran")) %>%
+    count(word, sentiment, sort = TRUE) %>%
+    group_by(sentiment) %>%
+    summarise(sentiment_total = sum(n)) %>%
+    mutate(sentiment_ratio = sentiment_total/sum(sentiment_total)) %>%
+    ungroup() %>%
+    arrange(desc(sentiment_total)) %>%
+    mutate(sentiment = factor(sentiment, levels = as.character(sentiment)))
+
+  mediaCompiled_sentiment
+  
+# Visualisation
+  mediaCompiled_sentiment_visual <- mediaCompiled_sentiment %>%
+    mutate(end = 2 * pi * cumsum(sentiment_ratio)/sum(sentiment_ratio),
+           start = lag(end, default = 0),
+           middle = 0.5 * (start + end),
+           hjust = ifelse(middle > pi, 1, 0),
+           vjust = ifelse(middle < pi/2 | middle > 3 *pi/2, 0, 1)) %>%
+    ggplot() +
+    geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0, r = 1, start = start, end = end, fill = sentiment)) +
+    geom_text(aes(x = 1 * sin(middle), y = 1 * cos(middle), label = percent(mediaCompiled_sentiment$sentiment_ratio), hjust = hjust, vjust = vjust)) +
+  coord_fixed() +
+  scale_x_continuous(limits = c(-1.5, 1.4)) +
+  scale_y_continuous(limits = c(-1, 1)) +
+    theme_void() +
+    theme(plot.title = element_text(hjust = 0.5, size = 18)) +
+    ggtitle("Sentiment across all media outlet articles") +
+    guides(fill = guide_legend(title = "Sentiment"))    
+  
+ mediaCompiled_sentiment_visual
+ 
+# Save the graph to disk  
+  ggsave(mediaCompiled_sentiment_visual, filename = "mediaCompiled_sentiment_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 6.1. Words contributing to `constraining`
+```{r Sentiment Analysis: Compiled Media - Constraining}
+  mediaCompiled_constraining <- mediaCompiled %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "constraining") %>%
+    count(word, sentiment, sort = TRUE)
+
+  mediaCompiled_constraining
+  
+# Visualisation
+  mediaCompiled_constraining_visual <- mediaCompiled_constraining %>%
+    head(20) %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'constraining' sentiment", subtitle = "All media outlets", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 1000, 50))
+    
+  mediaCompiled_constraining_visual
+  
+# Save the graph to disk  
+  ggsave(mediaCompiled_constraining_visual, filename = "mediaCompiled_constraining_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 6.2. Words contributing to `litigious`
+```{r Sentiment Analysis: Compiled Media - Litigious}
+  mediaCompiled_litigious <- mediaCompiled %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "litigious") %>%
+    count(word, sentiment, sort = TRUE)
+
+  mediaCompiled_litigious
+  
+# Visualisation
+  mediaCompiled_litigious_visual <- mediaCompiled_litigious %>%
+    head(20) %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'litigious' sentiment", subtitle = "All media outlets", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 1000, 50))
+    
+  mediaCompiled_litigious_visual
+  
+# Save the graph to disk  
+  ggsave(mediaCompiled_litigious_visual, filename = "mediaCompiled_litigious_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 6.3. Words contributing to `negative`
+```{r Sentiment Analysis: Compiled Media - Negative}
+  mediaCompiled_negative <- mediaCompiled %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "negative") %>%
+    count(word, sentiment, sort = TRUE)
+
+  mediaCompiled_negative
+  
+# Visualisation
+  mediaCompiled_negative_visual <- mediaCompiled_negative %>%
+    head(20) %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'negative' sentiment", subtitle = "All media outlets", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 1000, 50))
+    
+  mediaCompiled_negative_visual
+  
+# Save the graph to disk  
+  ggsave(mediaCompiled_negative_visual, filename = "mediaCompiled_negative_visual.png", width = 185, height = 114, units = "mm")
+```
+
+## 6.4. Words contributing to `positive`
+```{r Sentiment Analysis: Compiled Media - Positive}
+  mediaCompiled_positive <- mediaCompiled %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "positive") %>%
+    count(word, sentiment, sort = TRUE)
+
+  mediaCompiled_positive
+  
+# Visualisation
+  mediaCompiled_positive_visual <- mediaCompiled_positive %>%
+    head(20) %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'positive' sentiment", subtitle = "All media outlets", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 1000, 50))
+    
+  mediaCompiled_positive_visual
+  
+# Save the graph to disk  
+  ggsave(mediaCompiled_positive_visual, filename = "mediaCompiled_positive_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 6.5. Words contributing to `superfluous`
+```{r Sentiment Analysis: Compiled Media - Superfluous}
+  mediaCompiled_superfluous <- mediaCompiled %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "superfluous") %>%
+    count(word, sentiment, sort = TRUE)
+
+  mediaCompiled_superfluous
+  
+# Visualisation
+  mediaCompiled_superfluous_visual <- mediaCompiled_superfluous %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top contributing words towards the 'superfluous' sentiment", subtitle = "All media outlets", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 100, 5))
+    
+  mediaCompiled_superfluous_visual
+  
+# Save the graph to disk  
+  ggsave(mediaCompiled_superfluous_visual, filename = "mediaCompiled_superfluous_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 6.6. Words contributing to `uncertainty`
+```{r Sentiment Analysis: Compiled Media - Uncertainty}
+mediaCompiled_uncertainty <- mediaCompiled %>%
+    inner_join(get_sentiments("loughran")) %>%
+    filter(sentiment  == "uncertainty") %>%
+    count(word, sentiment, sort = TRUE)
+
+  mediaCompiled_uncertainty
+  
+# Visualisation
+  mediaCompiled_uncertainty_visual <- mediaCompiled_uncertainty %>%
+    head(20) %>%
+    ggplot(aes(x = reorder(word, -n), y = n)) +
+    geom_bar(stat = "identity", fill = "royalblue2") + 
+    labs(title = "Top 20 words contributing towards the 'uncertainty' sentiment", subtitle = "All media outlets", x = "", y = "Number of words") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40")) +
+    scale_y_continuous(breaks = seq(0, 1000, 50))
+    
+  mediaCompiled_uncertainty_visual
+  
+# Save the graph to disk  
+  ggsave(mediaCompiled_uncertainty_visual, filename = "mediaCompiled_uncertainty_visual.png", width = 185, height = 114, units = "mm")
+```
+ 
+ 
+## 7. Word Sentiment Proportions Across All Articles
+```{r Word Sentiment Proportions: Compiled Media}
+ wordCounts <- mediaCompiled %>%
+    group_by(media.source) %>%
+    summarise(words = n())
+```
+  
+### 7.1. Constraining
+```{r Word Sentiment Proportions: Compiled Media - Constraining}
+  constraining <- get_sentiments("loughran") %>%
+    filter(sentiment == "constraining")
+
+  constraining_proportions <- mediaCompiled %>%
+    semi_join(constraining) %>%
+    group_by(media.source) %>%
+    summarise(constrainingWords = n()) %>%
+    left_join(wordCounts, by = "media.source") %>%
+    mutate(constrainingRatio = percent(constrainingWords / words)) %>%
+    ungroup() %>%
+    arrange(desc(constrainingRatio))
+
+  constraining_proportions 
+  
+  # Visualisation 
+  constraining_proportions_visual <-  constraining_proportions %>%
+    ggplot(aes(x = reorder(media.source, -(constrainingWords/words)), y = constrainingRatio, fill = media.source)) +
+    geom_bar(stat = "identity") + 
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("Ratio of constraining words to total words") +
+    xlab("") +
+    ggtitle("Word sentiment ratio for 'constraining'") 
+    
+  constraining_proportions_visual
+  
+# Save the graph to disk  
+  ggsave(constraining_proportions_visual, filename = "constraining_proportions_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 7.2. Litigious
+```{r Word Sentiment Proportions: Compiled Media - Litigious}
+  litigious <- get_sentiments("loughran") %>%
+    filter(sentiment == "litigious")
+
+  litigious_proportions <- mediaCompiled %>%
+    semi_join(litigious) %>%
+    group_by(media.source) %>%
+    summarise(litigiousWords = n()) %>%
+    left_join(wordCounts, by = "media.source") %>%
+    mutate(litigiousRatio = percent(litigiousWords / words)) %>%
+    ungroup()
+
+ litigious_proportions
+ 
+  # Visualisation 
+  litigious_proportions_visual <- litigious_proportions %>%
+    ggplot(aes(x = reorder(media.source, -(litigiousWords/words)), y = litigiousRatio, fill = media.source)) +
+    geom_bar(stat = "identity") + 
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("Ratio of litigious words to total words") +
+    xlab("") +
+    ggtitle("Word sentiment ratio for 'litigious'") 
+    
+  litigious_proportions_visual
+  
+# Save the graph to disk  
+  ggsave(litigious_proportions_visual, filename = "litigious_proportions_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 7.3. Negative
+```{r Word Sentiment Proportions: Compiled Media - Negative}
+  negative <- get_sentiments("loughran") %>%
+    filter(sentiment == "negative")
+
+  negative_proportions <- mediaCompiled %>%
+    semi_join(negative) %>%
+    group_by(media.source) %>%
+    summarise(negativeWords = n()) %>%
+    left_join(wordCounts, by = "media.source") %>%
+    mutate(negativeRatio = percent(negativeWords / words)) %>%
+    ungroup()
+
+ negative_proportions
+ 
+  # Visualisation 
+  negative_proportions_visual <- negative_proportions %>%
+    ggplot(aes(x = reorder(media.source, -(negativeWords/words)), y = negativeRatio, fill = media.source)) +
+    geom_bar(stat = "identity") + 
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("Ratio of negative words to total words") +
+    xlab("") +
+    ggtitle("Word sentiment ratio for 'negative'") 
+    
+  negative_proportions_visual
+  
+# Save the graph to disk  
+  ggsave(negative_proportions_visual, filename = "negative_proportions_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 7.4. Positive 
+```{r Word Sentiment Proportions: Compiled Media - Positive}
+  positive <- get_sentiments("loughran") %>%
+    filter(sentiment == "positive")
+
+  positive_proportions <- mediaCompiled %>%
+    semi_join(positive) %>%
+    group_by(media.source) %>%
+    summarise(positiveWords = n()) %>%
+    left_join(wordCounts, by = "media.source") %>%
+    mutate(positiveRatio = percent(positiveWords / words)) %>%
+    ungroup()
+
+ positive_proportions
+ 
+  # Visualisation 
+  positive_proportions_visual <- positive_proportions %>%
+    ggplot(aes(x = reorder(media.source, -(positiveWords/words)), y = positiveRatio, fill = media.source)) +
+    geom_bar(stat = "identity") + 
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("Ratio of positive words to total words") +
+    xlab("") +
+    ggtitle("Word sentiment ratio for 'positive'") 
+    
+  positive_proportions_visual
+  
+# Save the graph to disk  
+  ggsave(positive_proportions_visual, filename = "positive_proportions_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 7.5. Superfluous
+```{r Word Sentiment Proportions: Compiled Media - Superfluous}
+  superfluous <- get_sentiments("loughran") %>%
+    filter(sentiment == "superfluous")
+
+  superfluous_proportions <- mediaCompiled %>%
+    semi_join(superfluous) %>%
+    group_by(media.source) %>%
+    summarise(superfluousWords = n()) %>%
+    left_join(wordCounts, by = "media.source") %>%
+    mutate(superfluousRatio = percent(superfluousWords / words)) %>%
+    ungroup()
+
+ superfluous_proportions
+ 
+   # Visualisation 
+  superfluous_proportions_visual <- superfluous_proportions %>%
+    ggplot(aes(x = reorder(media.source, -(superfluousWords/words)), y = superfluousRatio, fill = media.source)) +
+    geom_bar(stat = "identity") + 
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("Ratio of superfluous words to total words") +
+    xlab("") +
+    ggtitle("Word sentiment ratio for 'superfluous'") 
+    
+  superfluous_proportions_visual
+  
+# Save the graph to disk  
+  ggsave(superfluous_proportions_visual, filename = "superfluous_proportions_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 7.6. Uncertainty
+```{r Word Sentiment Proportions: Compiled Media - Uncertainty}
+  uncertainty <- get_sentiments("loughran") %>%
+    filter(sentiment == "uncertainty")
+ 
+  uncertainty_proportions <- mediaCompiled %>%
+    semi_join(uncertainty) %>%
+    group_by(media.source) %>%
+    summarise(uncertaintyWords = n()) %>%
+    left_join(wordCounts, by = "media.source") %>%
+    mutate(uncertaintyRatio = percent(uncertaintyWords / words)) %>%
+    ungroup()
+  
+  uncertainty_proportions
+  
+  # Visualisation 
+  uncertainty_proportions_visual <- uncertainty_proportions %>%
+    ggplot(aes(x = reorder(media.source, -(uncertaintyWords/words)), y = uncertaintyRatio, fill = media.source)) +
+    geom_bar(stat = "identity") + 
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 12),
+          plot.title = element_text(hjust = 0.5, size = 18)) +
+    ylab("Ratio of uncertainty words to total words") +
+    xlab("") +
+    ggtitle("Word sentiment ratio for 'uncertainty'") 
+    
+  uncertainty_proportions_visual
+  
+# Save the graph to disk  
+  ggsave(uncertainty_proportions_visual, filename = "uncertainty_proportions_visual.png", width = 185, height = 114, units = "mm")
+```

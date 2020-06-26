@@ -1,0 +1,870 @@
+---
+title: "A Computational Analysis of the Business Media's Response to Covid-19: Topic Modelling"
+author: "Caryn Biebuyck (20715978) & Lauren Downing (19202113)"
+output: html_notebook
+---
+
+
+```{r Setup, message=FALSE, warning=FALSE, include=FALSE}
+  library(dplyr)
+  library(ggplot2)
+  library(ldatuning)
+  library(stm)
+  library(tidytext)
+  library(topicmodels)
+```
+
+```{r Reading in required RDS files, message=FALSE, warning=FALSE, include=FALSE}
+  fin24 <- readRDS("~/tidy_fin24.rds")
+  moneyweb <- readRDS("~/tidy_moneyweb.rds")
+  biznews <- readRDS("~/tidy_biznews.rds")
+  EWNbusiness <- readRDS("~/tidy_ewn.rds")
+  businessTech <- readRDS("~/tidy_businesstech.rds")
+  mediaCompiled <- readRDS("~/tidy_mediacompiled.rds")
+```
+
+
+# 1. Creating Document-term Matrices 
+
+## 1.1. Fin24
+```{r DTM: Fin24}
+# Transforming the data into a DTM
+  fin24_dtm <- fin24 %>%
+    count(title, word, sort = TRUE) %>%
+    cast_dtm(document = title, term = word, value = n)
+```
+
+## 1.2. Moneyweb
+```{r DTM: Moneyweb}
+# Transforming the data into a DTM
+  moneyweb_dtm <- moneyweb %>%
+    count(title, word, sort = TRUE) %>%
+    cast_dtm(document = title, term = word, value = n)
+```
+
+## 1.3. BizNews
+```{r DTM: BizNews}
+# Transforming the data into a DTM
+  biznews_dtm <- biznews %>%
+    count(title, word, sort = TRUE) %>%
+    cast_dtm(document = title, term = word, value = n)
+```
+
+## 1.4. EWN Business
+```{r DTM: EWN Business}
+# Transforming the data into a DTM
+  EWNbusiness_dtm <- EWNbusiness %>%
+    count(title, word, sort = TRUE) %>%
+    cast_dtm(document = title, term = word, value = n)
+```
+
+## 1.5. BusinessTech
+```{r DTM: BusinessTech}
+# Transforming the data into a DTM
+  businessTech_dtm <- businessTech %>%
+    count(title, word, sort = TRUE) %>%
+    cast_dtm(document = title, term = word, value = n)
+```
+
+## 1.6. Across All Media Outlets
+```{r DTM: All Outlets}
+# Transforming the data into a DTM
+  mediaCompiled_dtm <- mediaCompiled %>%
+    count(title, word, sort = TRUE) %>%
+    cast_dtm(document = title, term = word, value = n)
+```
+
+
+# 2. Determining the Optimal Number of Topics (K)
+Using the CRAN package [ldatuning]("https://cran.r-project.org/web/packages/ldatuning/vignettes/topics.html") by N. Murzintcev (2020).
+
+## 2.1. Fin24
+```{r Determining K: Fin24}
+  result <- FindTopicsNumber(
+    fin24_dtm,
+    topics = seq(from = 2, to = 15, by = 1),
+    metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+    method = "Gibbs",
+    control = list(seed = 100),
+    mc.cores = 2L,
+    verbose = FALSE)
+  
+  FindTopicsNumber_plot(result)
+```
+
+## 2.2. Moneyweb
+```{r Determining K: Moneyweb}
+  result <- FindTopicsNumber(
+    moneyweb_dtm,
+    topics = seq(from = 2, to = 15, by = 1),
+    metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+    method = "Gibbs",
+    control = list(seed = 100),
+    mc.cores = 2L,
+    verbose = FALSE)
+  
+  FindTopicsNumber_plot(result)
+```
+
+## 2.3. BizNews
+```{r Determining K: BizNews}
+  result <- FindTopicsNumber(
+    biznews_dtm,
+    topics = seq(from = 2, to = 15, by = 1),
+    metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+    method = "Gibbs",
+    control = list(seed = 100),
+    mc.cores = 2L,
+    verbose = FALSE)
+  
+  FindTopicsNumber_plot(result)
+```
+
+## 2.4. EWN Business
+```{r Determining K: EWN Business}
+  result <- FindTopicsNumber(
+    EWNbusiness_dtm,
+    topics = seq(from = 2, to = 15, by = 1),
+    metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+    method = "Gibbs",
+    control = list(seed = 100),
+    mc.cores = 2L,
+    verbose = FALSE)
+  
+  FindTopicsNumber_plot(result)
+```
+
+## 2.5. BusinessTech
+```{r Determining K: BusinessTech}
+  result <- FindTopicsNumber(
+    businessTech_dtm,
+    topics = seq(from = 2, to = 15, by = 1),
+    metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+    method = "Gibbs",
+    control = list(seed = 100),
+    mc.cores = 2L,
+    verbose = FALSE)
+  
+  FindTopicsNumber_plot(result)
+```
+
+## 2.6. Across All Media Outlets
+```{r Compiled Media: Determining K}
+  result <- FindTopicsNumber(
+    mediaCompiled_dtm,
+    topics = seq(from = 2, to = 15, by = 1),
+    metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+    method = "Gibbs",
+    control = list(seed = 100),
+    mc.cores = 2L,
+    verbose = FALSE)
+  
+  FindTopicsNumber_plot(result)
+```
+
+# 3. Latent Dirichlet Allocation (LDA)
+
+## 3.1. Fin24
+```{r LDA: Fin24}
+# Applying LDA topic modelling
+  fin24_lda <- LDA(fin24_dtm, k = 6, control = list(seed = 123))
+  
+  fin24_lda
+  
+# Transforming the data into the tidy format
+  fin24_lda_td <- tidy(fin24_lda) 
+  
+  fin24_lda_td
+```
+
+### 3.1.1. Top Terms
+```{r LDA: Fin24 - Top Terms}
+# Top 15 Terms using the `beta` method
+  fin24_top_terms <- fin24_lda_td %>%
+    group_by(topic) %>%
+    top_n(10, beta) %>%
+    ungroup() %>%
+    arrange(topic, -beta)
+  
+# Visualisation
+  fin24_top_terms_visual <- fin24_top_terms %>%
+    mutate(topic = factor(topic),
+           term = reorder_within(term, beta, topic)) %>%
+    ggplot(aes(term, beta, fill = topic)) +
+    geom_bar(alpha = 0.8, stat = "identity", show.legend = FALSE) +
+    scale_x_reordered() +
+    facet_wrap(~topic, scales = "free", ncol = 2) +
+    coord_flip()
+  
+  fin24_top_terms_visual
+  
+# Save the graph to disk  
+  ggsave(fin24_top_terms_visual, filename = "fin24_top_terms_visual.png", width = 185, height = 114, units = "mm")
+
+```
+
+### 3.1.2. Topic Sentiment
+```{r LDA: Fin24 - Topic Sentiment}
+  fin24_topic_sentiment <- fin24_lda_td %>%
+    inner_join(get_sentiments("loughran"), by = c("term" = "word")) %>%
+    group_by(topic, sentiment) %>%
+    summarise(sentiment_total = sum(beta)) %>%
+    mutate(sentiment_ratio = sentiment_total/sum(sentiment_total)) %>%
+    ungroup() %>%
+    arrange(topic, desc(sentiment_ratio)) %>%
+    mutate(sentiment = factor(sentiment))
+  
+  fin24_topic_sentiment
+
+# Visualisation
+  fin24_sentiment_visual <- fin24_topic_sentiment %>%
+    ggplot(aes(x = sentiment, y = sentiment_ratio, fill = sentiment)) +
+    geom_bar(stat = "identity") +
+    labs(x = "", y = "Topic-sentiment Ratio", title = "Topic sentiment of news articles", subtitle = "Fin24") +
+    scale_y_continuous(labels = scales::percent) +
+    theme_minimal() +
+    theme(plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40"),
+          axis.text.x = element_blank()) +
+    facet_wrap(~topic) 
+    
+  fin24_sentiment_visual
+  
+# Save the graph to disk  
+  ggsave(fin24_sentiment_visual, filename = "fin24_sentiment_visual.png", width = 185, height = 114, units = "mm")
+```
+
+
+## 3.2. Moneyweb
+```{r LDA: Moneyweb}
+# Applying LDA topic modelling
+  moneyweb_lda <- LDA(moneyweb_dtm, k = 15, control = list(seed = 123))
+  
+  moneyweb_lda
+  
+# Transforming the data into the tidy format
+  moneyweb_lda_td <- tidy(moneyweb_lda) 
+  
+  moneyweb_lda_td
+```
+
+### 3.2.1. Top Terms
+```{r LDA: Moneyweb - Top Terms}
+# Top 15 Terms using the `beta` method
+ moneyweb_top_terms <- moneyweb_lda_td %>%
+    group_by(topic) %>%
+    top_n(10, beta) %>%
+    ungroup() %>%
+    arrange(topic, -beta)
+  
+# Visualisation
+  moneyweb_top_terms_visual <- moneyweb_top_terms %>%
+    mutate(topic = factor(topic),
+           term = reorder_within(term, beta, topic)) %>%
+    ggplot(aes(term, beta, fill = topic)) +
+    geom_bar(alpha = 0.8, stat = "identity", show.legend = FALSE) +
+    scale_x_reordered() +
+    facet_wrap(~topic, scales = "free", ncol = 2) +
+    coord_flip()
+  
+  moneyweb_top_terms_visual
+
+# Save the graph to disk  
+  ggsave(moneyweb_top_terms_visual, filename = "moneyweb_top_terms_visual.png", width = 185, height = 254, units = "mm")
+```
+
+### 3.2.2. Topic Sentiment
+```{r LDA: Moneyweb - Topic Sentiment}
+  moneyweb_topic_sentiment <- moneyweb_lda_td %>%
+    inner_join(get_sentiments("loughran"), by = c("term" = "word")) %>%
+    group_by(topic, sentiment) %>%
+    summarise(sentiment_total = sum(beta)) %>%
+    mutate(sentiment_ratio = sentiment_total/sum(sentiment_total)) %>%
+    ungroup() %>%
+    arrange(topic, desc(sentiment_ratio)) %>%
+    mutate(sentiment = factor(sentiment))
+  
+  moneyweb_topic_sentiment
+
+# Visualisation
+  moneyweb_sentiment_visual <- moneyweb_topic_sentiment %>%
+    ggplot(aes(x = sentiment, y = sentiment_ratio, fill = sentiment)) +
+    geom_bar(stat = "identity") +
+    labs(x = "", y = "Topic-sentiment Ratio", title = "Topic sentiment of news articles", subtitle = "Moneyweb") +
+    scale_y_continuous(labels = scales::percent) +
+    theme_minimal() +
+    theme(plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40"),
+          axis.text.x = element_blank()) +
+    facet_wrap(~topic) 
+    
+  moneyweb_sentiment_visual
+  
+# Save the graph to disk  
+  ggsave(moneyweb_sentiment_visual, filename = "moneyweb_sentiment_visual.png", width = 185, height = 114, units = "mm")
+```
+
+## 3.3. BizNews
+```{r LDA: BizNews}
+# Applying LDA topic modelling
+  biznews_lda <- LDA(biznews_dtm, k = 8, control = list(seed = 123))
+  
+  biznews_lda
+  
+# Transforming the data into the tidy format
+  biznews_lda_td <- tidy(biznews_lda) 
+  
+  biznews_lda_td
+```
+
+### 3.3.1. Top Terms
+```{r LDA: BizNews - Top Terms}
+# Top 15 Terms using the `beta` method
+ biznews_top_terms <- biznews_lda_td %>%
+    group_by(topic) %>%
+    top_n(10, beta) %>%
+    ungroup() %>%
+    arrange(topic, -beta)
+  
+# Visualisation
+  biznews_top_terms_visual <- biznews_top_terms %>%
+    mutate(topic = factor(topic),
+           term = reorder_within(term, beta, topic)) %>%
+    ggplot(aes(term, beta, fill = topic)) +
+    geom_bar(alpha = 0.8, stat = "identity", show.legend = FALSE) +
+    scale_x_reordered() +
+    facet_wrap(~topic, scales = "free", ncol = 2) +
+    coord_flip()
+  
+  biznews_top_terms_visual
+  
+# Save the graph to disk  
+  ggsave(biznews_top_terms_visual, filename = "biznews_top_terms_visual.png", width = 185, height = 154, units = "mm")
+```
+
+### 3.3.2 Topic Sentiment
+```{r LDA: BizNews - Topic Sentiment}
+  biznews_topic_sentiment <- biznews_lda_td %>%
+    inner_join(get_sentiments("loughran"), by = c("term" = "word")) %>%
+    group_by(topic, sentiment) %>%
+    summarise(sentiment_total = sum(beta)) %>%
+    mutate(sentiment_ratio = sentiment_total/sum(sentiment_total)) %>%
+    ungroup() %>%
+    arrange(topic, desc(sentiment_ratio)) %>%
+    mutate(sentiment = factor(sentiment))
+  
+  biznews_topic_sentiment
+
+# Visualisation
+  biznews_sentiment_visual <- biznews_topic_sentiment %>%
+    ggplot(aes(x = sentiment, y = sentiment_ratio, fill = sentiment)) +
+    geom_bar(stat = "identity") +
+    labs(x = "", y = "Topic-sentiment Ratio", title = "Topic sentiment of news articles", subtitle = "BizNews") +
+    scale_y_continuous(labels = scales::percent) +
+    theme_minimal() +
+    theme(plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40"),
+          axis.text.x = element_blank()) +
+    facet_wrap(~topic) 
+    
+  biznews_sentiment_visual
+  
+# Save the graph to disk  
+  ggsave(biznews_sentiment_visual, filename = "biznews_sentiment_visual.png", width = 185, height = 114, units = "mm")
+```
+
+## 3.4. EWN Busines
+```{r LDA: EWN Business}
+# Applying LDA topic modelling
+  EWNbusiness_lda <- LDA(EWNbusiness_dtm, k = 13, control = list(seed = 123))
+  
+  EWNbusiness_lda
+  
+# Transforming the data into the tidy format
+  EWNbusiness_lda_td <- tidy(EWNbusiness_lda) 
+  
+  EWNbusiness_lda_td
+```
+
+### 3.4.1 Top Terms
+```{r LDA: EWN Business - Top Terms}
+# Top 15 Terms using the `beta` method
+ EWNbusiness_top_terms <- EWNbusiness_lda_td %>%
+    group_by(topic) %>%
+    top_n(10, beta) %>%
+    ungroup() %>%
+    arrange(topic, -beta)
+  
+# Visualisation
+  EWNbusiness_top_terms_visual <- EWNbusiness_top_terms %>%
+    mutate(topic = factor(topic),
+           term = reorder_within(term, beta, topic)) %>%
+    ggplot(aes(term, beta, fill = topic)) +
+    geom_bar(alpha = 0.8, stat = "identity", show.legend = FALSE) +
+    scale_x_reordered() +
+    facet_wrap(~topic, scales = "free", ncol = 2) +
+    coord_flip()
+  
+  EWNbusiness_top_terms_visual
+  
+# Save the graph to disk  
+  ggsave(EWNbusiness_top_terms_visual, filename = "EWNbusiness_top_terms_visual.png", width = 185, height = 254, units = "mm")
+```
+
+### 3.4.2 Topic Sentiment
+```{r LDA: EWN Business - Topic Sentiment}
+  EWNbusiness_topic_sentiment <- EWNbusiness_lda_td %>%
+    inner_join(get_sentiments("loughran"), by = c("term" = "word")) %>%
+    group_by(topic, sentiment) %>%
+    summarise(sentiment_total = sum(beta)) %>%
+    mutate(sentiment_ratio = sentiment_total/sum(sentiment_total)) %>%
+    ungroup() %>%
+    arrange(topic, desc(sentiment_ratio)) %>%
+    mutate(sentiment = factor(sentiment))
+  
+  EWNbusiness_topic_sentiment
+
+# Visualisation
+  EWNbusiness_sentiment_visual <- EWNbusiness_topic_sentiment %>%
+    ggplot(aes(x = sentiment, y = sentiment_ratio, fill = sentiment)) +
+    geom_bar(stat = "identity") +
+    labs(x = "", y = "Topic-sentiment Ratio", title = "Topic sentiment of news articles", subtitle = "EWN Business") +
+    scale_y_continuous(labels = scales::percent) +
+    theme_minimal() +
+    theme(plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40"),
+          axis.text.x = element_blank()) +
+    facet_wrap(~topic) 
+    
+  EWNbusiness_sentiment_visual
+  
+# Save the graph to disk  
+  ggsave(EWNbusiness_sentiment_visual, filename = "EWNbusiness_sentiment_visual.png", width = 185, height = 114, units = "mm")
+```
+
+## 3.5. BusinessTech
+```{r LDA: BusinessTech}
+# Applying LDA topic modelling
+  businessTech_lda <- LDA(businessTech_dtm, k = 13, control = list(seed = 123))
+  
+  businessTech_lda
+  
+# Transforming the data into the tidy format
+  businessTech_lda_td <- tidy(businessTech_lda) 
+  
+  businessTech_lda_td
+```
+
+### 3.5.1 Top Terms
+```{r LDA: BusinessTech - Top Terms}
+# Top 15 Terms using the `beta` method
+ businessTech_top_terms <- businessTech_lda_td %>%
+    group_by(topic) %>%
+    top_n(10, beta) %>%
+    ungroup() %>%
+    arrange(topic, -beta)
+  
+# Visualisation
+  businessTech_top_terms_visual <- businessTech_top_terms %>%
+    mutate(topic = factor(topic),
+           term = reorder_within(term, beta, topic)) %>%
+    ggplot(aes(term, beta, fill = topic)) +
+    geom_bar(alpha = 0.8, stat = "identity", show.legend = FALSE) +
+    scale_x_reordered() +
+    facet_wrap(~topic, scales = "free", ncol = 2) +
+    coord_flip()
+  
+  businessTech_top_terms_visual
+  
+# Save the graph to disk  
+  ggsave(businessTech_top_terms_visual, filename = "businessTech_top_terms_visual.png", width = 185, height = 254, units = "mm")
+```
+
+### 3.5.2 Topic Sentiment
+```{r LDA: BusinessTech - Topic Sentiment}
+  businessTech_topic_sentiment <- businessTech_lda_td %>%
+    inner_join(get_sentiments("loughran"), by = c("term" = "word")) %>%
+    group_by(topic, sentiment) %>%
+    summarise(sentiment_total = sum(beta)) %>%
+    mutate(sentiment_ratio = sentiment_total/sum(sentiment_total)) %>%
+    ungroup() %>%
+    arrange(topic, desc(sentiment_ratio)) %>%
+    mutate(sentiment = factor(sentiment))
+  
+  businessTech_topic_sentiment
+
+# Visualisation
+  businessTech_sentiment_visual <- businessTech_topic_sentiment %>%
+    ggplot(aes(x = sentiment, y = sentiment_ratio, fill = sentiment)) +
+    geom_bar(stat = "identity") +
+    labs(x = "", y = "Topic-sentiment Ratio", title = "Topic sentiment of news articles", subtitle = "BusinessTech") +
+    scale_y_continuous(labels = scales::percent) +
+    theme_minimal() +
+    theme(plot.title = element_text(size = 18),
+          plot.subtitle = element_text(color = "grey40"),
+          axis.text.x = element_blank()) +
+    facet_wrap(~topic) 
+    
+  businessTech_sentiment_visual
+  
+# Save the graph to disk  
+  ggsave(businessTech_sentiment_visual, filename = "businessTech_sentiment_visual.png", width = 185, height = 114, units = "mm")
+```
+
+## 3.6. Across All Media Outlets
+```{r LDN: Compiled Media}
+# Applying LDA topic modelling
+  mediaCompiled_lda <- LDA(mediaCompiled_dtm, k = 11, control = list(seed = 123))
+  
+  mediaCompiled_lda
+  
+# Transforming the data into the tidy format
+  mediaCompiled_lda_td <- tidy(mediaCompiled_lda) 
+  
+  mediaCompiled_lda_td
+```
+
+### 3.6.1 Top Terms
+```{r LDN: Compiled Media - Top Terms}
+# Top 15 Terms using the `beta` method
+  mediaCompiled_top_terms <- mediaCompiled_lda_td %>%
+    group_by(topic) %>%
+    top_n(10, beta) %>%
+    ungroup() %>%
+    arrange(topic, -beta)
+  
+# Visualisation
+  mediaCompiled_top_terms_visual <- mediaCompiled_top_terms %>%
+    mutate(topic = factor(topic),
+           term = reorder_within(term, beta, topic)) %>%
+    ggplot(aes(term, beta, fill = topic)) +
+    geom_bar(alpha = 0.8, stat = "identity", show.legend = FALSE) +
+    scale_x_reordered() +
+    facet_wrap(~topic, scales = "free", ncol = 2) +
+    coord_flip()
+  
+  mediaCompiled_top_terms_visual
+  
+# Save the graph to disk  
+  ggsave(mediaCompiled_top_terms_visual, filename = "mediaCompiled_top_terms_visual.png", width = 185, height = 234, units = "mm")
+```
+
+### 3.6.2 Topic Sentiment
+```{r LDN: Compiled Media - Topic Sentiment}
+  mediaCompiled_topic_sentiment <- mediaCompiled_lda_td %>%
+    inner_join(get_sentiments("loughran"), by = c("term" = "word")) %>%
+    group_by(topic, sentiment) %>%
+    summarise(sentiment_total = sum(beta)) %>%
+    mutate(sentiment_ratio = sentiment_total/sum(sentiment_total)) %>%
+    ungroup() %>%
+    arrange(topic, desc(sentiment_ratio)) %>%
+    mutate(sentiment = factor(sentiment))
+  
+  mediaCompiled_topic_sentiment
+
+# Visualisation
+  mediaCompiled_sentiment_visual <- mediaCompiled_topic_sentiment %>%
+    ggplot(aes(x = sentiment, y = sentiment_ratio, fill = sentiment)) +
+    geom_bar(stat = "identity") +
+    labs(x = "", y = "Topic-sentiment Ratio", title = "Topic sentiment over all news articles") +
+    scale_y_continuous(labels = scales::percent) +
+    theme_minimal() +
+    theme(plot.title = element_text(size = 18),
+          axis.text.x = element_blank()) +
+    facet_wrap(~topic) 
+    
+  mediaCompiled_sentiment_visual
+  
+# Save the graph to disk  
+  ggsave(mediaCompiled_sentiment_visual, filename = "mediaCompiled_sentiment_visual.png", width = 185, height = 114, units = "mm")
+```
+
+# 4. Structural Topic Modelling (STM)
+
+## 4.1 Fin24
+```{r STM: Fin24}
+# Transforming the tidied dataset to a document-feature matrix
+  fin24_dfm <- fin24 %>%
+    count(title, word, sort = TRUE) %>%
+    cast_dfm(title, word, n)
+  
+# Creating a topic model using STM
+  fin24_topic_model <- stm(fin24_dfm, K = 6, init.type = "Spectral", verbose = FALSE)
+
+  summary(fin24_topic_model)
+```
+
+### 4.1.1. Beta Matrix
+```{r STM: Fin24 - Beta Matrix}
+  fin24_beta_visual <- tidy(fin24_topic_model) %>%
+    group_by(topic) %>%
+    top_n(10) %>%
+    ungroup() %>%
+    mutate(term = reorder_within(term, beta, topic)) %>%
+    ggplot(aes(x = term, y = beta, fill = as.factor(topic))) +
+    geom_col(show.legend = FALSE) +
+    facet_wrap(~topic, scales = "free_y") +
+    coord_flip() +
+    scale_x_reordered() +
+    labs(x = NULL, y = "beta", title = "Highest word probabilities for each topic", subtitle = "Fin24")
+
+  fin24_beta_visual
+  
+# Save the graph to disk  
+  ggsave(fin24_beta_visual, filename = "fin24_beta_visual.png", width = 185, height = 114, units = "mm")
+```
+ 
+### 4.1.2. Gamma Matrix
+```{r STM: Fin24 - Gamma Matrix}
+  fin24_gamma_visual <- tidy(fin24_topic_model, matrix = "gamma",
+                             document_names = rownames(fin24_dfm)) %>%
+    ggplot(aes(x = gamma, fill = as.factor(topic))) +
+    geom_histogram(show.legend = FALSE) +
+    facet_wrap(~topic, ncol = 2) +
+    labs(title = "Distribution of document probabilities for each topic", subtitle = "Fin24")
+
+  fin24_gamma_visual
+  
+# Save the graph to disk  
+  ggsave(fin24_gamma_visual, filename = "fin24_gamma_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+## 4.2. Moneyweb
+```{r STM: Moneyweb}
+# Transforming the tidied dataset to a document-feature matrix
+  moneyweb_dfm <- moneyweb %>%
+    count(title, word, sort = TRUE) %>%
+    cast_dfm(title, word, n)
+
+# Creating a topic model using STM
+  moneyweb_topic_model <- stm(moneyweb_dfm, K = 15, init.type = "Spectral", verbose = FALSE)
+  
+  summary(moneyweb_topic_model)
+```
+  
+### 4.2.1. Beta Matrix
+```{r STM: Moneyweb - Beta Matrix}
+  moneyweb_beta_visual <- tidy(moneyweb_topic_model) %>%
+    group_by(topic) %>%
+    top_n(10) %>%
+    ungroup() %>%
+    mutate(term = reorder_within(term, beta, topic)) %>%
+    ggplot(aes(x = term, y = beta, fill = as.factor(topic))) +
+    geom_col(alpha = 0.8, show.legend = FALSE) +
+    facet_wrap(~topic, scales = "free_y") +
+    coord_flip() +
+    scale_x_reordered() +
+    labs(x = NULL, y = "beta", title = "Highest word probabilities for each topic", subtitle = "Moneyweb")
+
+  moneyweb_beta_visual
+  
+# Save the graph to disk  
+  ggsave(moneyweb_beta_visual, filename = "moneyweb_beta_visual.png", width = 185, height = 154, units = "mm")
+```
+  
+### 4.2.2. Gamma Matrix
+```{r STM: Moneyweb - Gamma}
+  moneyweb_gamma_visual <- tidy(moneyweb_topic_model, matrix = "gamma",
+                                document_names = rownames(moneyweb_dfm)) %>%
+    ggplot(aes(gamma, fill = as.factor(topic))) +
+    geom_histogram(show.legend = FALSE) +
+    facet_wrap(~topic, ncol = 2) +
+    labs(title = "Distribution of document probabilities for each topic", subtitle = "Moneyweb")
+
+  moneyweb_gamma_visual
+  
+# Save the graph to disk  
+  ggsave(moneyweb_gamma_visual, filename = "moneyweb_gamma_visual.png", width = 185, height = 254, units = "mm")
+```
+  
+## 4.3. BizNews
+```{r STM: BizNews}
+ # Transforming the tidied dataset to a document-feature matrix
+  biznews_dfm <- biznews %>%
+    count(title, word, sort = TRUE) %>%
+    cast_dfm(title, word, n)
+
+# Creating a topic model using STM
+  biznews_topic_model <- stm(biznews_dfm, K = 8, init.type = "Spectral", verbose = FALSE)
+  
+  summary(biznews_topic_model)
+```
+  
+### 4.3.1. Beta Matrix
+```{r STM: BizNews - Beta Matrix}
+  biznews_beta_visual <- tidy(biznews_topic_model) %>%
+    group_by(topic) %>%
+    top_n(10) %>%
+    ungroup() %>%
+    mutate(term = reorder_within(term, beta, topic)) %>%
+    ggplot(aes(x = term, y = beta, fill = as.factor(topic))) +
+    geom_col(alpha = 0.8, show.legend = FALSE) +
+    facet_wrap(~topic, scales = "free_y") +
+    coord_flip() +
+    scale_x_reordered() +
+    labs(x = NULL, y = "beta", title = "Highest word probabilities for each topic", subtitle = "BizNews")
+
+  biznews_beta_visual
+  
+# Save the graph to disk  
+  ggsave(biznews_beta_visual, filename = "biznews_beta_visual.png", width = 185, height = 114, units = "mm")
+```
+
+### 4.3.2. Gamma Matrix
+```{r STM: BizNews - Gamma Matrix}
+  biznews_gamma_visual <- tidy(biznews_topic_model, matrix = "gamma",
+                               document_names = rownames(biznews_dfm)) %>%
+    ggplot(aes(gamma, fill = as.factor(topic))) +
+    geom_histogram(show.legend = FALSE) +
+    facet_wrap(~topic, ncol = 3) +
+    labs(title = "Distribution of document probabilities for each topic", subtitle = "BizNews")
+
+  biznews_gamma_visual
+  
+# Save the graph to disk  
+  ggsave(biznews_gamma_visual, filename = "biznews_gamma_visual.png", width = 185, height = 114, units = "mm")
+```
+
+## 4.4. EWN Business
+```{r STM: EWN Business}
+ # Transforming the tidied dataset to a document-feature matrix
+  EWNbusiness_dfm <- EWNbusiness %>%
+    count(title, word, sort = TRUE) %>%
+    cast_dfm(title, word, n)
+
+# Creating a topic model using stm
+  EWNbusiness_topic_model <- stm(EWNbusiness_dfm, K = 10, init.type = "Spectral", verbose = FALSE)
+  
+  summary(EWNbusiness_topic_model)
+```
+  
+### 4.4.1. Beta Matrix
+```{r STM: EWN Business - Beta Matrix}
+  EWNbusiness_beta_visual <- tidy(EWNbusiness_topic_model) %>%
+    group_by(topic) %>%
+    top_n(10) %>%
+    ungroup() %>%
+    mutate(term = reorder_within(term, beta, topic)) %>%
+    ggplot(aes(x = term, y = beta, fill = as.factor(topic))) +
+    geom_col(alpha = 0.8, show.legend = FALSE) +
+    facet_wrap(~topic, scales = "free_y") +
+    coord_flip() +
+    scale_x_reordered() +
+    labs(x = NULL, y = "beta", title = "Highest word probabilities for each topic", subtitle = "EWN Business")
+
+  EWNbusiness_beta_visual
+  
+# Save the graph to disk  
+  ggsave(EWNbusiness_beta_visual, filename = "EWNbusiness_beta_visual.png", width = 185, height = 114, units = "mm")
+```
+ 
+### 4.4.2. Gamma Matrix
+```{r STM: EWN Business - Gamma Matrix}
+  EWNbusiness_gamma_visual <- tidy(EWNbusiness_topic_model, matrix = "gamma",
+                               document_names = rownames(EWNbusiness_dfm)) %>%
+    ggplot(aes(gamma, fill = as.factor(topic))) +
+    geom_histogram(show.legend = FALSE) +
+    facet_wrap(~topic, ncol = 3) +
+    labs(title = "Distribution of document probabilities for each topic", subtitle = "EWN Business")
+
+  EWNbusiness_gamma_visual
+  
+# Save the graph to disk  
+  ggsave(EWNbusiness_gamma_visual, filename = "EWNbusiness_gamma_visual.png", width = 185, height = 114, units = "mm")
+```
+
+## 4.5. BusinessTech
+```{r STM: BusinessTech}
+# Transforming the tidied dataset to a document-feature matrix
+  businessTech_dfm <- businessTech %>%
+    count(title, word, sort = TRUE) %>%
+    cast_dfm(title, word, n)
+
+# Creating a topic model using stm
+  businessTech_topic_model <- stm(businessTech_dfm, K = 13, init.type = "Spectral", verbose = FALSE)
+  
+  summary(businessTech_topic_model)
+```
+ 
+### 4.5.1. Beta Matrix
+```{r STM: BusinessTech - Beta Matrix}
+  businessTech_beta_visual <- tidy(businessTech_topic_model) %>%
+    group_by(topic) %>%
+    top_n(10) %>%
+    ungroup() %>%
+    mutate(term = reorder_within(term, beta, topic)) %>%
+    ggplot(aes(x = term, y = beta, fill = as.factor(topic))) +
+    geom_col(alpha = 0.8, show.legend = FALSE) +
+    facet_wrap(~topic, scales = "free_y") +
+    coord_flip() +
+    scale_x_reordered() +
+    labs(x = NULL, y = "beta", title = "Highest word probabilities for each topic", subtitle = "BusinessTech")
+
+  businessTech_beta_visual
+  
+# Save the graph to disk  
+  ggsave(businessTech_beta_visual, filename = "businessTech_beta_visual.png", width = 185, height = 154, units = "mm")
+```
+
+### 4.5.2. Gamma Matrix
+```{r STM: BusinessTech - Gamma Matrix}
+  businessTech_gamma_visual <- tidy(businessTech_topic_model, matrix = "gamma",
+                               document_names = rownames(businessTech_dfm)) %>%
+    ggplot(aes(gamma, fill = as.factor(topic))) +
+    geom_histogram(show.legend = FALSE) +
+    facet_wrap(~topic, ncol = 3) +
+    labs(title = "Distribution of document probabilities for each topic", subtitle = "BusinessTech")
+
+  businessTech_gamma_visual
+  
+# Save the graph to disk  
+  ggsave(businessTech_gamma_visual, filename = "businessTech_gamma_visual.png", width = 185, height = 134, units = "mm")
+```
+
+## 4.6. Across All Media Outlets
+```{r STM: Compiled Media}
+# Transforming the tidied dataset to a document-feature matrix
+  mediaCompiled_dfm <- mediaCompiled %>%
+    count(title, word, sort = TRUE) %>%
+    cast_dfm(title, word, n)
+
+# Creating a topic model using stm
+  mediaCompiled_topic_model <- stm(mediaCompiled_dfm, K = 11, init.type = "Spectral", verbose = FALSE)
+  
+  summary(mediaCompiled_topic_model)
+```
+
+### 4.6.1. Beta Matrix 
+```{r STM: Compiled Media - Beta Matrix}
+  mediaCompiled_beta_visual <- tidy(mediaCompiled_topic_model) %>%
+    group_by(topic) %>%
+    top_n(10) %>%
+    ungroup() %>%
+    mutate(term = reorder_within(term, beta, topic)) %>%
+    ggplot(aes(x = term, y = beta, fill = as.factor(topic))) +
+    geom_col(alpha = 0.8, show.legend = FALSE) +
+    facet_wrap(~topic, scales = "free_y") +
+    coord_flip() +
+    scale_x_reordered() +
+    labs(x = NULL, y = "beta", title = "Highest word probabilities for each topic", subtitle = "All media outlets")
+
+  mediaCompiled_beta_visual
+  
+# Save the graph to disk  
+  ggsave(mediaCompiled_beta_visual, filename = "mediaCompiled_beta_visual.png", width = 185, height = 114, units = "mm")
+```
+  
+### 4.6.2. Gamma Matrix 
+```{r STM: Compiled Media - Gamma Matrix}
+  mediaCompiled_gamma_visual <- tidy(mediaCompiled_topic_model, matrix = "gamma",
+                               document_names = rownames(mediaCompiled_dfm)) %>%
+    ggplot(aes(gamma, fill = as.factor(topic))) +
+    geom_histogram(show.legend = FALSE) +
+    facet_wrap(~topic, ncol = 3) +
+    labs(title = "Distribution of document probabilities for each topic", subtitle = "All media outlets")
+
+  mediaCompiled_gamma_visual
+  
+# Save the graph to disk  
+  ggsave(mediaCompiled_gamma_visual, filename = "mediaCompiled_gamma_visual.png", width = 185, height = 114, units = "mm")
+```

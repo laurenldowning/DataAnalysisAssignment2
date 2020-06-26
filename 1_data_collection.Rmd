@@ -1,0 +1,326 @@
+---
+title: "A Computational Analysis of the Business Media's Response to Covid-19: Data Collection"
+author: "Caryn Biebuyck (20715978) & Lauren Downing (19202113)"
+output: html_notebook
+---
+
+```{r Setup, message=TRUE, warning=TRUE, include=FALSE}
+  library(dplyr)
+  library(lubridate)
+  library(RSelenium)
+  library(rvest)
+  library(stringr)
+  library(tidyverse)
+```
+
+
+# Data retrieval with `RSelenium`
+
+## 1. Fin24
+```{r Fin24}
+# Starting a Selenium server
+  rD <- rsDriver(browser = "chrome", port = 4444L, verbose = FALSE, chromever = "83.0.4103.39")
+
+# Opening the browser 
+  remDr <- rD$client
+  
+# Navigating to the Fin24 web page
+  remDr$navigate("https://www.news24.com/fin24/news/")
+  
+# Scrolling the web page until the required articles have all populated
+  for(i in 1:120) {
+    remDr$executeScript(paste("scroll(0,",i*2000,");"))
+    Sys.sleep(1)
+  }
+ 
+# Reading in the page source and retrieving the required HTML nodes
+  fin24PageSource <- read_html(remDr$getPageSource()[[1]])
+  
+  urls <- fin24PageSource  %>%
+    html_nodes(".article-item--url")
+  
+# Creating and populating the data frame
+  fin24Articles <- data.frame(title = "", url = "", date = "")
+  
+  for(i in 2:length(urls)) {
+    fin24Articles[i,1] <- xml_attrs(urls[i][[1]])[["aria-label"]]
+    fin24Articles[i,2] <- xml_attrs(urls[i][[1]])[["href"]]
+    fin24Articles[i,3] <- str_extract(xml_attrs(urls[i][[1]])[["href"]], "\\d\\d\\d\\d\\d\\d\\d\\d")
+  }
+  
+# Transforming the data in the data frame  
+  fin24Articles <- fin24Articles %>%
+    mutate(url = paste0("https://www.news24.com", url), date = as.Date(date, format = "%Y%m%d")) %>%
+    filter(date >= "2020-03-05" & date <= "2020-06-13")
+  
+  key_words <- c("active case", "alcohol ban", "cigarette ban", "coronavirus", "covid-19", "epidemic", "infection", "lockdown", "pandemic", "self-isolation", "solidarity fund", "vaccine", "virus")
+    
+  fin24Articles <- filter(fin24Articles, grepl(paste(key_words, collapse = "|"), fin24Articles$title))
+ 
+# Extracting the article text
+  for (i in seq(nrow(fin24Articles))) {
+    content <-  read_html(fin24Articles$url[i]) %>%
+      html_nodes(".article__body") %>%
+      html_text()
+   
+    fin24Articles$content[i] <- content
+  }
+  
+# Removing articles not containing any text (e.g. videos)  
+  fin24Articles$content <- fin24Articles$content %>%
+    trimws() %>%
+    na_if("")
+  
+  fin24Articles <- fin24Articles %>%
+    drop_na()
+  
+  fin24Articles
+  
+# Saving the data
+  write_rds(fin24Articles, path = "data_out/fin24.rds")
+
+# Closing the Selenium server
+  remDr$close()
+  rD$server$stop()
+  rm(rD, remDr)
+  gc()
+```
+
+# Data retrieval with `rvest`
+To minimize the processing time, we manually estimated the page ranges needed for the selected analysis period. Data was retrieved on 23 June, at approximately 12.00 pm.
+
+## 2. Moneyweb
+```{r Moneyweb}
+# Getting the page source
+ moneywebPageSource <- lapply(paste0("https://www.moneyweb.co.za/covid-19/", 2:32), function(url) {
+    url %>%
+    read_html() %>%
+    html_nodes(css = "#left-content .m0005 a, .inline-block .inline-block:nth-child(1)")
+  })
+
+# Creating and populating the data frame
+  moneywebArticles <- data.frame()
+  
+  for (i in 1:length(moneywebPageSource)) {
+    for (j in 1:length(moneywebPageSource[[i]])) {
+      if (j == length(moneywebPageSource[[i]])) {break}
+      newRow <- data.frame(title = moneywebPageSource[[i]][j] %>%
+                           html_text(),
+                         url = moneywebPageSource[[i]][j] %>%
+                           html_attr("href"),
+                         date = moneywebPageSource[[i]][j+1] %>%
+                           html_text())
+      
+      moneywebArticles <- rbind(moneywebArticles, newRow) %>%
+        subset(grepl("^https\\:\\/\\/www\\.moneyweb\\.co\\.za\\/", url))
+    }
+  }
+  
+# Filtering out unnecessary articles
+  moneywebArticles <- moneywebArticles %>%
+    mutate(url = as.character(url), date = dmy(date)) %>%
+    filter(date >= "2020-03-05" & date <= "2020-06-13")
+  
+  moneywebArticles <- moneywebArticles %>%
+    filter(!grepl("moneyweb-radio", moneywebArticles$url))
+  
+# Extracting the article text
+  for (i in seq(nrow(moneywebArticles))) {
+    content <- read_html(moneywebArticles$url[i]) %>%
+      html_nodes(".article-content>:not(script)") %>%
+      html_text() %>% 
+      toString
+    
+    moneywebArticles$content[i] <- content
+  }
+ 
+  moneywebArticles
+  
+# Saving the data  
+  write_rds(moneywebArticles, path = "data_out/moneyweb.rds")
+```
+
+## 3. BizNews
+```{r BizNews}
+# Getting the page source
+  biznewsPageSource <- lapply(paste0("https://www.biznews.com/articles/page/", 9:107), function(url) {
+    url %>%
+      read_html() %>%
+      html_nodes(css= ".entry-title a")
+  })
+  
+# Creating and populating the data frame
+  biznewsArticles <- data.frame()
+    
+  for (i in 1:length(biznewsPageSource)) {
+    for (j in 1:length(biznewsPageSource[[i]])) {
+      newRow <- data.frame(title = biznewsPageSource[[i]][j] %>%
+                           html_text(),
+                         url = biznewsPageSource[[i]][j] %>%
+                           html_attr("href"),
+                         date = biznewsPageSource[[i]][j] %>%
+                           html_attr("href") %>%
+                           str_extract(., "\\d\\d\\d\\d\\/\\d\\d\\/\\d\\d"))
+                
+                 biznewsArticles <- rbind(biznewsArticles, newRow)
+      }
+    }
+  
+# Filtering out unnecessary articles
+  biznewsArticles <- biznewsArticles %>%
+    mutate(date = as.Date(date, format = "%Y/%m/%d")) %>%
+    filter(date >= "2020-03-05" & date <= "2020-06-13")
+  
+  key_words <- c("active case", "alcohol ban", "cigarette ban", "coronavirus", "covid-19", "epidemic", "infection", "lockdown", "pandemic", "self-isolation", "solidarity fund", "vaccine", "virus")
+
+  biznewsArticles <- filter(biznewsArticles, grepl(paste(key_words, collapse = "|"), biznewsArticles$title))
+ 
+# Extracting the article text
+  for (i in seq(nrow(biznewsArticles))) {
+    content <-  read_html(biznewsArticles$url[i]) %>%
+      html_nodes(".entry-content") %>%
+      html_text()
+   
+     biznewsArticles$content[i] <- content
+  }
+  
+  biznewsArticles
+ 
+# Saving the data 
+  write_rds(biznewsArticles, path = "data_out/biznews.rds")
+```
+
+## 4. EWN Business
+```{r EWN Business}
+# Getting the page source
+  ewnPageSource <- list()
+    for(n in 11:209) {
+      tryCatch({
+        newData <-lapply(paste0("https://ewn.co.za/topic/coronavirus?pageNumber=", n,"&perPage=18"), function(url) {
+          url %>%
+            read_html() %>%
+            html_nodes(".article-short a")
+        })
+        ewnPageSource <- c(ewnPageSource, newData)
+      }) 
+    }
+
+# Creating and populating the data frame
+  ewnArticles <- data.frame()
+  
+  getDate <- function(url) {
+    regex <- "\\d\\d\\d\\d\\/\\d\\d\\/\\d\\d"
+    isValidUrl <- grepl(regex, url)
+    if(!isValidUrl) {
+      return ("NA")
+    }
+    date <- regmatches(url, regexpr(regex, url))
+    return (date)
+  }
+  
+  for (i in 1:length(ewnPageSource)) {
+    for (j in 1:length(ewnPageSource[[i]])) {
+      title <- ewnPageSource[[i]][j] %>% 
+        html_text() 
+      url <- ewnPageSource[[i]][j] %>% 
+        html_attr("href")
+      date <- getDate(url)
+    
+      newRow <- data.frame(title=title, url=url, date=date)
+      
+      ewnArticles <- rbind(ewnArticles,newRow)
+    }
+  }
+  
+# Filtering out unnecessary articles
+  ewnArticles <- ewnArticles %>%
+    mutate(date = as.Date(date, format = "%Y/%m/%d")) %>%
+    filter(date >= "2020-03-05" & date <= "2020-06-13") %>%
+    drop_na()
+  
+  key_words <- c("active case", "alcohol ban", "cigarette ban", "coronavirus", "covid-19", "epidemic", "infection", "lockdown", "pandemic", "self-isolation", "solidarity fund", "vaccine", "virus")
+  
+  ewnArticles <- filter(ewnArticles, grepl(paste(key_words, collapse = "|"), ewnArticles$title))
+ 
+# Extracting the article text
+  for (i in seq(nrow(ewnArticles))) {
+    content <-  read_html(ewnArticles$url[i]) %>%
+      html_nodes(".byline+ span") 
+    
+    contentList <- list()
+    
+    for(n in content){
+      contentList <- c(contentList, n %>% html_text())
+    }
+    
+    if(length(contentList) == 0) {
+      ewnArticles$content[i] <- "NA"
+      next
+    }
+   
+    ewnArticles$content[i] <- contentList
+  }
+  
+  ewnArticles
+  
+# Saving the data
+  write_rds(ewnArticles, path = "data_out/ewn.rds")
+```
+
+## 5. Business Tech
+```{r Business Tech}
+# Getting the page source
+  businesstechPageSource <- lapply(paste0("https://businesstech.co.za/news/page/", 7:79), function(url) {
+    url %>%
+    read_html() %>%
+    html_nodes(css = ".category-caption+ .entry-title a")
+  })
+
+# Creating and populating the data frame
+  businesstechArticles <- data.frame()
+
+  getDate <- function(url) {
+    date <- url %>%
+      read_html() %>%
+      html_nodes(".updated") %>%
+      html_text()
+    return (date);
+  }
+  
+  for (i in 1:length(businesstechPageSource)) {
+    for (j in 1:length(businesstechPageSource[[i]])) {
+      newRow <- data.frame(title = businesstechPageSource[[i]][j] %>%
+                           html_text(),
+                         url=businesstechPageSource[[i]][j] %>%
+                           html_attr("href"),
+                         date = getDate(businesstechPageSource[[i]][j] %>% html_attr("href")))
+      
+              businesstechArticles <- rbind(businesstechArticles, newRow)
+    }
+  }
+  
+# Filtering out unnecessary articles
+  businesstechArticles <- businesstechArticles %>%
+    mutate(date = as.Date(date, format = "%d %B %Y")) %>%
+    filter(date >= "2020-03-05" & date <= "2020-06-13")
+  
+  businesstechArticles
+  
+  key_words <- c("active case", "alcohol ban", "cigarette ban", "coronavirus", "covid-19", "epidemic", "infection", "lockdown", "pandemic", "self-isolation", "solidarity fund", "vaccine", "virus")
+
+  businesstechArticles <- filter(businesstechArticles, grepl(paste(key_words, collapse = "|"), businesstechArticles$title))
+ 
+# Extracting the article text
+  for (i in seq(nrow(businesstechArticles))) {
+    content <-  read_html(businesstechArticles$url[i]) %>%
+      html_nodes(".entry-content") %>%
+      html_text()
+   
+    businesstechArticles$content[i] <- content
+  }
+  
+  businesstechArticles
+  
+# Saving the data
+  write_rds(businesstechArticles, path = "data_out/businesstech.rds")
+```
